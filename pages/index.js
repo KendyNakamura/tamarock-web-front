@@ -44,11 +44,11 @@ export default function SingleLineGridList({ artistList, articleList }) {
   var article_list = [];
   for (var i in articleList) {
     article_list.push(
-      // <Link href="/articles/[id]" as={`/articles/${articleList[i].id}`} key={i}>
-      <a key={i}>
-        <p>{articleList[i].title}</p>
-      </a>
-      // </Link>
+      <Link href="/articles/[id]" as={`/articles/${articleList[i].id}`} key={i}>
+        <a>
+          <p>{articleList[i].title}</p>
+        </a>
+      </Link>
     );
   }
 
