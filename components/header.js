@@ -53,7 +53,9 @@ export default function PrimarySearchAppBar() {
             />
           </Button>
           {query ? (
-            <Link href={{ pathname: "/search", query: { name: query } }}>
+            <Link
+              href={{ pathname: "/search", query: { name: encodeURI(query) } }}
+            >
               <a>
                 <SearchIcon />
               </a>

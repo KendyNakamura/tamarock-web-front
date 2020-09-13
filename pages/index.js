@@ -46,7 +46,7 @@ export default function SingleLineGridList({ artistList, articleList }) {
     article_list.push(
       <Link href="/articles/[id]" as={`/articles/${articleList[i].id}`} key={i}>
         <a>
-          <p>{articleList[i].title}</p>
+          <li>{articleList[i].title}</li>
         </a>
       </Link>
     );
@@ -79,7 +79,7 @@ export default function SingleLineGridList({ artistList, articleList }) {
           ))}
         </GridList>
       </div>
-      <div>{article_list}</div>
+      <ul>{article_list}</ul>
     </Layout>
   );
 }
