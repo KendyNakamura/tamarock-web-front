@@ -25,9 +25,7 @@ export default function Search({ listData }) {
 
 export async function getServerSideProps(context) {
   const { name } = context.query;
-  const res = await fetch(
-    `http://localhost:3000/api/search?artist_name=${name}`
-  );
+  const res = await fetch(`http://nginx:5010/api/search?artist_name=${name}`);
   const list = await res.json();
   const listData = list["artists"]["items"];
   return {

@@ -1,0 +1,8 @@
+# ベースとなるDockerイメージ指定
+FROM node:14-alpine
+
+WORKDIR /react/src/web_front
+
+# RUN npm run dev
+
+EXPOSE 3200

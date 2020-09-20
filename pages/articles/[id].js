@@ -32,7 +32,7 @@ export default function Post({ article }) {
 
 export async function getServerSideProps({ params }) {
   const article_res = await fetch(
-    `http://localhost:5010/api/articles/${params.id}`
+    `http://nginx:5010/api/articles/${params.id}`
   );
   const article = await article_res.json();
   return {
