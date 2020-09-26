@@ -3,7 +3,7 @@ FROM node:14-alpine
 
 WORKDIR /react/src/web_front
 
-RUN pwd
+RUN ls
 RUN npm run build
 RUN npm run start
 
