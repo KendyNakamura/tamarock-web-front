@@ -3,7 +3,6 @@ FROM node:14-alpine
 
 WORKDIR /react/src/web_front
 
-RUN npm run build
-RUN npm run start
+RUN npm run dev
 
 EXPOSE 3200
