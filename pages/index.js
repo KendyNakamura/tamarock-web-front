@@ -85,8 +85,8 @@ export default function SingleLineGridList({ artistList, articleList }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("http://nginx:5010/api/artist/infos");
-  const articles = await fetch("http://nginx:5010/api/articles");
+  const res = await fetch("http://tamarock-api:5000/api/artist/infos");
+  const articles = await fetch("http://tamarock-api:5000/api/articles");
   const artistList = await res.json();
   const articleList = await articles.json();
   return {

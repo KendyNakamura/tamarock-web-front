@@ -101,11 +101,13 @@ export default function Post({ spotifyData, artistData }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const spotify_res = await fetch(`http://nginx:5010/api/artist/${params.id}`);
+  const spotify_res = await fetch(
+    `http://tamarock-api:5000/api/artist/${params.id}`
+  );
   const spotifyData = await spotify_res.json();
 
   const artist_res = await fetch(
-    `http://nginx:5010/api/artist/info/${params.id}`
+    `http://tamarock-api:5000/api/artist/info/${params.id}`
   );
   const artistData = await artist_res.json();
   return {
