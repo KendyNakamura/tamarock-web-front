@@ -93,6 +93,14 @@ export default function Post({ spotifyData, artistData }) {
               {videoList}
             </Grid>
           </ul>
+          <iframe
+            src={`https://open.spotify.com/embed/artist/${spotify_artist_info.id}`}
+            width="300"
+            height="380"
+            frameborder="0"
+            allowtransparency="true"
+            allow="encrypted-media"
+          ></iframe>
           {twitter_id}
         </article>
       </div>
@@ -105,7 +113,7 @@ export async function getServerSideProps({ params }) {
     `http://tamarock-api:5000/api/artist/${params.id}`
   );
   const spotifyData = await spotify_res.json();
-
+  console.log(spotifyData);
   const artist_res = await fetch(
     `http://tamarock-api:5000/api/artist/info/${params.id}`
   );

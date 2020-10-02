@@ -1,6 +1,4 @@
-import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
-import utilStyles from "../styles/utils.module.css";
+import Layout from "../components/layout";
 import Link from "next/link";
 
 import React from "react";
@@ -22,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     flexWrap: "nowrap",
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: "translateZ(0)",
   },
   title: {
@@ -37,48 +34,56 @@ const useStyles = makeStyles((theme) => ({
 export default function SingleLineGridList({ artistList, articleList }) {
   const classes = useStyles();
 
-  if (artistList.length === 0 || articleList.length === 0) {
-    return <span>Loading...</span>;
-  }
+  if (artistList != null && articleList != null) {
+    if (artistList.length === 0 || articleList.length === 0) {
+      return <span>Loading...</span>;
+    }
 
-  var article_list = [];
-  for (var i in articleList) {
-    article_list.push(
-      <Link href="/articles/[id]" as={`/articles/${articleList[i].id}`} key={i}>
-        <a>
-          <li>{articleList[i].title}</li>
-        </a>
-      </Link>
+    var artist_list = (
+      <GridList className={classes.gridList} cols={2.5}>
+        {artistList.map((artist) => (
+          <GridListTile key={artist.id}>
+            <Link href="/artists/[id]" as={`/artists/${artist.id}`}>
+              <a>
+                <img src={artist.images[0].url} alt={artist.name} />
+                <GridListTileBar
+                  title={artist.name}
+                  classes={{
+                    root: classes.titleBar,
+                    title: classes.title,
+                  }}
+                  actionIcon={
+                    <IconButton aria-label={`star ${artist.name}`}>
+                      <StarBorderIcon className={classes.title} />
+                    </IconButton>
+                  }
+                />
+              </a>
+            </Link>
+          </GridListTile>
+        ))}
+      </GridList>
     );
+
+    var article_list = [];
+    for (var i in articleList) {
+      article_list.push(
+        <Link
+          href="/articles/[id]"
+          as={`/articles/${articleList[i].id}`}
+          key={i}
+        >
+          <a>
+            <li>{articleList[i].title}</li>
+          </a>
+        </Link>
+      );
+    }
   }
 
   return (
     <Layout home>
-      <div className={classes.root}>
-        <GridList className={classes.gridList} cols={2.5}>
-          {artistList.map((artist) => (
-            <GridListTile key={artist.id}>
-              <Link href="/artists/[id]" as={`/artists/${artist.id}`}>
-                <a>
-                  <img src={artist.images[0].url} alt={artist.name} />
-                  <GridListTileBar
-                    title={artist.name}
-                    classes={{
-                      root: classes.titleBar,
-                      title: classes.title,
-                    }}
-                    actionIcon={
-                      <IconButton aria-label={`star ${artist.name}`}>
-                        <StarBorderIcon className={classes.title} />
-                      </IconButton>
-                    }
-                  />
-                </a>
-              </Link>
-            </GridListTile>
-          ))}
-        </GridList>
-      </div>
+      <div className={classes.root}>{artist_list}</div>
       <ul>{article_list}</ul>
     </Layout>
   );

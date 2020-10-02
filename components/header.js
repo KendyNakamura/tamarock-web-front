@@ -41,7 +41,7 @@ export default function PrimarySearchAppBar() {
           </Link>
           <Typography variant="h6" className={classes.title}>
             <Link href="/">
-              <a>Artists</a>
+              <a>Tamarock</a>
             </Link>
           </Typography>
           <Button color="inherit">
