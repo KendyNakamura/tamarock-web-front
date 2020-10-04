@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SingleLineGridList({ artistList, articleList }) {
   const classes = useStyles();
 
-  if (artistList != null && articleList != null) {
-    if (artistList.length === 0 || articleList.length === 0) {
+  if (artistList != null) {
+    if (artistList.length === 0) {
       return <span>Loading...</span>;
     }
 
@@ -64,27 +64,32 @@ export default function SingleLineGridList({ artistList, articleList }) {
         ))}
       </GridList>
     );
-
-    var article_list = [];
-    for (var i in articleList) {
-      article_list.push(
-        <Link
-          href="/articles/[id]"
-          as={`/articles/${articleList[i].id}`}
-          key={i}
-        >
-          <a>
-            <li>{articleList[i].title}</li>
-          </a>
-        </Link>
-      );
+  }
+  if (articleList != null) {
+    if (articleList.length === 0) {
+      return <span>Loading...</span>;
     }
+
+    var article_list = (
+      <table border="1">
+        {articleList.map((article) => (
+          <tr>
+            <th>{formatDate(new Date(article.createdat))}</th>
+            <Link href="/articles/[id]" as={`/articles/${article.id}`}>
+              <td>
+                <a>{article.title}</a>
+              </td>
+            </Link>
+          </tr>
+        ))}
+      </table>
+    );
   }
 
   return (
     <Layout home>
       <div className={classes.root}>{artist_list}</div>
-      <ul>{article_list}</ul>
+      <div>{article_list}</div>
     </Layout>
   );
 }
@@ -100,4 +105,11 @@ export async function getServerSideProps() {
       articleList,
     },
   };
+}
+
+function formatDate(dt) {
+  var y = dt.getFullYear();
+  var m = ("00" + (dt.getMonth() + 1)).slice(-2);
+  var d = ("00" + dt.getDate()).slice(-2);
+  return y + "-" + m + "-" + d;
 }
