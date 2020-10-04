@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import fetch from "isomorphic-unfetch";
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
@@ -18,16 +19,11 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
   },
-  gridList: {
-    flexWrap: "nowrap",
-    transform: "translateZ(0)",
+  table: {
+    width: "100%",
   },
-  title: {
-    color: theme.palette.primary.light,
-  },
-  titleBar: {
-    background:
-      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+  th: {
+    width: "20%",
   },
 }));
 
@@ -40,29 +36,24 @@ export default function SingleLineGridList({ artistList, articleList }) {
     }
 
     var artist_list = (
-      <GridList className={classes.gridList} cols={2.5}>
-        {artistList.map((artist) => (
-          <GridListTile key={artist.id}>
-            <Link href="/artists/[id]" as={`/artists/${artist.id}`}>
-              <a>
-                <img src={artist.images[0].url} alt={artist.name} />
-                <GridListTileBar
-                  title={artist.name}
-                  classes={{
-                    root: classes.titleBar,
-                    title: classes.title,
-                  }}
-                  actionIcon={
-                    <IconButton aria-label={`star ${artist.name}`}>
-                      <StarBorderIcon className={classes.title} />
-                    </IconButton>
-                  }
-                />
-              </a>
-            </Link>
-          </GridListTile>
-        ))}
-      </GridList>
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          {artistList.map((artist) => (
+            <Grid item md={3} sm={6} xs={12}>
+              <Link href="/artists/[id]" as={`/artists/${artist.id}`}>
+                <a>
+                  <img
+                    src={artist.images[0].url}
+                    alt={artist.name}
+                    className={classes.img}
+                  />
+                  {artist.name}
+                </a>
+              </Link>
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     );
   }
   if (articleList != null) {
@@ -71,10 +62,16 @@ export default function SingleLineGridList({ artistList, articleList }) {
     }
 
     var article_list = (
-      <table border="1">
+      <table border="1" className={classes.table}>
+        <tr>
+          <th className={classes.th}>日付</th>
+          <td>ニュース内容</td>
+        </tr>
         {articleList.map((article) => (
           <tr>
-            <th>{formatDate(new Date(article.createdat))}</th>
+            <th className={classes.th}>
+              {formatDate(new Date(article.createdat))}
+            </th>
             <Link href="/articles/[id]" as={`/articles/${article.id}`}>
               <td>
                 <a>{article.title}</a>
@@ -88,8 +85,14 @@ export default function SingleLineGridList({ artistList, articleList }) {
 
   return (
     <Layout home>
-      <div className={classes.root}>{artist_list}</div>
-      <div>{article_list}</div>
+      <div className={classes.root}>
+        <h2>News</h2>
+        {article_list}
+      </div>
+      <div className={classes.root}>
+        <h2>Artists</h2>
+        {artist_list}
+      </div>
     </Layout>
   );
 }
