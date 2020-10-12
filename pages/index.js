@@ -1,15 +1,9 @@
 import Layout from "../components/layout";
 import Link from "next/link";
-
 import React from "react";
 import fetch from "isomorphic-unfetch";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import IconButton from "@material-ui/core/IconButton";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,12 +12,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
+    width: "90%",
+    marginBottom: "10px",
+    padding: "10px",
   },
   table: {
-    width: "100%",
+    width: "90%",
   },
-  th: {
-    width: "20%",
+  newsDate: {
+    fontSize: "12px",
+    color: "#969999",
   },
 }));
 
@@ -36,7 +34,7 @@ export default function SingleLineGridList({ artistList, articleList }) {
     }
 
     var artist_list = (
-      <div className={classes.root}>
+      <div>
         <Grid container spacing={3}>
           {artistList.map((artist) => (
             <Grid item md={3} sm={6} xs={12}>
@@ -62,18 +60,15 @@ export default function SingleLineGridList({ artistList, articleList }) {
     }
 
     var article_list = (
-      <table border="1" className={classes.table}>
-        <tr>
-          <th className={classes.th}>日付</th>
-          <td>ニュース内容</td>
-        </tr>
+      <table className={classes.table}>
         {articleList.map((article) => (
           <tr>
-            <th className={classes.th}>
-              {formatDate(new Date(article.createdat))}
-            </th>
             <Link href="/articles/[id]" as={`/articles/${article.id}`}>
               <td>
+                <span className={classes.newsDate}>
+                  {formatDate(new Date(article.createdat))}
+                </span>
+                <br />
                 <a>{article.title}</a>
               </td>
             </Link>

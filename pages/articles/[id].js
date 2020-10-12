@@ -6,6 +6,17 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+    backgroundColor: theme.palette.background.paper,
+    width: "90%",
+    marginBottom: "10px",
+    padding: "10px",
+  },
+  text: {
+    wordBreak: "break-word",
   },
 }));
 
@@ -23,7 +34,10 @@ export default function Post({ article }) {
       <div className={classes.root}>
         <article>
           <h2 className={utilStyles.headingXl}>{article.title}</h2>
-          <div dangerouslySetInnerHTML={{ __html: article.text }}></div>
+          <div
+            className={classes.text}
+            dangerouslySetInnerHTML={{ __html: article.text }}
+          ></div>
         </article>
       </div>
     </Layout>

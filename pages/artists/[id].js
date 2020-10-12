@@ -28,7 +28,7 @@ export default function Post({ spotifyData, artistData }) {
   if (youtube_ids.length !== 0) {
     for (var i in youtube_ids) {
       videoList.push(
-        <Grid item xs={12} sm={12} md={6}>
+        <Grid item xs={12} sm={6} md={4}>
           <li>
             <iframe
               title={`youtube${spotify_artist_info.name}_${i}`}
