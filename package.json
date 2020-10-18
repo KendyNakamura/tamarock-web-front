@@ -23,6 +23,7 @@
     "postcss-preset-env": "^6.7.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-paginate": "^6.5.0",
     "react-twitter-embed": "^3.0.3",
     "remark": "^12.0.1",
     "remark-html": "^12.0.0",
