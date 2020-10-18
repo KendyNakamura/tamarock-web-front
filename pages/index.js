@@ -53,7 +53,10 @@ export default function SingleLineGridList({ artistList, articleList }) {
         </Grid>
       </div>
     );
+  } else {
+    return <span>Loading...</span>;
   }
+
   if (articleList != null) {
     if (articleList.length === 0) {
       return <span>Loading...</span>;
@@ -76,6 +79,8 @@ export default function SingleLineGridList({ artistList, articleList }) {
         ))}
       </table>
     );
+  } else {
+    return <span>Loading...</span>;
   }
 
   return (
@@ -93,8 +98,12 @@ export default function SingleLineGridList({ artistList, articleList }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("http://tamarock-api:5000/api/artist/infos");
-  const articles = await fetch("http://tamarock-api:5000/api/articles");
+  const res = await fetch(
+    "http://tamarock-api:5000/api/artist/infos?_end=10&_order=DESC&_sort=id&_start=0"
+  );
+  const articles = await fetch(
+    "http://tamarock-api:5000/api/articles?_end=5&_order=DESC&_sort=id&_start=0"
+  );
   const artistList = await res.json();
   const articleList = await articles.json();
   return {
