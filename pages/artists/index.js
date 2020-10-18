@@ -5,7 +5,7 @@ import Router, { useRouter } from "next/router";
 import Layout from "../../components/layout";
 import fetch from "isomorphic-unfetch";
 
-export default function NewsList({ articleList, articleCountJSON }) {
+export default function NewsList({ artistList, artistCountJSON }) {
   // pagenation
   const [isLoading, setLoading] = useState(false);
   const startLoading = () => setLoading(true);
@@ -40,15 +40,16 @@ export default function NewsList({ articleList, articleCountJSON }) {
   else {
     content = (
       <ul>
-        {articleList.map((article) => {
+        {artistList.map((artist) => {
           return (
             <Link
-              key={article.id}
-              href="/articles/[id]"
-              as={`/articles/${article.id}`}
+              href="/artists/[id]"
+              as={`/artists/${artist.id}`}
+              key={artist.id}
             >
               <a>
-                <li>{article.title}</li>
+                <img src={artist.images[0].url} alt={artist.name} />
+                {artist.name}
               </a>
             </Link>
           );
@@ -57,7 +58,7 @@ export default function NewsList({ articleList, articleCountJSON }) {
     );
   }
 
-  if (articleCountJSON > 10) {
+  if (artistCountJSON > 10) {
     var pagenation = (
       <ReactPaginate
         previousLabel={"previous"}
@@ -67,8 +68,8 @@ export default function NewsList({ articleList, articleCountJSON }) {
         activeClassName={"active"}
         containerClassName={"pagination"}
         subContainerClassName={"pages pagination"}
-        initialPage={articleList.currentPage - 1}
-        pageCount={articleCountJSON / 10} //page count
+        initialPage={artistList.currentPage - 1}
+        pageCount={artistCountJSON / 10} //page count
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={pagginationHandler}
@@ -78,7 +79,7 @@ export default function NewsList({ articleList, articleCountJSON }) {
   // until here
   return (
     <Layout home>
-      <h2>News</h2>
+      <h2>Artists</h2>
       <div className="posts">{content}</div>
       {pagenation}
     </Layout>
@@ -93,19 +94,19 @@ export async function getServerSideProps({ query }) {
     start_num = end_num * (page - 1);
     end_num = end_num * page;
   }
-  const articles = await fetch(
-    `http://tamarock-api:5000/api/articles?_end=${end_num}&_order=DESC&_sort=id&_start=${start_num}`
+  const artists = await fetch(
+    `http://tamarock-api:5000/api/artist/infos?_end=${end_num}&_order=DESC&_sort=id&_start=${start_num}`
   );
-  const articleList = await articles.json();
+  const artistList = await artists.json();
 
-  const articleCount = await fetch(
-    "http://tamarock-api:5000/api/articles/count"
+  const artistCount = await fetch(
+    "http://tamarock-api:5000/api/artist/infos/count"
   );
-  const articleCountJSON = await articleCount.json();
+  const artistCountJSON = await artistCount.json();
   return {
     props: {
-      articleList,
-      articleCountJSON,
+      artistList,
+      artistCountJSON,
     },
   };
 }

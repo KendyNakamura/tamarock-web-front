@@ -87,10 +87,16 @@ export default function SingleLineGridList({ artistList, articleList }) {
     <Layout home>
       <div className={classes.root}>
         <h2>News</h2>
+        <Link href="/articles">
+          <a>news一覧へ</a>
+        </Link>
         {article_list}
       </div>
       <div className={classes.root}>
         <h2>Artists</h2>
+        <Link href="/artists">
+          <a>artist一覧へ</a>
+        </Link>
         {artist_list}
       </div>
     </Layout>
