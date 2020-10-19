@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Header from "../components/header";
+import Header from "./header";
 import Head from "next/head";
 import Link from "next/link";
-import styles from "./layout.module.css";
+import styles from "../styles/layout.module.css";
 import Grid from "@material-ui/core/Grid";
 
 const name = "Your Name";
