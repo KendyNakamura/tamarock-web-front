@@ -1,0 +1,22 @@
+.artistList {
+  list-style: none;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+  padding: 0;
+}
+
+.artist {
+  width: 25%;
+  position: relative;
+  padding: 0 0 0 20px;
+  margin: 7px 0 7px 0px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.artistImg {
+  width: 100%;
+  padding-right: 20px;
+}

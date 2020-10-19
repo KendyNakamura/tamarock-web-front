@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
-import Pagenation from "../../components/pagenation";
+import Pagenation from "../pagenation";
+import styles from "../../styles/articles/article.module.css";
 
 export default function ArticleList({ list, count }) {
   const [isLoading, setLoading] = useState(false);
@@ -21,19 +22,23 @@ export default function ArticleList({ list, count }) {
   if (isLoading) content = <div>Loading...</div>;
   else {
     content = (
-      <table>
+      <ol className={styles.articleList}>
         {list.map((article) => (
-          <tr>
+          <li className={styles.article}>
             <Link href="/articles/[id]" as={`/articles/${article.id}`}>
-              <td>
-                <span>{formatDate(new Date(article.createdat))}</span>
-                <br />
-                <a>{article.title}</a>
-              </td>
+              <a>
+                <p>
+                  {article.title}
+                  <br />
+                  <span className={styles.articleDate}>
+                    {formatDate(new Date(article.createdat))}
+                  </span>
+                </p>
+              </a>
             </Link>
-          </tr>
+          </li>
         ))}
-      </table>
+      </ol>
     );
   }
 
@@ -43,7 +48,7 @@ export default function ArticleList({ list, count }) {
   }
 
   return (
-    <div className="posts">
+    <div>
       {content}
       {pagenation}
     </div>

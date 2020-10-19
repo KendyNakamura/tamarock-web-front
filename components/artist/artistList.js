@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
 import Pagenation from "../../components/pagenation";
+import styles from "../../styles/artists/artist.module.css";
 
 export default function ArtistList({ list, count }) {
   const [isLoading, setLoading] = useState(false);
@@ -21,19 +22,25 @@ export default function ArtistList({ list, count }) {
   if (isLoading) content = <div>Loading...</div>;
   else {
     content = (
-      <ul>
+      <ul className={styles.artistList}>
         {list.map((artist) => {
           return (
-            <Link
-              href="/artists/[id]"
-              as={`/artists/${artist.id}`}
-              key={artist.id}
-            >
-              <a>
-                <img src={artist.images[0].url} alt={artist.name} />
-                {artist.name}
-              </a>
-            </Link>
+            <li className={styles.artist}>
+              <Link
+                href="/artists/[id]"
+                as={`/artists/${artist.id}`}
+                key={artist.id}
+              >
+                <a>
+                  <img
+                    src={artist.images[0].url}
+                    alt={artist.name}
+                    className={styles.artistImg}
+                  />
+                  {artist.name}
+                </a>
+              </Link>
+            </li>
           );
         })}
       </ul>
@@ -46,7 +53,7 @@ export default function ArtistList({ list, count }) {
   }
 
   return (
-    <div className="posts">
+    <div>
       {content}
       {pagenation}
     </div>

@@ -5,7 +5,7 @@ import ArtistList from "../../components/artist/artistList";
 
 export default function NewsList({ artistList, artistCountJSON }) {
   return (
-    <Layout home>
+    <Layout>
       <h2>Artists</h2>
       <ArtistList list={artistList} count={artistCountJSON} />
     </Layout>
