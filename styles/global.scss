@@ -1,0 +1,79 @@
+html,
+body {
+  background-color: #33ddff;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #4b4b4b;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+// Pagination styling
+$purple-color: #745788;
+$purple-color-lighter: #d9c5e6;
+
+.paginate-wrap {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 1rem 0 0 0;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  max-width: 100%;
+  flex-wrap: wrap;
+  background: #ccc;
+  body.light & {
+    background: #fafafa;
+  }
+  .paginate-a,
+  .paginate-next-a,
+  .paginate-prev-a,
+  .paginate-break-a {
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    &:focus {
+      outline: 0;
+    }
+    &:hover {
+      background: $purple-color;
+      background: $purple-color-lighter;
+    }
+  }
+  .paginate-li {
+    margin: 0 0.2rem;
+  }
+  .paginate-next-a,
+  .paginate-prev-a {
+    color: $purple-color;
+    margin: 0 0.3rem;
+  }
+  .paginate-active {
+    border: 2px solid $purple-color-lighter;
+    background: $purple-color-lighter;
+  }
+  .paginate-disabled > a {
+    cursor: not-allowed;
+    background: transparent;
+    color: #666;
+    body.light & {
+      color: #ccc;
+    }
+    &:hover {
+      background: transparent !important;
+    }
+  }
+}

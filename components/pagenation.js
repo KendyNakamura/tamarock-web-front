@@ -21,18 +21,22 @@ export default function Pagenation({ list, count }) {
 
   return (
     <ReactPaginate
-      previousLabel={"previous"}
-      nextLabel={"next"}
+      previousLabel={"<"}
+      nextLabel={">"}
       breakLabel={"..."}
-      breakClassName={"break-me"}
-      activeClassName={"active"}
-      containerClassName={"pagination"}
-      subContainerClassName={"pages pagination"}
       initialPage={list.currentPage - 1}
       pageCount={count / 10} //page count
       marginPagesDisplayed={2}
       pageRangeDisplayed={5}
       onPageChange={pagginationHandler}
+      containerClassName={"paginate-wrap"}
+      subContainerClassName={"paginate-inner"}
+      pageClassName={"paginate-li"}
+      pageLinkClassName={"paginate-a"}
+      activeClassName={"paginate-active"}
+      nextLinkClassName={"paginate-next-a"}
+      previousLinkClassName={"paginate-prev-a"}
+      breakLinkClassName={"paginate-break-a"}
     />
   );
 }
