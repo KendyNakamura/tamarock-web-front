@@ -1,3 +1,4 @@
+/* リスト */
 .artistList {
   list-style: none;
   display: -webkit-box;
@@ -19,4 +20,22 @@
 .artistImg {
   width: 100%;
   padding-right: 20px;
+}
+
+/* 詳細ページ */
+.artistWrap {
+  text-align: center;
+}
+
+.videoList {
+  list-style: none;
+}
+
+.video {
+}
+
+.artistParts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }

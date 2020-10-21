@@ -1,42 +1,24 @@
 import Layout from "../../components/layout";
 import Head from "next/head";
 import utilStyles from "../../styles/utils.module.css";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
-    width: "90%",
-    marginBottom: "10px",
-    padding: "10px",
-  },
-  text: {
-    wordBreak: "break-word",
-  },
-}));
+import styles from "../../styles/articles/article.module.css";
 
 export default function Post({ article }) {
   if (article.length === 0) {
     return <span>Loading...</span>;
   }
 
-  const classes = useStyles();
   return (
     <Layout>
       <Head>
         <title>{article.title}</title>
       </Head>
-      <div className={classes.root}>
-        <article>
-          <h2 className={utilStyles.headingXl}>{article.title}</h2>
+      <div>
+        <article className="box">
+          <h2>{article.title}</h2>
           <div
-            className={classes.text}
             dangerouslySetInnerHTML={{ __html: article.text }}
+            className={styles.articleText}
           ></div>
         </article>
       </div>

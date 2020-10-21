@@ -9,15 +9,15 @@ import fetch from "isomorphic-unfetch";
 export default function SingleLineGridList({ artistList, articleList }) {
   return (
     <Layout home>
-      <div className={utilsStyles.box}>
-        <h2 className={utilsStyles.h2}>News</h2>
+      <div className="box">
+        <h2>News</h2>
         <ArticleList list={articleList} count={5} />
         <Link href="/articles">
           <a>news一覧へ</a>
         </Link>
       </div>
-      <div className={utilsStyles.box}>
-        <h2 className={utilsStyles.h2}>Artists</h2>
+      <div className="box">
+        <h2>Artists</h2>
         <ArtistList list={artistList} count={10} />
         <Link href="/artists">
           <a>artist一覧へ</a>

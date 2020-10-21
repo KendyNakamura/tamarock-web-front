@@ -17,3 +17,9 @@
 .articleDate {
   color: gray;
 }
+
+/* 詳細ページ */
+.articleText {
+  min-height: 500px;
+  margin: 0 20px;
+}
