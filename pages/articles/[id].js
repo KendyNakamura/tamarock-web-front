@@ -1,5 +1,6 @@
 import Layout from "../../components/layout";
 import Head from "next/head";
+import fetch from "isomorphic-unfetch";
 import utilStyles from "../../styles/utils.module.css";
 import styles from "../../styles/articles/article.module.css";
 

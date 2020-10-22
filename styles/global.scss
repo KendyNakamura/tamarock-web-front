@@ -43,6 +43,39 @@ a:hover {
   text-decoration: underline;
 }
 
+// 検索フォーム
+.sForm {
+  position: relative;
+  max-width: 300px;
+}
+.sBox {
+  height: 50px;
+  padding: 0 10px;
+  left: 0;
+  top: 0;
+  border-radius: 2px;
+  outline: 0;
+  background: #eee;
+}
+.sBtn {
+  width: 40px;
+  height: 55px;
+  position: absolute;
+  right: 0px; /*アイコン左右の位置調整*/
+  top: 0;
+  background: none;
+  color: #666;
+  border: none;
+  font-size: 20px; /*アイコンサイズ*/
+}
+.sBtn:hover {
+  color: #7fbfff;
+}
+
+.sBtn:focus {
+  outline: 0;
+}
+
 // Pagination styling
 $purple-color: #745788;
 $purple-color-lighter: #d9c5e6;
