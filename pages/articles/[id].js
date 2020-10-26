@@ -1,7 +1,6 @@
 import Layout from "../../components/layout";
 import Head from "next/head";
 import fetch from "isomorphic-unfetch";
-import utilStyles from "../../styles/utils.module.css";
 import styles from "../../styles/articles/article.module.css";
 
 export default function Post({ article }) {
@@ -16,7 +15,7 @@ export default function Post({ article }) {
       </Head>
       <div>
         <article className="box">
-          <h2>{article.title}</h2>
+          <h1>{article.title}</h1>
           <div
             dangerouslySetInnerHTML={{ __html: article.text }}
             className={styles.articleText}

@@ -15,23 +15,23 @@ body {
 
 .box {
   background-color: aliceblue;
-  padding: 10px;
+  padding: 30px;
   margin: 20px;
 }
 
-h2 {
-  padding: 1rem 2rem;
-  border-left: 6px double #000;
+h1 {
+  font-size: 36px;
+  line-height: 1.2em;
 }
 
-ul {
-  display: block;
-  list-style-type: disc;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 0px;
+h2 {
+  font-size: 24px;
+  line-height: 1.2em;
+}
+
+p {
+  font-size: 16px;
+  line-height: 2em;
 }
 
 a {
@@ -41,6 +41,11 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+iframe {
+  width: 100%;
+  height: auto;
 }
 
 // 検索フォーム
@@ -74,6 +79,14 @@ a:hover {
 
 .sBtn:focus {
   outline: 0;
+}
+
+:root {
+  --hamburger-menu-size: 50px; /* メニューの大きさ */
+  --hamburger-menu-padding: 12px;
+  --hamburger-menu-border-px: 3px; /* 線の太さ */
+  --hamburger-menu-border-color: #342534; /* 線の色 */
+  --hamburger-menu-transition: 0.3s; /* アニメーション秒数 */
 }
 
 // Pagination styling
@@ -130,4 +143,9 @@ $purple-color-lighter: #d9c5e6;
       background: transparent !important;
     }
   }
+}
+
+// ハンバーガーメニュー
+.sp-menu {
+  display: none;
 }

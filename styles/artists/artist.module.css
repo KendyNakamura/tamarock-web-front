@@ -29,9 +29,7 @@
 
 .videoList {
   list-style: none;
-}
-
-.video {
+  margin-top: 0px;
 }
 
 .artistParts {

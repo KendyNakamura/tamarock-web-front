@@ -10,7 +10,7 @@ export default function Search({ listData }) {
       <Head>
         <title>Search</title>
       </Head>
-      <ul className={utilStyles.list}>
+      <ul className={`${utilStyles.list} box`}>
         {listData.map(({ name, id }) => (
           <li className={utilStyles.listItem} key={id}>
             <Link href="/artists/[id]" as={`/artists/${id}`}>
