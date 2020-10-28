@@ -67,7 +67,7 @@ export default function Post({ spotifyData, artistData }) {
             <iframe
               src={`https://open.spotify.com/embed/artist/${spotify_artist_info.id}`}
               width="300"
-              height="380"
+              height="400"
               frameborder="0"
               allowtransparency="true"
               allow="encrypted-media"

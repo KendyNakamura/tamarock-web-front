@@ -4,12 +4,27 @@
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: justify;
+  justify-content: center;
+  -webkit-flex-wrap: wrap; /* Safari etc. */
+  -ms-flex-wrap: wrap; /* IE10 */
   flex-wrap: wrap;
   padding: 0;
 }
 
+.artistList::before {
+  content: "";
+  display: block;
+  width: 23%;
+  order: 1;
+}
+.artistList::after {
+  content: "";
+  display: block;
+  width: 23%;
+}
+
 .artist {
-  width: 25%;
+  width: 250px;
   padding: 0 0 0 20px;
   margin: 7px 0 7px 0px;
   font-weight: bold;

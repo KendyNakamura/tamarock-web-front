@@ -15,7 +15,7 @@ body {
 
 .box {
   background-color: aliceblue;
-  padding: 30px;
+  padding: 30px 20px;
   margin: 20px;
 }
 
@@ -41,11 +41,6 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-iframe {
-  width: 100%;
-  height: auto;
 }
 
 // 検索フォーム
