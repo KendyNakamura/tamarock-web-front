@@ -6,7 +6,19 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function PrimarySearchAppBar() {
   const [query, setQuery] = useState("");
-  const [open, setOpen] = useState(false);
+  const [check, setCheck] = useState("");
+
+  function falseCheck() {
+    setCheck("");
+  }
+
+  function handleCheck() {
+    if (check == "checked") {
+      setCheck("");
+    } else {
+      setCheck("checked");
+    }
+  }
 
   return (
     <header className={styles.header}>
@@ -17,8 +29,17 @@ export default function PrimarySearchAppBar() {
       </Link>
 
       <nav className={styles.nav}>
-        <input id="hamburger" class="hamburger sp-menu" type="checkbox" />
-        <label class="hamburger sp-menu" for="hamburger">
+        <input
+          id="hamburger"
+          className="hamburger sp-menu"
+          type="checkbox"
+          checked={check}
+        />
+        <label
+          className="hamburger sp-menu"
+          for="hamburger"
+          onClick={handleCheck}
+        >
           <i></i>
         </label>
         <section class="drawer-list">
@@ -39,7 +60,7 @@ export default function PrimarySearchAppBar() {
                   }}
                   passHref
                 >
-                  <a className={styles.btnLink}>
+                  <a className={styles.btnLink} onClick={falseCheck}>
                     <button className="sBtn">
                       <FontAwesomeIcon icon={faSearch} />
                     </button>
@@ -47,7 +68,7 @@ export default function PrimarySearchAppBar() {
                 </Link>
               </div>
             </li>
-            <li className={styles.li}>
+            <li className={styles.li} onClick={falseCheck}>
               <a href="#">about</a>
             </li>
           </ul>

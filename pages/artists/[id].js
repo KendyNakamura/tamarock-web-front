@@ -12,7 +12,7 @@ export default function Post({ spotifyData, artistData }) {
   const spotify_artist_info = spotifyData["spotify_artist_info"];
   var videoList = [];
   const youtube_ids = spotifyData["youtube_ids"];
-  if (youtube_ids.length !== 0) {
+  if (youtube_ids && youtube_ids.length !== 0) {
     for (var i in youtube_ids) {
       videoList.push(
         <li className={styles.video}>
