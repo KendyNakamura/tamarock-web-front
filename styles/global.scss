@@ -46,7 +46,8 @@ a:hover {
 // 検索フォーム
 .sForm {
   position: relative;
-  max-width: 300px;
+  display: flex;
+  justify-content: center;
 }
 .sBox {
   height: 50px;

@@ -17,7 +17,11 @@ export default function PrimarySearchAppBar() {
       </Link>
 
       <nav className={styles.nav}>
-        <div className="pc-menu">
+        <input id="hamburger" class="hamburger sp-menu" type="checkbox" />
+        <label class="hamburger sp-menu" for="hamburger">
+          <i></i>
+        </label>
+        <section class="drawer-list">
           <ul className={styles.ul}>
             <li className={styles.li}>
               <div className="sForm">
@@ -35,7 +39,7 @@ export default function PrimarySearchAppBar() {
                   }}
                   passHref
                 >
-                  <a>
+                  <a className={styles.btnLink}>
                     <button className="sBtn">
                       <FontAwesomeIcon icon={faSearch} />
                     </button>
@@ -44,29 +48,10 @@ export default function PrimarySearchAppBar() {
               </div>
             </li>
             <li className={styles.li}>
-              <a href="#">ABOUT</a>
+              <a href="#">about</a>
             </li>
           </ul>
-        </div>
-
-        <div className="sp-menu">
-          <ul className={styles.ul}>
-            <button
-              className="hamburger-menu"
-              aria-expanded={open}
-              onClick={() => setOpen(!open)}
-            >
-              <div className="hamburger-menu-line line-top"></div>
-              <div className="hamburger-menu-line line-middle"></div>
-              <div className="hamburger-menu-line line-bottom"></div>
-            </button>
-          </ul>
-          <ul className="menu-list" aria-expanded={open}>
-            <li>とてもとても長いリンク</li>
-            <li>list</li>
-            <li>list</li>
-          </ul>
-        </div>
+        </section>
       </nav>
     </header>
   );

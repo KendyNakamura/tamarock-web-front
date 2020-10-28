@@ -31,3 +31,14 @@
 .nav {
   margin: 0 0 0 auto;
 }
+
+@media screen and (max-width: 480px) {
+  .li {
+    margin: 0 0 0 0px;
+  }
+
+  .btnLink {
+    position: absolute;
+    right: 45px;
+  }
+}
