@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styles from "../styles/header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +8,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 export default function PrimarySearchAppBar() {
   const [query, setQuery] = useState("");
   const [check, setCheck] = useState("");
+  const router = useRouter();
 
   function falseCheck() {
     setCheck("");
@@ -17,6 +19,16 @@ export default function PrimarySearchAppBar() {
       setCheck("");
     } else {
       setCheck("checked");
+    }
+  }
+
+  function handleKeyPress(e) {
+    if (e.key == "Enter") {
+      e.preventDefault();
+      router.push({
+        pathname: query ? "/search" : "",
+        query: query ? { name: encodeURI(query) } : "",
+      });
     }
   }
 
@@ -52,6 +64,7 @@ export default function PrimarySearchAppBar() {
                   value={query}
                   placeholder="アーティスト名"
                   className="sBox"
+                  onKeyPress={(e) => handleKeyPress(e)}
                 />
                 <Link
                   href={{
