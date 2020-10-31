@@ -21,30 +21,31 @@ export default function ArtistList({ list, count }) {
   let content = null;
   if (isLoading) content = <div>Loading...</div>;
   else {
-    content = (
-      <ul className={styles.artistList}>
-        {list.map((artist) => {
-          return (
-            <li className={styles.artist}>
-              <Link
-                href="/artists/[id]"
-                as={`/artists/${artist.id}`}
-                key={artist.id}
-              >
-                <a>
-                  <img
-                    src={artist.images[0].url}
-                    alt={artist.name}
-                    className={styles.artistImg}
-                  />
-                  {artist.name}
-                </a>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    );
+    var artistList = [];
+    for (var i in list) {
+      artistList.push(
+        <li className={styles.artist} key={list[i].id}>
+          <Link href="/artists/[id]" as={`/artists/${list[i].id}`}>
+            <a>
+              <img
+                src={list[i].images[0].url}
+                alt={list[i].name}
+                className={styles.artistImg}
+              />
+              {list[i].name}
+            </a>
+          </Link>
+        </li>
+      );
+    }
+    var $listCount = 4 - (list.length % 4),
+      j;
+
+    for (j = 0; j < $listCount; j++) {
+      artistList.push(<li className={styles.artist}></li>);
+    }
+
+    content = <ul className={styles.artistList}>{artistList}</ul>;
   }
 
   var pagenation = "";

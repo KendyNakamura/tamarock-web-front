@@ -55,9 +55,9 @@ export default function Post({ spotifyData, artistData }) {
   return (
     <Layout>
       <Head>
-        <title>{spotify_artist_info.name}</title>
+        <title>{spotify_artist_info.name} | たまロック</title>
       </Head>
-      <div className={styles.artistWrap}>
+      <div className={`box ${styles.artistWrap}`}>
         <img src={spotify_artist_info.images[0].url} width="320px" />
         <article>
           <h1 className={utilStyles.headingXl}>{spotify_artist_info.name}</h1>

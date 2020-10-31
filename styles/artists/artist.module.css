@@ -11,18 +11,6 @@
   padding: 0;
 }
 
-.artistList::before {
-  content: "";
-  display: block;
-  width: 23%;
-  order: 1;
-}
-.artistList::after {
-  content: "";
-  display: block;
-  width: 23%;
-}
-
 .artist {
   width: 250px;
   padding: 0 0 0 20px;
