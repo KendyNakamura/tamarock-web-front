@@ -1,5 +1,4 @@
 import Layout from "../../components/layout";
-import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import styles from "../../styles/articles/article.module.css";
 
@@ -9,16 +8,13 @@ export default function Post({ article }) {
   }
 
   return (
-    <Layout>
-      <Head>
-        <title>{article.title}</title>
-      </Head>
+    <Layout headTitle={article.title.slice(0, 10)}>
       <div>
         <article className="box">
           <h1>{article.title}</h1>
           <div
             dangerouslySetInnerHTML={{ __html: article.text }}
-            className={styles.articleText}
+            className={`${styles.articleText} article`}
           ></div>
         </article>
       </div>

@@ -5,7 +5,7 @@ import styles from "../styles/header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(headTitle) {
   const [query, setQuery] = useState("");
   const [check, setCheck] = useState("");
   const router = useRouter();

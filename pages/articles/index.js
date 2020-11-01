@@ -5,7 +5,7 @@ import fetch from "isomorphic-unfetch";
 
 export default function NewsList({ articleList, articleCountJSON }) {
   return (
-    <Layout>
+    <Layout headTitle="ニュース一覧">
       <div className="box">
         <h2>News</h2>
         <ArticleList list={articleList} count={articleCountJSON} />

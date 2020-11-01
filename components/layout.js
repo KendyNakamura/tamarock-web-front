@@ -7,13 +7,16 @@ import styles from "../styles/layout.module.css";
 const name = "Your Name";
 export const siteTitle = "Next.js Sample Website";
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, headTitle }) {
   const [query, setQuery] = useState("");
 
+  var title = headTitle ? headTitle + " | たまロック" : "たまロック";
+  console.log(headTitle);
   return (
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
+        <title>{title}</title>
         <meta
           name="description"
           content="すべてのアーティスト情報を簡単に検索できる音楽メディアです。"
