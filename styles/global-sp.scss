@@ -1,4 +1,13 @@
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 959px) {
+  // ニュース記事
+  .article blockquote {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+}
+@media screen and (max-width: 559px) {
   // 一般設定
   .box {
     padding: 10px 10px;
@@ -27,6 +36,10 @@
 
   .sBox {
     width: 80%;
+  }
+
+  .sBtn {
+    right: 70px;
   }
 
   // ハンバーガーメニュー
@@ -179,5 +192,11 @@
         transform: translate(-50%, 14px);
       }
     }
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .sBtn {
+    right: 0px;
   }
 }
