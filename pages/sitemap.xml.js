@@ -26,6 +26,12 @@ const POST_URL_PREFIX = "https://localhost:3200/";
 const generateSitemap = (articleList, artistList, location) => {
   let xml = "";
 
+  xml += `<url>
+        <loc>${location}</loc>
+        <lastmod>2020-10-01</lastmod>
+        <priority>0.90</priority>
+      </url>`;
+
   articleList.map((article) => {
     const articleDate = formatDate(new Date(article.updatedat));
     const articleURL = location + "/articles/" + article.id;
@@ -33,7 +39,7 @@ const generateSitemap = (articleList, artistList, location) => {
     xml += `<url>
         <loc>${articleURL}</loc>
         <lastmod>${articleDate}</lastmod>
-        <priority>0.50</priority>
+        <priority>0.60</priority>
       </url>`;
   });
 
@@ -63,12 +69,8 @@ const formatDate = (dt) => {
 
 export const getServerSideProps = async ({ res }) => {
   const location = "https://localhost:3200";
-  const artists = await fetch(
-    "http://tamarock-api:5000/api/artist/infos?_end=10&_order=DESC&_sort=id&_start=0"
-  );
-  const articles = await fetch(
-    "http://tamarock-api:5000/api/articles?_end=5&_order=DESC&_sort=id&_start=0"
-  );
+  const artists = await fetch("http://tamarock-api:5000/api/artist/infos");
+  const articles = await fetch("http://tamarock-api:5000/api/articles");
   const artistList = await artists.json();
   const articleList = await articles.json();
   console.log(artistList);
