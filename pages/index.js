@@ -1,7 +1,6 @@
 import Layout from "../components/layout";
 import ArticleList from "../components/article/articleList";
 import ArtistList from "../components/artist/artistList";
-import utilsStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import React from "react";
 import fetch from "isomorphic-unfetch";

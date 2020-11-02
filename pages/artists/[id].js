@@ -5,6 +5,9 @@ import { TwitterTimelineEmbed } from "react-twitter-embed";
 import styles from "../../styles/artists/artist.module.css";
 
 export default function Post({ spotifyData, artistData }) {
+  if (spotifyData == null || artistData == null) {
+    return <span>Artist is not found...</span>;
+  }
   if (spotifyData.length === 0 || artistData.length === 0) {
     return <span>Loading...</span>;
   }

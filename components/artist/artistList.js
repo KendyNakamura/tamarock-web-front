@@ -25,15 +25,8 @@ export default function ArtistList({ list, count }) {
     for (var i in list) {
       artistList.push(
         <li className={styles.artist} key={list[i].id}>
-          <Link href="/artists/[id]" as={`/artists/${list[i].id}`}>
-            <a>
-              <img
-                src={list[i].images[0].url}
-                alt={list[i].name}
-                className={styles.artistImg}
-              />
-              {list[i].name}
-            </a>
+          <Link href="/artists/[id]" as={`/artists/${list[i].artist_id}`}>
+            <a>{list[i].name}</a>
           </Link>
         </li>
       );
