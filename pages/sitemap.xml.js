@@ -1,8 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-unfetch";
 
-const POST_URL_PREFIX = "https://tamarock.jp/";
-
 const generateSitemap = (articleList, artistList, location) => {
   let xml = "";
 
@@ -51,7 +49,7 @@ const formatDate = (dt) => {
 };
 
 export const getServerSideProps = async ({ res }) => {
-  const location = "https://localhost:3200";
+  const location = "https://tamarock.jp";
   const artists = await fetch("http://tamarock-api:5000/api/artist/infos");
   const articles = await fetch("http://tamarock-api:5000/api/articles");
   const artistList = await artists.json();
