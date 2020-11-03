@@ -1,12 +1,8 @@
+// タブレット以下
 @media screen and (max-width: 959px) {
-  // ニュース記事
-  .article blockquote {
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-  }
 }
+
+// スマホ以下
 @media screen and (max-width: 559px) {
   // 一般設定
   .box {
@@ -195,6 +191,7 @@
   }
 }
 
+// スマホ(小サイズ)以下
 @media screen and (max-width: 479px) {
   .sBtn {
     right: 0px;

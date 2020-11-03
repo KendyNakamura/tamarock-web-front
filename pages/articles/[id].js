@@ -14,7 +14,7 @@ export default function Post({ article }) {
           <h1>{article.title}</h1>
           <div
             dangerouslySetInnerHTML={{ __html: article.text }}
-            className={`${styles.articleText} article`}
+            className={`${styles.articleText} text`}
           ></div>
         </article>
       </div>
