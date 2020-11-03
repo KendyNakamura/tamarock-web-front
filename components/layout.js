@@ -4,23 +4,20 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/layout.module.css";
 
-const name = "Your Name";
-export const siteTitle = "Next.js Sample Website";
-
-export default function Layout({ children, home, headTitle }) {
+export default function Layout({ children, home, headTitle, description }) {
   const [query, setQuery] = useState("");
 
-  var title = headTitle ? headTitle + " | たまロック" : "たまロック";
-  console.log(headTitle);
+  const siteTitle = headTitle ? headTitle + " | たまロック" : "たまロック";
+  const siteDescription = description
+    ? description
+    : "すべてのアーティスト情報を簡単に検索できる音楽メディアです。";
+
   return (
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <title>{title}</title>
-        <meta
-          name="description"
-          content="すべてのアーティスト情報を簡単に検索できる音楽メディアです。"
-        />
+        <title>{siteTitle}</title>
+        <meta name="description" content={siteDescription} />
         <meta
           property="og:image"
           content={`https://og-image.now.sh/${encodeURI(

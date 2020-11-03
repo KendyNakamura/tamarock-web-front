@@ -8,7 +8,7 @@ export default function Post({ article }) {
   }
 
   return (
-    <Layout headTitle={article.title.slice(0, 10)}>
+    <Layout headTitle={article.title.slice(0, 10)} description={article.title}>
       <div>
         <article className="box">
           <h1>{article.title}</h1>

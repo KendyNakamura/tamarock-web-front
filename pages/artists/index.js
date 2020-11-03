@@ -5,7 +5,10 @@ import ArtistList from "../../components/artist/artistList";
 
 export default function NewsList({ artistList, artistCountJSON }) {
   return (
-    <Layout headTitle="アーティスト一覧">
+    <Layout
+      headTitle="アーティスト一覧"
+      description="たまロックで登録しているアーティストの一覧です。YoutubeやSpotifyに加え、Twitterやホームページリンクも表示されます。"
+    >
       <div className="box">
         <h2>Artists</h2>
         <ArtistList list={artistList} count={artistCountJSON} />
