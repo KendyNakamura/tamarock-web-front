@@ -82,7 +82,9 @@ export default function PrimarySearchAppBar(headTitle) {
               </div>
             </li>
             <li className={styles.li} onClick={falseCheck}>
-              <a href="#">about</a>
+              <Link href="/about">
+                <a>about</a>
+              </Link>
             </li>
           </ul>
         </section>
