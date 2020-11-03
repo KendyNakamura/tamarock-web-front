@@ -1,37 +1,19 @@
 import React from "react";
 import fetch from "isomorphic-unfetch";
 
-// export default function generateSitemap({ artistList, articleList, location }) {
-//   let xml = "";
-
-//   articleList.map((article) => {
-//     const postDate = article.updatedat;
-//     const projectURL = location + article.artist_id;
-
-//     xml += `<url>
-//         <loc>${projectURL}</loc>
-//         <lastmod>${postDate}</lastmod>
-//         <priority>0.50</priority>
-//       </url>`;
-//   });
-
-//   return `<?xml version="1.0" encoding="UTF-8"?>
-//     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-//       ${xml}
-//     </urlset>`;
-// }
-
-const POST_URL_PREFIX = "https://localhost:3200/";
+const POST_URL_PREFIX = "https://tamarock.jp/";
 
 const generateSitemap = (articleList, artistList, location) => {
   let xml = "";
 
+  // トップページ
   xml += `<url>
         <loc>${location}</loc>
         <lastmod>2020-10-01</lastmod>
         <priority>0.90</priority>
       </url>`;
 
+  // 記事ページ
   articleList.map((article) => {
     const articleDate = formatDate(new Date(article.updatedat));
     const articleURL = location + "/articles/" + article.id;
@@ -43,6 +25,7 @@ const generateSitemap = (articleList, artistList, location) => {
       </url>`;
   });
 
+  // アーティストページ
   artistList.map((artist) => {
     const artistDate = formatDate(new Date(artist.updated_at));
     const artistURL = location + "/artists/" + artist.artist_id;
