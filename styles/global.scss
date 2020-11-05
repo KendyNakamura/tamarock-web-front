@@ -164,3 +164,7 @@ $purple-color-lighter: #d9c5e6;
   cursor: pointer;
   text-decoration: underline;
 }
+
+.text p {
+  word-wrap: break-word;
+}

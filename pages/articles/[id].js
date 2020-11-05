@@ -1,4 +1,5 @@
 import Layout from "../../components/layout";
+import ArtistList from "../../components/artist/artistList";
 import fetch from "isomorphic-unfetch";
 import styles from "../../styles/articles/article.module.css";
 
@@ -16,6 +17,12 @@ export default function Post({ article }) {
             dangerouslySetInnerHTML={{ __html: article.text }}
             className={`${styles.articleText} text`}
           ></div>
+          <h2>関連アーティスト</h2>
+          <ArtistList
+            list={article.artists}
+            count={6}
+            className={styles.artistList}
+          />
         </article>
       </div>
     </Layout>

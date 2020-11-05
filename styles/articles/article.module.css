@@ -24,6 +24,10 @@
   margin: 0 20px;
 }
 
+.artistList {
+  justify-content: flex-start;
+}
+
 @media screen and (max-width: 960px) {
   .articleText iframe {
     width: 100%;

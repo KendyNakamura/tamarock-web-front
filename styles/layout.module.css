@@ -7,8 +7,8 @@
   margin: 3rem 0 0;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 559px) {
   .container {
-    width: 90%;
+    width: 98%;
   }
 }
