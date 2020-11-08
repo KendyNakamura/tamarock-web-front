@@ -33,7 +33,7 @@ export default function SingleLineGridList({ artistList, newsList, blogList }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(
     "http://tamarock-api:5000/api/artist/infos?_end=10&_order=DESC&_sort=id&_start=0"
   );
