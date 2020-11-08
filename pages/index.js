@@ -5,12 +5,12 @@ import Link from "next/link";
 import React from "react";
 import fetch from "isomorphic-unfetch";
 
-export default function SingleLineGridList({ artistList, articleList }) {
+export default function SingleLineGridList({ artistList, newsList }) {
   return (
     <Layout home>
       <div className="box">
         <h2>News</h2>
-        <ArticleList list={articleList} count={5} />
+        <ArticleList list={newsList} count={5} />
         <Link href="/articles">
           <a>news一覧へ</a>
         </Link>
@@ -26,19 +26,19 @@ export default function SingleLineGridList({ artistList, articleList }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(
     "http://tamarock-api:5000/api/artist/infos?_end=10&_order=DESC&_sort=id&_start=0"
   );
-  const articles = await fetch(
-    "http://tamarock-api:5000/api/articles?_end=5&_order=DESC&_sort=id&_start=0"
+  const news = await fetch(
+    "http://tamarock-api:5000/api/articles?_end=5&_order=DESC&_sort=id&_start=0&column=category&q=1"
   );
+  const newsList = await news.json();
   const artistList = await res.json();
-  const articleList = await articles.json();
   return {
     props: {
       artistList,
-      articleList,
+      newsList,
     },
   };
 }
