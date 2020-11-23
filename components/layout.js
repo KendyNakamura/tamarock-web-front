@@ -7,7 +7,9 @@ import styles from "../styles/layout.module.css";
 export default function Layout({ children, home, headTitle, description }) {
   const [query, setQuery] = useState("");
 
-  const siteTitle = headTitle ? headTitle + " | たまロック" : "たまロック";
+  const siteTitle = headTitle
+    ? headTitle.slice(0, 25) + " | たまロック"
+    : "たまロック";
   const siteDescription = description
     ? description
     : "すべてのアーティスト情報を簡単に検索できる音楽メディアです。";

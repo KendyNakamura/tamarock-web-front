@@ -33,62 +33,74 @@ export default function PrimarySearchAppBar(headTitle) {
   }
 
   return (
-    <header className={styles.header}>
-      <Link href="/">
-        <a>
-          <h1>たまロック</h1>
-        </a>
-      </Link>
+    <>
+      <header className={styles.header}>
+        <Link href="/">
+          <a>
+            <h1>たまロック</h1>
+          </a>
+        </Link>
 
-      <nav className={styles.nav}>
-        <input
-          id="hamburger"
-          className="hamburger sp-menu"
-          type="checkbox"
-          checked={check}
-        />
-        <label
-          className="hamburger sp-menu"
-          for="hamburger"
-          onClick={handleCheck}
-        >
-          <i></i>
-        </label>
-        <section class="drawer-list">
-          <ul className={styles.ul}>
-            <li className={styles.li}>
-              <div className="sForm">
-                <input
-                  type="text"
-                  onChange={(e) => setQuery(e.target.value)}
-                  value={query}
-                  placeholder="アーティスト名"
-                  className="sBox"
-                  onKeyPress={(e) => handleKeyPress(e)}
-                />
-                <Link
-                  href={{
-                    pathname: query ? "/search" : "",
-                    query: query ? { name: encodeURI(query) } : "",
-                  }}
-                  passHref
-                >
-                  <a className={styles.btnLink} onClick={falseCheck}>
-                    <button className="sBtn">
-                      <FontAwesomeIcon icon={faSearch} />
-                    </button>
-                  </a>
+        <nav className={styles.nav}>
+          <input
+            id="hamburger"
+            className="hamburger sp-menu"
+            type="checkbox"
+            onChange={(e) => {}}
+            checked={check}
+          />
+          <label
+            className="hamburger sp-menu"
+            htmlFor="hamburger"
+            onClick={handleCheck}
+          >
+            <i></i>
+          </label>
+          <section className="drawer-list">
+            <ul className={styles.ul}>
+              <li className={styles.li} onClick={falseCheck}>
+                <Link href="/articles">
+                  <a>記事一覧</a>
                 </Link>
-              </div>
-            </li>
-            <li className={styles.li} onClick={falseCheck}>
-              <Link href="/about">
-                <a>about</a>
-              </Link>
-            </li>
-          </ul>
-        </section>
-      </nav>
-    </header>
+              </li>
+              <li className={styles.li} onClick={falseCheck}>
+                <Link href="/artists">
+                  <a>アーティスト一覧</a>
+                </Link>
+              </li>
+              <li className={styles.li} onClick={falseCheck}>
+                <Link href="/about">
+                  <a>about</a>
+                </Link>
+              </li>
+            </ul>
+          </section>
+        </nav>
+      </header>
+      <div className="sFormWrapper">
+        <form className="sForm">
+          <input
+            type="text"
+            onChange={(e) => setQuery(e.target.value)}
+            value={query}
+            placeholder="アーティスト名を入力"
+            className="sBox"
+            onKeyPress={(e) => handleKeyPress(e)}
+          />
+          <Link
+            href={{
+              pathname: query ? "/search" : "",
+              query: query ? { name: encodeURI(query) } : "",
+            }}
+          >
+            <a onClick={falseCheck} className="sLink">
+              <button className="sBtn">
+                <FontAwesomeIcon icon={faSearch} />
+              </button>
+            </a>
+          </Link>
+        </form>
+      </div>
+    </>
   );
 }

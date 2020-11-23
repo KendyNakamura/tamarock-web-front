@@ -35,14 +35,6 @@
     display: inline;
   }
 
-  .sBox {
-    width: 80%;
-  }
-
-  .sBtn {
-    right: 70px;
-  }
-
   // ハンバーガーメニュー
   @mixin transition {
     @for $i from 1 through 50 {
@@ -70,6 +62,7 @@
   $contrast: darken($main, 10%);
 
   .drawer-list {
+    z-index: 9998;
     position: fixed;
     right: 0;
     top: 0;
@@ -193,12 +186,5 @@
         transform: translate(-50%, 14px);
       }
     }
-  }
-}
-
-// スマホ(小サイズ)以下
-@media screen and (max-width: 479px) {
-  .sBtn {
-    right: 0px;
   }
 }

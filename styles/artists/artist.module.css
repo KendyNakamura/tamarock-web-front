@@ -33,10 +33,17 @@
 .videoList {
   list-style: none;
   margin-top: 0px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  padding-inline-start: 0px;
 }
 
 .artistParts {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.artistContent {
+  margin-bottom: 30px;
 }

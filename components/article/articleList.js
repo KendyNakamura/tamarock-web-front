@@ -24,7 +24,7 @@ export default function ArticleList({ list, count }) {
     content = (
       <ol className={styles.articleList}>
         {list.map((article) => (
-          <li className={styles.article}>
+          <li className={styles.article} key={article.id}>
             <Link href="/articles/[id]" as={`/articles/${article.id}`}>
               <a>
                 <p>

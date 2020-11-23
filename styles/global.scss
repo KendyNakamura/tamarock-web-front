@@ -49,31 +49,41 @@ a:hover {
 }
 
 // 検索フォーム
-.sForm {
-  position: relative;
+.sFormWrapper {
+  background-color: #666;
+  padding: 5px 0;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
+
+.sForm {
+  position: relative;
+}
+
 .sBox {
-  height: 50px;
-  padding: 0 10px;
-  left: 0;
-  top: 0;
-  border-radius: 2px;
-  outline: 0;
-  background: #eee;
-}
-.sBtn {
-  width: 40px;
-  height: 55px;
-  position: absolute;
-  right: 0px; /*アイコン左右の位置調整*/
-  top: 0;
-  background: none;
-  color: #666;
+  background: #fff;
   border: none;
-  font-size: 20px; /*アイコンサイズ*/
+  height: 35px;
+  padding-left: 5px;
+  width: 400px;
 }
+
+.sBox:focus {
+  outline: 0;
+}
+
+.sBtn {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 33px;
+  right: 0px;
+  top: 5px;
+  position: absolute;
+}
+
 .sBtn:hover {
   color: #7fbfff;
 }

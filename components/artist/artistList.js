@@ -35,7 +35,8 @@ export default function ArtistList({ list, count }) {
       j;
 
     for (j = 0; j < $listCount; j++) {
-      artistList.push(<li className={styles.artist}></li>);
+      var keyProps = artistList.length + 1;
+      artistList.push(<li className={styles.artist} key={keyProps}></li>);
     }
 
     content = <ul className={styles.artistList}>{artistList}</ul>;
