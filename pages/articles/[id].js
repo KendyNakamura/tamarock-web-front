@@ -15,10 +15,17 @@ export default function Post({ article }) {
     return <span>Loading...</span>;
   }
 
+  // サムネイル表示
+  var thumbnail = "";
+  if (article.pictures[0].src !== "") {
+    thumbnail = <img className={styles.image} src={article.pictures[0].src} />;
+  }
+
   return (
     <Layout headTitle={article.title} description={article.title}>
       <article className="box">
         <h1>{article.title}</h1>
+        {thumbnail}
         <div
           dangerouslySetInnerHTML={{ __html: article.text }}
           className={`${styles.articleText} text`}
