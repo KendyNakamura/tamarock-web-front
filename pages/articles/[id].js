@@ -18,7 +18,7 @@ export default function Post({ article }) {
   // サムネイル表示
   var thumbnail = "";
   if (article.pictures[0].src !== "") {
-    thumbnail = <img className={styles.image} src={article.pictures[0].src} />;
+    thumbnail = <div className={styles.image}><img src={article.pictures[0].src} /></div>;
   }
 
   return (
