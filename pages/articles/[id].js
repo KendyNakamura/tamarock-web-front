@@ -3,6 +3,7 @@ import ArtistList from "../../components/artist/artistList";
 import fetch from "isomorphic-unfetch";
 import styles from "../../styles/articles/article.module.css";
 import Error from "../_error";
+import Image from 'next/image'
 
 export default function Post({ article }) {
   // ページが存在しないとき
@@ -19,7 +20,16 @@ export default function Post({ article }) {
   var thumbnail = "";
   var imageUrl = "";
   if (article.pictures[0].src !== "") {
-    thumbnail = <div className={styles.imageBox}><img className={styles.image} src={article.pictures[0].src} /></div>;
+    thumbnail = (
+      <div className={styles.imageBox}>
+        <Image
+          src={article.pictures[0].src} 
+          alt={article.title} 
+          width={600} 
+          height={400}/>
+      </div>
+    );
+    // thumbnail = <div className={styles.imageBox}><img className={styles.image} src={article.pictures[0].src} /></div>;
     imageUrl = article.pictures[0].src;
   }
 
