@@ -17,12 +17,14 @@ export default function Post({ article }) {
 
   // サムネイル表示
   var thumbnail = "";
+  var imageUrl = "";
   if (article.pictures[0].src !== "") {
-    thumbnail = <div className={styles.image}><img src={article.pictures[0].src} /></div>;
+    thumbnail = <div className={styles.imageBox}><img className={styles.image} src={article.pictures[0].src} /></div>;
+    imageUrl = article.pictures[0].src;
   }
 
   return (
-    <Layout headTitle={article.title} description={article.title}>
+    <Layout headTitle={article.title} description={article.title} imageUrl={imageUrl}>
       <article className="box">
         <h1>{article.title}</h1>
         {thumbnail}
