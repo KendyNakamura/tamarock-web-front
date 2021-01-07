@@ -9,7 +9,7 @@ export default function Layout({ children, home, headTitle, description, imageUr
 
   const siteTitle = headTitle
     ? headTitle.slice(0, 25) + " | たまロック"
-    : "たまロック";
+    : "たまロック | すべてのアーティスト情報を検索できる音楽メディア";
   const siteDescription = description
     ? description
     : "すべてのアーティスト情報を簡単に検索できる音楽メディアです。";
