@@ -5,7 +5,7 @@ import styles from "../styles/header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-export default function PrimarySearchAppBar(headTitle) {
+export default function PrimarySearchAppBar() {
   const [query, setQuery] = useState("");
   const [check, setCheck] = useState("");
   const router = useRouter();
@@ -22,13 +22,16 @@ export default function PrimarySearchAppBar(headTitle) {
     }
   }
 
+  var href = {
+    pathname: query ? "/search": "/",
+    query: query ? { name: encodeURI(query) } : "",
+  };
+
   function handleKeyPress(e) {
+    console.log(query)
     if (e.key == "Enter") {
       e.preventDefault();
-      router.push({
-        pathname: query ? "/search" : "",
-        query: query ? { name: encodeURI(query) } : "",
-      });
+      router.push(href);
     }
   }
 
@@ -87,13 +90,8 @@ export default function PrimarySearchAppBar(headTitle) {
             className="sBox"
             onKeyPress={(e) => handleKeyPress(e)}
           />
-          <Link
-            href={{
-              pathname: query ? "/search" : "",
-              query: query ? { name: encodeURI(query) } : "",
-            }}
-          >
-            <a onClick={falseCheck} className="sLink">
+          <Link href={href}>
+            <a onClick={falseCheck} className={`sLink ${ query ? "" : "noLink"}`}>
               <button className="sBtn">
                 <FontAwesomeIcon icon={faSearch} />
               </button>

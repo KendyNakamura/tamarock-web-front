@@ -61,6 +61,10 @@ a:hover {
   position: relative;
 }
 
+.noLink {
+  pointer-events: none;
+}
+
 .sBox {
   background: #fff;
   border: none;
