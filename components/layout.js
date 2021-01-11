@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Router from "next/router";
 import Header from "./header";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/layout.module.css";
 
 export default function Layout({ children, home, headTitle, description, imageUrl }) {
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
+  const [isLoading, setLoading] = useState(false);
+  const startLoading = () => setLoading(true);
+  const stopLoading = () => setLoading(false);
+  useEffect(() => {
+    Router.events.on("routeChangeStart", startLoading);
+    Router.events.on("routeChangeComplete", stopLoading);
+
+    return () => {
+      Router.events.off("routeChangeStart", startLoading);
+      Router.events.off("routeChangeComplete", stopLoading);
+    };
+  }, []);
 
   const siteTitle = headTitle
     ? headTitle.slice(0, 25) + " | たまロック"
@@ -17,7 +30,7 @@ export default function Layout({ children, home, headTitle, description, imageUr
   const imageURL = imageUrl ? imageUrl : "https://tamarock.jp/images/profile.jpg";
 
   return (
-    <>
+    <div className={isLoading ? styles.isLoading : styles.isLoadingHide}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <title>{siteTitle}</title>
@@ -40,6 +53,6 @@ export default function Layout({ children, home, headTitle, description, imageUr
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

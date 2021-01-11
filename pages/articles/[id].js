@@ -12,9 +12,9 @@ export default function Post({ article }) {
   }
 
   // ページリロード中
-  if (article.length === 0) {
-    return <span>Loading...</span>;
-  }
+  // if (article.length === 0) {
+  //   return <span>Loading...</span>;
+  // }
 
   // サムネイル表示
   var thumbnail = "";

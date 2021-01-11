@@ -13,9 +13,9 @@ export default function Post({ spotifyData, artistData }) {
   ) {
     return <Error status={404} />;
   }
-  if (spotifyData.length === 0 || artistData.length === 0) {
-    return <span>Loading...</span>;
-  }
+  // if (spotifyData.length === 0 || artistData.length === 0) {
+  //   return <span>Loading...</span>;
+  // }
 
   const spotify_artist_info = spotifyData["spotify_artist_info"];
 
