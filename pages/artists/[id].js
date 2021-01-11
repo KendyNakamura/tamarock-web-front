@@ -1,4 +1,5 @@
 import Layout from "../../components/layout";
+import ArticleList from "../../components/article/articleList";
 import utilStyles from "../../styles/utils.module.css";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 import styles from "../../styles/artists/artist.module.css";
@@ -76,6 +77,7 @@ export default function Post({ spotifyData, artistData }) {
       ></iframe>
     );
   }
+
   return (
     <Layout headTitle={spotify_artist_info.name}>
       <div className={`box ${styles.artistWrap}`}>
@@ -92,6 +94,11 @@ export default function Post({ spotifyData, artistData }) {
             <div className={styles.artistContent}>{spority_music}</div>
             <div className={styles.artistContent}>{twitter_id}</div>
           </div>
+          <ArticleList
+          list={artistData.articles}
+          count={6}
+          // className={styles.artistList}
+        />
         </article>
       </div>
     </Layout>
