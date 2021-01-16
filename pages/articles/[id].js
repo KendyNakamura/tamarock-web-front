@@ -3,7 +3,7 @@ import ArtistList from "../../components/artist/artistList";
 import fetch from "isomorphic-unfetch";
 import styles from "../../styles/articles/article.module.css";
 import Error from "../_error";
-import Image from 'next/image'
+import Image from 'next/image';
 
 export default function Post({ article }) {
   // ページが存在しないとき

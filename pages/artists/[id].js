@@ -4,6 +4,7 @@ import utilStyles from "../../styles/utils.module.css";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 import styles from "../../styles/artists/artist.module.css";
 import Error from "../_error";
+import Image from 'next/image';
 
 export default function Post({ spotifyData, artistData }) {
   if (
@@ -81,12 +82,21 @@ export default function Post({ spotifyData, artistData }) {
   return (
     <Layout headTitle={spotify_artist_info.name}>
       <div className={`box ${styles.artistWrap}`}>
-        <img src={spotify_artist_info.images[0].url} width="320px" />
+      <Image
+          src={spotify_artist_info.images[0].url}
+          alt={spotify_artist_info.name} 
+          width={320} 
+          height={320}/>
         <article>
           <h1 className={utilStyles.headingXl}>
             {artistData.name ? artistData.name : spotify_artist_info.name}
           </h1>
           <p>{hp_link}</p>
+          {/* <ArticleList
+          list={artistData.articles}
+          count={6}
+          className={styles.articleList}
+        /> */}
           <div className={styles.artistParts}>
             <div className={styles.artistContent}>
               <ul className={styles.videoList}>{videoList}</ul>
@@ -94,11 +104,6 @@ export default function Post({ spotifyData, artistData }) {
             <div className={styles.artistContent}>{spority_music}</div>
             <div className={styles.artistContent}>{twitter_id}</div>
           </div>
-          <ArticleList
-          list={artistData.articles}
-          count={6}
-          // className={styles.artistList}
-        />
         </article>
       </div>
     </Layout>

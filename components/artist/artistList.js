@@ -7,7 +7,7 @@ export default function ArtistList({ list, count }) {
   var artistList = [];
   for (var i in list) {
     artistList.push(
-      <li className={styles.artist} key={list[i]}>
+      <li className={styles.artist} key={i}>
         <Link href="/artists/[id]" as={`/artists/${list[i].artist_id}`}>
           <a>{list[i].name}</a>
         </Link>

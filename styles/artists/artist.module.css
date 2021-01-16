@@ -47,3 +47,7 @@
 .artistContent {
   margin-bottom: 30px;
 }
+
+.articleList {
+  display: flex;
+}
