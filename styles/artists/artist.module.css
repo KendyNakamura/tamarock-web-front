@@ -27,7 +27,20 @@
 
 /* 詳細ページ */
 .artistWrap {
-  text-align: center;
+  display: flex;
+  width: 100%;
+}
+
+.mainContent {
+  width: 70%;
+}
+
+.artistTopContent {
+  display: flex;
+}
+
+.thumbnail {
+  margin-right: 20px;
 }
 
 .videoList {
@@ -39,15 +52,47 @@
 }
 
 .artistParts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  margin-top: 20px;
 }
 
 .artistContent {
   margin-bottom: 30px;
 }
 
-.articleList {
-  display: flex;
+/* サイドバーを下に */
+@media screen and (max-width: 1290px) {
+  .mainContent {
+    width: 100%;
+  }
+
+  .artistTopContent {
+    display: block;
+  }
+}
+
+/* タブレット以下 */
+@media screen and (max-width: 959px) {
+  .artistWrap {
+    display: block;
+  }
+
+  .thumbnail {
+    margin-right: 0px;
+  }
+
+  .artistArticles {
+    text-align: left;
+  }
+
+  .artistParts {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .artistParts {
+    display: block;
+  }
 }
