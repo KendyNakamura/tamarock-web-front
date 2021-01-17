@@ -25,7 +25,7 @@ export default function Post({ article }) {
         <Image
           src={article.pictures[0].src} 
           alt={article.title} 
-          width={600} 
+          width={400} 
           height={400}/>
       </div>
     );
