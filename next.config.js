@@ -6,6 +6,7 @@ module.exports = {
       "i.scdn.co",
       "localhost",
       "tamarock-api",
+      "static-prod.tamarock.jp",
     ],
   },
 };
