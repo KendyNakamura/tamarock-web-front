@@ -49,7 +49,7 @@ export default function Post({ spotifyData, artistData }) {
 
   // news list
   var articleList = "";
-  if (artistData.articles.length !== 0) {
+  if (artistData.articles != null && artistData.articles.length !== 0) {
     articleList = (
       <article className={styles.artistArticles}>
         <h2>関連ニュース</h2>
