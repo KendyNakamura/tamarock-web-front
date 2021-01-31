@@ -94,7 +94,11 @@ export default function Post({ spotifyData, artistData }) {
   }
 
   return (
-    <Layout headTitle={spotify_artist_info.name}>
+    <Layout
+      headTitle={spotify_artist_info.name}
+      description={spotify_artist_info.name}
+      imageUrl={spotify_artist_info.images[0].url}
+    >
       <div className={styles.artistWrap}>
         <div className={`box ${styles.mainContent}`}>
           <div className={styles.artistTopContent}>
