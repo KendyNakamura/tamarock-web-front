@@ -49,7 +49,7 @@ export default function Post({ spotifyData, artistData }) {
 
   // news list
   var articleList = "";
-  if (artistData.articles.length !== 0) {
+  if (artistData.articles != null && artistData.articles.length !== 0) {
     articleList = (
       <article className={styles.artistArticles}>
         <h2>関連ニュース</h2>
@@ -140,7 +140,7 @@ export async function getServerSideProps({ params }) {
   );
   const spotifyData = await spotifyRes.json();
   const artistRes = await fetch(
-    `http://tamarock-api:5000/api/artist/info/${params.id}?_end=5&_order=DESC&_sort=id&_start=0`
+    `http://tamarock-api:5000/api/artist/info/${params.id}?_end=5&_order=DESC&_sort=articles.id&_start=0`
   );
   const artistData = await artistRes.json();
   console.log(artistData.articles);
