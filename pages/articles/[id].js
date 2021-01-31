@@ -3,7 +3,7 @@ import ArtistList from "../../components/artist/artistList";
 import fetch from "isomorphic-unfetch";
 import styles from "../../styles/articles/article.module.css";
 import Error from "../_error";
-import Image from 'next/image';
+import Image from "next/image";
 
 export default function Post({ article }) {
   // ページが存在しないとき
@@ -23,10 +23,11 @@ export default function Post({ article }) {
     thumbnail = (
       <div className={styles.imageBox}>
         <Image
-          src={article.pictures[0].src} 
-          alt={article.title} 
-          width={400} 
-          height={400}/>
+          src={article.pictures[0].src}
+          alt={article.title}
+          width={400}
+          height={400}
+        />
       </div>
     );
     // thumbnail = <div className={styles.imageBox}><img className={styles.image} src={article.pictures[0].src} /></div>;
@@ -34,7 +35,11 @@ export default function Post({ article }) {
   }
 
   return (
-    <Layout headTitle={article.title} description={article.title} imageUrl={imageUrl}>
+    <Layout
+      headTitle={article.title}
+      description={article.title}
+      imageUrl={imageUrl}
+    >
       <article className="box">
         <h1>{article.title}</h1>
         {thumbnail}
@@ -63,6 +68,7 @@ export async function getServerSideProps({ params }) {
     `http://tamarock-api:5000/api/articles/${params.id}`
   );
   const article = await article_res.json();
+  console.log(article);
   return {
     props: {
       article,
