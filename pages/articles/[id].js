@@ -65,7 +65,7 @@ export async function getServerSideProps({ params }) {
     };
   }
   const article_res = await fetch(
-    `http://tamarock-api:5000/api/articles/${params.id}`
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles/${params.id}`
   );
   const article = await article_res.json();
   console.log(article);

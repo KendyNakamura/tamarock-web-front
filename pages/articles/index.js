@@ -26,12 +26,12 @@ export async function getServerSideProps({ query }) {
     end_num = end_num * page;
   }
   const articles = await fetch(
-    `http://tamarock-api:5000/api/articles?_end=${end_num}&_order=DESC&_sort=id&_start=${start_num}`
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles?_end=${end_num}&_order=DESC&_sort=id&_start=${start_num}`
   );
   const articleList = await articles.json();
 
   const articleCount = await fetch(
-    "http://tamarock-api:5000/api/articles/count"
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles/count`
   );
   const articleCountJSON = await articleCount.json();
 

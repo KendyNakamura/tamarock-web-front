@@ -26,7 +26,7 @@ export default function Search({ listData }) {
 export async function getServerSideProps(context) {
   const { name } = context.query;
   const res = await fetch(
-    `http://tamarock-api:5000/api/search?artist_name=${name}`
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/search?artist_name=${name}`
   );
   const list = await res.json();
   const listData = list["artists"]["items"];

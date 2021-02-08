@@ -35,15 +35,15 @@ export default function SingleLineGridList({ artistList, newsList, blogList }) {
 
 export async function getServerSideProps() {
   const artistRes = await fetch(
-    "http://tamarock-api:5000/api/artist/infos?_end=10&_order=DESC&_sort=id&_start=0"
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/infos?_end=10&_order=DESC&_sort=id&_start=0`
   );
   const artistList = await artistRes.json();
   const news = await fetch(
-    "http://tamarock-api:5000/api/articles?_end=5&_order=DESC&_sort=id&_start=0&column=category&q=1"
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles?_end=5&_order=DESC&_sort=id&_start=0&column=category&q=1`
   );
   const newsList = await news.json();
   const blog = await fetch(
-    "http://tamarock-api:5000/api/articles?_end=5&_order=DESC&_sort=id&_start=0&column=category&q=2"
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles?_end=5&_order=DESC&_sort=id&_start=0&column=category&q=2`
   );
   const blogList = await blog.json();
   return {

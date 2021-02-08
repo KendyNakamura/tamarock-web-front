@@ -140,11 +140,11 @@ export async function getServerSideProps({ params }) {
     };
   }
   const spotifyRes = await fetch(
-    `http://tamarock-api:5000/api/artist/${params.id}`
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/${params.id}`
   );
   const spotifyData = await spotifyRes.json();
   const artistRes = await fetch(
-    `http://tamarock-api:5000/api/artist/info/${params.id}?_end=5&_order=DESC&_sort=articles.id&_start=0`
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/artist/info/${params.id}?_end=5&_order=DESC&_sort=articles.id&_start=0`
   );
   const artistData = await artistRes.json();
   console.log(artistData.articles);

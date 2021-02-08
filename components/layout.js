@@ -27,7 +27,9 @@ export default function Layout({ children, home, headTitle, description, imageUr
     ? description
     : "すべてのアーティスト情報を簡単に検索できる音楽メディアです。";
 
-  const imageURL = imageUrl ? imageUrl : "https://tamarock.jp/images/profile.jpg";
+  const imageURL = imageUrl
+    ? imageUrl
+    : `${process.env.NEXT_PUBLIC_RESTAPI_URL}images/profile.jpg`;
 
   return (
     <div className={isLoading ? styles.isLoading : styles.isLoadingHide}>

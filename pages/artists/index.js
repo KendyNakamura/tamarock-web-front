@@ -26,12 +26,12 @@ export async function getServerSideProps({ query }) {
     end_num = end_num * page;
   }
   const artists = await fetch(
-    `http://tamarock-api:5000/api/artist/infos?_end=${end_num}&_order=DESC&_sort=id&_start=${start_num}`
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/infos?_end=${end_num}&_order=DESC&_sort=id&_start=${start_num}`
   );
   const artistList = await artists.json();
 
   const artistCount = await fetch(
-    "http://tamarock-api:5000/api/artist/infos/count"
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/infos/count`
   );
   const artistCountJSON = await artistCount.json();
 

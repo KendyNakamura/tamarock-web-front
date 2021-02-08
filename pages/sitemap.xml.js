@@ -49,9 +49,11 @@ const formatDate = (dt) => {
 };
 
 export const getServerSideProps = async ({ res }) => {
-  const location = "https://tamarock.jp";
-  const artists = await fetch("http://tamarock-api:5000/api/artist/infos");
-  const articles = await fetch("http://tamarock-api:5000/api/articles");
+  const location = `${process.env.NEXT_PUBLIC_RESTAPI_URL}`;
+  const artists = await fetch(
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/infos`
+  );
+  const articles = await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles`);
   const artistList = await artists.json();
   const articleList = await articles.json();
   console.log(artistList);
