@@ -3,31 +3,31 @@ import ArticleList from "../../components/article/articleList";
 import utilStyles from "../../styles/utils.module.css";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 import styles from "../../styles/artists/artist.module.css";
-import Error from "../_error";
+import { useRouter } from "next/router";
 import Image from "next/image";
+import {
+  getAllArtistIds,
+  getArtistData,
+  getSpotifyArtistData,
+} from "../../lib/artists";
 
-export default function Post({ spotifyData, artistData }) {
-  if (
-    !spotifyData ||
-    spotifyData === null ||
-    !artistData ||
-    artistData === null
-  ) {
-    return <Error status={404} />;
+export default function Post({ spotifyArtist, artist }) {
+  // ページが存在しないとき
+  const router = useRouter();
+
+  if (router.isFallback || !artist || !spotifyArtist) {
+    return <div>Loading...</div>;
   }
-  // if (spotifyData.length === 0 || artistData.length === 0) {
-  //   return <span>Loading...</span>;
-  // }
 
-  const spotify_artist_info = spotifyData["spotify_artist_info"];
+  const spotify_artist_info = spotifyArtist["spotify_artist_info"];
 
   // homepage link
-  var url = artistData.url;
+  var url = artist.url;
   var hp_link = "";
   if (url !== "") {
     hp_link = (
       <a href={url} target="_blank" rel="noopener noreferrer">
-        {artistData.name}のホームページ
+        {artist.name}のホームページ
       </a>
     );
   }
@@ -47,20 +47,20 @@ export default function Post({ spotifyData, artistData }) {
     );
   }
 
-  // news list
+  //news list
   var articleList = "";
-  if (artistData.articles != null && artistData.articles.length !== 0) {
+  if (artist.articles != null && artist.articles.length !== 0) {
     articleList = (
       <article className={styles.artistArticles}>
         <h2>関連ニュース</h2>
-        <ArticleList list={artistData.articles} count={6} />
+        <ArticleList list={artist.articles} count={6} />
       </article>
     );
   }
 
   // youtube
   var videoList = [];
-  const youtube_ids = spotifyData["youtube_ids"];
+  const youtube_ids = spotifyArtist["youtube_ids"];
   if (youtube_ids && youtube_ids.length !== 0) {
     for (var i in youtube_ids) {
       videoList.push(
@@ -78,7 +78,7 @@ export default function Post({ spotifyData, artistData }) {
   }
 
   // twitter
-  var twitter_id = artistData.twitter_id;
+  var twitter_id = artist.twitter_id;
   if (twitter_id !== "") {
     twitter_id = (
       <div>
@@ -104,7 +104,7 @@ export default function Post({ spotifyData, artistData }) {
           <div className={styles.artistTopContent}>
             <div className={styles.thumbnail}>
               <h1 className={utilStyles.headingXl}>
-                {artistData.name ? artistData.name : spotify_artist_info.name}
+                {artist.name ? artist.name : spotify_artist_info.name}
               </h1>
               <p>{hp_link}</p>
               <Image
@@ -133,25 +133,46 @@ export default function Post({ spotifyData, artistData }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
-  if (!params) {
-    return {
-      props: {},
-    };
-  }
-  const spotifyRes = await fetch(
-    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/${params.id}`
-  );
-  const spotifyData = await spotifyRes.json();
-  const artistRes = await fetch(
-    `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/artist/info/${params.id}?_end=5&_order=DESC&_sort=articles.id&_start=0`
-  );
-  const artistData = await artistRes.json();
-  console.log(artistData.articles);
+// export async function getServerSideProps({ params }) {
+//   if (!params) {
+//     return {
+//       props: {},
+//     };
+//   }
+//   const spotifyRes = await fetch(
+//     `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/${params.id}`
+//   );
+//   const spotifyArtist = await spotifyRes.json();
+//   const artistRes = await fetch(
+//     `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/artist/info/${params.id}?_end=5&_order=DESC&_sort=articles.id&_start=0`
+//   );
+//   const artist = await artistRes.json();
+
+//   return {
+//     props: {
+//       spotifyArtist,
+//       artist,
+//     },
+//   };
+// }
+
+export async function getStaticPaths() {
+  const paths = await getAllArtistIds();
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const artist = await getArtistData(params.id);
+  const spotifyArtist = await getSpotifyArtistData(params.id);
   return {
     props: {
-      spotifyData,
-      artistData,
+      artist,
+      spotifyArtist
     },
+    revalidate: 60,
   };
 }
