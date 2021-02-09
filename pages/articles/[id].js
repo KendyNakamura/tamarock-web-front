@@ -1,14 +1,17 @@
 import Layout from "../../components/layout";
 import ArtistList from "../../components/artist/artistList";
-import fetch from "isomorphic-unfetch";
+import { useRouter } from "next/router";
+// import fetch from "isomorphic-unfetch";
 import styles from "../../styles/articles/article.module.css";
-import Error from "../_error";
 import Image from "next/image";
+import { getAllArticleIds, getArticleData } from "../../lib/articles";
 
 export default function Post({ article }) {
   // ページが存在しないとき
-  if (!article || article.id === 0) {
-    return <Error status={404} />;
+  const router = useRouter();
+
+  if (router.isFallback || !article) {
+    return <div>Loading...</div>;
   }
 
   // ページリロード中
@@ -30,7 +33,6 @@ export default function Post({ article }) {
         />
       </div>
     );
-    // thumbnail = <div className={styles.imageBox}><img className={styles.image} src={article.pictures[0].src} /></div>;
     imageUrl = article.pictures[0].src;
   }
 
@@ -58,20 +60,39 @@ export default function Post({ article }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
-  if (!params) {
-    return {
-      props: {},
-    };
-  }
-  const article_res = await fetch(
-    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles/${params.id}`
-  );
-  const article = await article_res.json();
-  console.log(article);
+// export async function getServerSideProps({ params }) {
+//   if (!params) {
+//     return {
+//       props: {},
+//     };
+//   }
+//   const article_res = await fetch(
+//     `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles/${params.id}`
+//   );
+//   const article = await article_res.json();
+//   console.log(article);
+//   return {
+//     props: {
+//       article,
+//     },
+//   };
+// }
+
+export async function getStaticPaths() {
+  const paths = await getAllArticleIds();
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const article = await getArticleData(params.id);
   return {
     props: {
       article,
     },
+    revalidate: 3,
   };
 }
