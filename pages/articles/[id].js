@@ -1,7 +1,6 @@
 import Layout from "../../components/layout";
 import ArtistList from "../../components/artist/artistList";
 import { useRouter } from "next/router";
-// import fetch from "isomorphic-unfetch";
 import styles from "../../styles/articles/article.module.css";
 import Image from "next/image";
 import { getAllArticleIds, getArticleData } from "../../lib/articles";
@@ -13,11 +12,6 @@ export default function Post({ article }) {
   if (router.isFallback || !article) {
     return <div>Loading...</div>;
   }
-
-  // ページリロード中
-  // if (article.length === 0) {
-  //   return <span>Loading...</span>;
-  // }
 
   // サムネイル表示
   var thumbnail = "";
@@ -59,24 +53,6 @@ export default function Post({ article }) {
     </Layout>
   );
 }
-
-// export async function getServerSideProps({ params }) {
-//   if (!params) {
-//     return {
-//       props: {},
-//     };
-//   }
-//   const article_res = await fetch(
-//     `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles/${params.id}`
-//   );
-//   const article = await article_res.json();
-//   console.log(article);
-//   return {
-//     props: {
-//       article,
-//     },
-//   };
-// }
 
 export async function getStaticPaths() {
   const paths = await getAllArticleIds();
