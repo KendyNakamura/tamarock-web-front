@@ -133,29 +133,6 @@ export default function Post({ spotifyArtist, artist }) {
   );
 }
 
-// export async function getServerSideProps({ params }) {
-//   if (!params) {
-//     return {
-//       props: {},
-//     };
-//   }
-//   const spotifyRes = await fetch(
-//     `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/${params.id}`
-//   );
-//   const spotifyArtist = await spotifyRes.json();
-//   const artistRes = await fetch(
-//     `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/artist/info/${params.id}?_end=5&_order=DESC&_sort=articles.id&_start=0`
-//   );
-//   const artist = await artistRes.json();
-
-//   return {
-//     props: {
-//       spotifyArtist,
-//       artist,
-//     },
-//   };
-// }
-
 export async function getStaticPaths() {
   const paths = await getAllArtistIds();
 
