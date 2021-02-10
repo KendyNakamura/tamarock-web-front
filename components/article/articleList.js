@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Pagenation from "../Pagenation";
+import Pagenation from "../pagenation";
 import styles from "../../styles/articles/article.module.css";
 
 export default function ArticleList({ list, count }) {

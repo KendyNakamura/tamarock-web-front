@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Pagenation from "../Pagenation";
+import Pagenation from "../pagenation";
 import styles from "../../styles/artists/artist.module.css";
 
 export default function ArtistList({ list, count }) {
