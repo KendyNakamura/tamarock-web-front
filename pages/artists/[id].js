@@ -50,6 +50,7 @@ export default function Post({ spotifyArtist, artist }) {
   // youtube
   var videoList = [];
   const youtube_ids = spotifyArtist["youtube_ids"];
+  var youtubeSection = "";
   if (youtube_ids && youtube_ids.length !== 0) {
     for (var i in youtube_ids) {
       videoList.push(
@@ -64,6 +65,12 @@ export default function Post({ spotifyArtist, artist }) {
         </li>
       );
     }
+    youtubeSection = (
+      <div className={styles.artistContent}>
+        <h2>Youtube</h2>
+        <ul className={styles.videoList}>{videoList}</ul>
+      </div>
+    );
   }
 
   //news list
@@ -121,11 +128,8 @@ export default function Post({ spotifyArtist, artist }) {
           </div>
           {articleList}
         </div>
+        {youtubeSection}
         <div className={`box ${styles.artistParts}`}>
-          <div className={styles.artistContent}>
-            <h2>Youtube</h2>
-            <ul className={styles.videoList}>{videoList}</ul>
-          </div>
           <div className={styles.artistContent}>{twitter_id}</div>
         </div>
       </div>
