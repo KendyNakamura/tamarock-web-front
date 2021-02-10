@@ -27,7 +27,7 @@ export default function ArtistList({ list, count }) {
 
     var pagenation = "";
     if (count > 10) {
-      pagenation = <Pagenation pageName="artists" count={count} />;
+      pagenation = <Pagenation pageName="artists" totalCount={count} />;
     }
   }
 
