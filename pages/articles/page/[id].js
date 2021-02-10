@@ -13,7 +13,7 @@ export default function NewsList({ articleList, articleIds }) {
     >
       <div className="box">
         <h2>News</h2>
-        <ArticleList list={articleList} count={articleIds.length} />
+        <ArticleList list={articleList} count={articleIds ? articleIds.length : 0} />
       </div>
     </Layout>
   );

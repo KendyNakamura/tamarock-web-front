@@ -26,7 +26,9 @@ export default function ArticleList({ list, count }) {
     );
   }
 
-  var pagenation = <Pagenation pageName="articles" totalCount={count} />;
+  if (count > 10) {
+    var pagenation = <Pagenation pageName="articles" totalCount={count} />;
+  }
 
   return (
     <div>
