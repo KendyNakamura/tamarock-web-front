@@ -7,8 +7,8 @@ export default function Pagination({ pageName, totalCount }) {
   var end = Math.ceil(totalCount / PER_PAGE);
 
   return (
-    <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-      <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+    <div className="bg-white px-4 py-3 flex justify-center items-center border-t border-gray-200 sm:px-6">
+      <div className="sm:flex-1 sm:flex sm:items-center sm:justify-center">
         <div>
           <nav className="relative z-0 inline-flex shadow-sm -space-x-px" aria-label="Pagination">
             <Link href={`/${pageName}/page/1`}>

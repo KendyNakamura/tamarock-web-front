@@ -20,41 +20,35 @@ export default function Layout({ children, home, headTitle, description, imageUr
     };
   }, []);
 
-  const siteTitle = headTitle
-    ? headTitle.slice(0, 25) + " | たまロック"
-    : "たまロック | すべてのアーティスト情報を検索できる音楽メディア";
-  const siteDescription = description
-    ? description
-    : "すべてのアーティスト情報を簡単に検索できる音楽メディアです。";
+  const siteTitle = headTitle ? headTitle.slice(0, 25) + " | たまロック" : "たまロック | すべてのアーティスト情報を検索できる音楽メディア";
+  const siteDescription = description ? description : "すべてのアーティスト情報を簡単に検索できる音楽メディアです。";
 
-  const imageURL = imageUrl
-    ? imageUrl
-    : `${process.env.NEXT_PUBLIC_RESTAPI_URL}images/profile.jpg`;
+  const imageURL = imageUrl ? imageUrl : `${process.env.NEXT_PUBLIC_RESTAPI_URL}images/profile.jpg`;
 
   return (
-    <div className={isLoading ? styles.isLoading : styles.isLoadingHide}>
+    <div>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <title>{siteTitle}</title>
         <meta name="description" content={siteDescription} />
-        <meta
-          property="og:image"
-          content={imageURL}
-        />
+        <meta property="og:image" content={imageURL} />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Header />
-      <div className={styles.container}>
-        <main>{children}</main>
-        {!home && (
-          <div className={styles.backToHome}>
-            <Link href="/">
-              <a>← Back to home</a>
-            </Link>
+      {/* <header className="bg-white shadow">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl font-bold leading-tight text-gray-900">Dashboard</h1>
+        </div>
+      </header> */}
+      <main>
+        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+          <div className="px-4 py-6 sm:px-0">
+            {children}
+            {/* <div className="border-4 border-dashed border-gray-200 rounded-lg h-96"></div> */}
           </div>
-        )}
-      </div>
+        </div>
+      </main>
     </div>
   );
 }
