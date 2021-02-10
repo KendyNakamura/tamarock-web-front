@@ -11,21 +11,21 @@ export default function SingleLineGridList({ artistList, newsList, blogList }) {
       <div className="box">
         <h2>News</h2>
         <ArticleList list={newsList} count={5} />
-        <Link href="/articles">
+        <Link href="/articles/page/1">
           <a>記事一覧へ</a>
         </Link>
       </div>
       <div className="box">
         <h2>Artists</h2>
         <ArtistList list={artistList} count={10} />
-        <Link href="/artists">
+        <Link href="/artists/page/1">
           <a>artist一覧へ</a>
         </Link>
       </div>
       <div className="box">
         <h2>Blog</h2>
         <ArticleList list={blogList} count={5} />
-        <Link href="/articles">
+        <Link href="/articles/page/1">
           <a>記事一覧へ</a>
         </Link>
       </div>
@@ -35,8 +35,9 @@ export default function SingleLineGridList({ artistList, newsList, blogList }) {
 
 export async function getStaticProps() {
   const artistList = await getLimitedArtistsData();
-  const newsList = await getLimitedArticlesData(5, 1, 1);
-  const blogList = await getLimitedArticlesData(5, 1, 1);
+  const newsList = await getLimitedArticlesData(5, 1, 1, "category");
+  const blogList = await getLimitedArticlesData(5, 1, 2, "category");
+
   return {
     props: {
       artistList,

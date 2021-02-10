@@ -5,7 +5,6 @@ export default function Pagination({ pageName, totalCount }) {
 
   const range = (start, end) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
-  console.log(totalCount);
 
   return (
     <ul>
