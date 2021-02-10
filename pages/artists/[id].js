@@ -15,11 +15,11 @@ export default function Post({ spotifyArtist, artist }) {
   // ページが存在しないとき
   const router = useRouter();
 
-  if (router.isFallback || !artist || !spotifyArtist) {
+  if (router.isFallback || !artist || !spotifyArtist.spotify_artist_info) {
     return <div>Loading...</div>;
   }
 
-  const spotify_artist_info = spotifyArtist["spotify_artist_info"];
+  const spotify_artist = spotifyArtist.spotify_artist_info;
 
   // homepage link
   var url = artist.url;
@@ -34,27 +34,16 @@ export default function Post({ spotifyArtist, artist }) {
 
   // spotify music list
   var spority_music = "";
-  if (spotify_artist_info.id !== "") {
+  if (spotify_artist.id !== "") {
     spority_music = (
       <iframe
-        src={`https://open.spotify.com/embed/artist/${spotify_artist_info.id}`}
+        src={`https://open.spotify.com/embed/artist/${spotify_artist.id}`}
         width="300"
         height="400"
         frameBorder="0"
         allowtransparency="true"
         allow="encrypted-media"
       ></iframe>
-    );
-  }
-
-  //news list
-  var articleList = "";
-  if (artist.articles != null && artist.articles.length !== 0) {
-    articleList = (
-      <article className={styles.artistArticles}>
-        <h2>関連ニュース</h2>
-        <ArticleList list={artist.articles} count={6} />
-      </article>
     );
   }
 
@@ -66,7 +55,7 @@ export default function Post({ spotifyArtist, artist }) {
       videoList.push(
         <li className={styles.video} key={i}>
           <iframe
-            title={`youtube${spotify_artist_info.name}_${i}`}
+            title={`youtube${spotify_artist.name}_${i}`}
             id="ytplayer"
             src={`https://www.youtube.com/embed/${youtube_ids[i]}`}
             frameBorder="0"
@@ -75,6 +64,17 @@ export default function Post({ spotifyArtist, artist }) {
         </li>
       );
     }
+  }
+
+  //news list
+  var articleList = "";
+  if (artist.articles != null && artist.articles.length !== 0) {
+    articleList = (
+      <article className={styles.artistArticles}>
+        <h2>関連ニュース</h2>
+        <ArticleList list={artist.articles} count={6} />
+      </article>
+    );
   }
 
   // twitter
@@ -95,21 +95,21 @@ export default function Post({ spotifyArtist, artist }) {
 
   return (
     <Layout
-      headTitle={spotify_artist_info.name}
-      description={spotify_artist_info.name}
-      imageUrl={spotify_artist_info.images[0].url}
+      headTitle={spotify_artist.name}
+      description={spotify_artist.name}
+      imageUrl={spotify_artist.images[0].url}
     >
       <div className={styles.artistWrap}>
         <div className={`box ${styles.mainContent}`}>
           <div className={styles.artistTopContent}>
             <div className={styles.thumbnail}>
               <h1 className={utilStyles.headingXl}>
-                {artist.name ? artist.name : spotify_artist_info.name}
+                {artist.name ? artist.name : spotify_artist.name}
               </h1>
               <p>{hp_link}</p>
               <Image
-                src={spotify_artist_info.images[0].url}
-                alt={spotify_artist_info.name}
+                src={spotify_artist.images[0].url}
+                alt={spotify_artist.name}
                 width={320}
                 height={320}
               />
@@ -145,10 +145,11 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const artist = await getArtistData(params.id);
   const spotifyArtist = await getSpotifyArtistData(params.id);
+
   return {
     props: {
       artist,
-      spotifyArtist
+      spotifyArtist,
     },
     revalidate: 60,
   };
