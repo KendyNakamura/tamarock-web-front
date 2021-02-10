@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getLimitedArticlesData } from "../lib/articles";
 import { getLimitedArtistsData } from "../lib/artists";
 
-export default function SingleLineGridList({ artistList, newsList, blogList }) {
+export default function Top({ artistList, newsList, blogList }) {
   return (
     <Layout home>
       <div className="box">

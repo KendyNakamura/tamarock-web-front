@@ -1,7 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-unfetch";
 
-const generateSitemap = (articleList, artistList, location) => {
+export default function generateSitemap(articleList, artistList, location) {
   let xml = "";
 
   // トップページ
@@ -14,7 +14,7 @@ const generateSitemap = (articleList, artistList, location) => {
   // 記事ページ
   articleList.map((article) => {
     const articleDate = formatDate(new Date(article.updatedat));
-    const articleURL = location + "/articles/" + article.id;
+    const articleURL = location + "articles/" + article.id;
 
     xml += `<url>
         <loc>${articleURL}</loc>
@@ -26,7 +26,7 @@ const generateSitemap = (articleList, artistList, location) => {
   // アーティストページ
   artistList.map((artist) => {
     const artistDate = formatDate(new Date(artist.updated_at));
-    const artistURL = location + "/artists/" + artist.artist_id;
+    const artistURL = location + "artists/" + artist.artist_id;
 
     xml += `<url>
         <loc>${artistURL}</loc>
@@ -49,7 +49,7 @@ const formatDate = (dt) => {
 };
 
 export const getServerSideProps = async ({ res }) => {
-  const location = `${process.env.NEXT_PUBLIC_RESTAPI_URL}`;
+  const location = `${process.env.NEXT_PUBLIC_SITE_URL}`;
   const artists = await fetch(
     `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/infos`
   );
@@ -64,7 +64,3 @@ export const getServerSideProps = async ({ res }) => {
 
   return { props: {} };
 };
-
-const sitemap = () => null;
-
-export default sitemap;
