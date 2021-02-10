@@ -1,33 +1,32 @@
-import React from "react";
 import Link from "next/link";
-import Pagenation from "../pagenation";
+import Pagenation from "../Pagenation";
 import styles from "../../styles/articles/article.module.css";
 
 export default function ArticleList({ list, count }) {
-  let content = (
-    <ol className={styles.articleList}>
-      {list.map((article) => (
-        <li className={styles.article} key={article.id}>
-          <Link href="/articles/[id]" as={`/articles/${article.id}`}>
-            <a>
-              <p>
-                {article.title}
-                <br />
-                <span className={styles.articleDate}>
-                  {formatDate(new Date(article.createdat))}
-                </span>
-              </p>
-            </a>
-          </Link>
-        </li>
-      ))}
-    </ol>
-  );
-
-  var pagenation = "";
-  if (count > 10) {
-    pagenation = <Pagenation list={content} count={count} />;
+  var content = "";
+  if (list) {
+    content = (
+      <ol className={styles.articleList}>
+        {list.map((article) => (
+          <li className={styles.article} key={article.id}>
+            <Link href="/articles/[id]" as={`/articles/${article.id}`}>
+              <a>
+                <p>
+                  {article.title}
+                  <br />
+                  <span className={styles.articleDate}>
+                    {formatDate(new Date(article.createdat))}
+                  </span>
+                </p>
+              </a>
+            </Link>
+          </li>
+        ))}
+      </ol>
+    );
   }
+
+  var pagenation = <Pagenation pageName="articles" totalCount={count} />;
 
   return (
     <div>

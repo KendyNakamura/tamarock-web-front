@@ -1,42 +1,21 @@
-import React from "react";
-import ReactPaginate from "react-paginate";
-import Router, { useRouter } from "next/router";
+import Link from "next/link";
 
-export default function Pagenation({ list, count }) {
-  const router = useRouter();
+export default function Pagination({ pageName, totalCount }) {
+  const PER_PAGE = 10;
 
-  const pagginationHandler = (page) => {
-    const currentPath = router.pathname;
-    const currentQuery = { ...router.query };
-    if (!isNaN(page.selected)) {
-      console.log(page.selected);
-      currentQuery.page = page.selected + 1;
-    }
-
-    router.push({
-      pathname: currentPath,
-      query: currentQuery,
-    });
-  };
+  const range = (start, end) =>
+    [...Array(end - start + 1)].map((_, i) => start + i);
+  console.log(totalCount);
 
   return (
-    <ReactPaginate
-      previousLabel={"<"}
-      nextLabel={">"}
-      breakLabel={"..."}
-      initialPage={list.currentPage - 1}
-      pageCount={count / 10} //page count
-      marginPagesDisplayed={2}
-      pageRangeDisplayed={5}
-      onPageChange={pagginationHandler}
-      containerClassName={"paginate-wrap"}
-      subContainerClassName={"paginate-inner"}
-      pageClassName={"paginate-li"}
-      pageLinkClassName={"paginate-a"}
-      activeClassName={"paginate-active"}
-      nextLinkClassName={"paginate-next-a"}
-      previousLinkClassName={"paginate-prev-a"}
-      breakLinkClassName={"paginate-break-a"}
-    />
+    <ul>
+      {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
+        <li key={index}>
+          <Link href={`/${pageName}/page/${number}`}>
+            <a>{number}</a>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
-}
+};

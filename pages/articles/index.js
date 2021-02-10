@@ -1,9 +1,8 @@
-import React from "react";
 import Layout from "../../components/layout";
 import ArticleList from "../../components/article/articleList";
-import fetch from "isomorphic-unfetch";
+import { getAllArticlesData } from "../../lib/articles";
 
-export default function NewsList({ articleList, articleCountJSON }) {
+export default function NewsList({ articleList }) {
   return (
     <Layout
       headTitle="ニュース一覧"
@@ -11,34 +10,18 @@ export default function NewsList({ articleList, articleCountJSON }) {
     >
       <div className="box">
         <h2>News</h2>
-        <ArticleList list={articleList} count={articleCountJSON} />
+        <ArticleList list={articleList} count={10} />
       </div>
     </Layout>
   );
 }
 
-export async function getServerSideProps({ query }) {
-  const page = query.page || 1;
-  var end_num = 10;
-  var start_num = 0;
-  if (page > 1) {
-    start_num = end_num * (page - 1);
-    end_num = end_num * page;
-  }
-  const articles = await fetch(
-    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles?_end=${end_num}&_order=DESC&_sort=id&_start=${start_num}`
-  );
-  const articleList = await articles.json();
-
-  const articleCount = await fetch(
-    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles/count`
-  );
-  const articleCountJSON = await articleCount.json();
+export async function getStaticProps() {
+  const articleList = await getAllArticlesData();
 
   return {
     props: {
-      articleList,
-      articleCountJSON,
+      articleList
     },
   };
 }
