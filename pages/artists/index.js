@@ -1,18 +1,15 @@
 import React from "react";
 import Layout from "../../components/layout";
+import Box from "../../components/box";
 import fetch from "isomorphic-unfetch";
 import ArtistList from "../../components/artist/artistList";
 
 export default function NewsList({ artistList, artistCountJSON }) {
   return (
-    <Layout
-      headTitle="アーティスト一覧"
-      description="たまロックで登録しているアーティストの一覧です。YoutubeやSpotifyに加え、Twitterやホームページリンクも表示されます。"
-    >
-      <div className="box">
-        <h2>Artists</h2>
+    <Layout headTitle="アーティスト一覧" description="たまロックで登録しているアーティストの一覧です。YoutubeやSpotifyに加え、Twitterやホームページリンクも表示されます。">
+      <Box title="Artists">
         <ArtistList list={artistList} count={artistCountJSON} />
-      </div>
+      </Box>
     </Layout>
   );
 }
@@ -25,14 +22,10 @@ export async function getServerSideProps({ query }) {
     start_num = end_num * (page - 1);
     end_num = end_num * page;
   }
-  const artists = await fetch(
-    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/infos?_end=${end_num}&_order=DESC&_sort=id&_start=${start_num}`
-  );
+  const artists = await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/infos?_end=${end_num}&_order=DESC&_sort=id&_start=${start_num}`);
   const artistList = await artists.json();
 
-  const artistCount = await fetch(
-    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/infos/count`
-  );
+  const artistCount = await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/infos/count`);
   const artistCountJSON = await artistCount.json();
 
   return {

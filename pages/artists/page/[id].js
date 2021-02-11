@@ -1,20 +1,14 @@
 import Layout from "../../../components/layout";
+import Box from "../../../components/box";
 import ArtistList from "../../../components/artist/artistList";
-import {
-  getLimitedArtistsData,
-  getAllArtistIds,
-} from "../../../lib/artists";
+import { getLimitedArtistsData, getAllArtistIds } from "../../../lib/artists";
 
 export default function ArtistListPage({ artistList, artistIds }) {
   return (
-    <Layout
-      headTitle="ニュース一覧"
-      description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。"
-    >
-      <div className="box">
-        <h2>Artist</h2>
+    <Layout headTitle="ニュース一覧" description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。">
+      <Box title="Artist">
         <ArtistList list={artistList} count={artistIds ? artistIds.length : 0} />
-      </div>
+      </Box>
     </Layout>
   );
 }
@@ -22,8 +16,7 @@ export default function ArtistListPage({ artistList, artistIds }) {
 export async function getStaticPaths() {
   const PER_PAGE = 10;
   const artistIds = await getAllArtistIds();
-  const range = (start, end) =>
-    [...Array(end - start + 1)].map((_, i) => start + i);
+  const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
   const paths = range(1, Math.ceil(artistIds.length / PER_PAGE)).map((id) => {
     return {
       params: {

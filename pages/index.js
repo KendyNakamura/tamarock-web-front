@@ -1,4 +1,5 @@
 import Layout from "../components/layout";
+import Box from "../components/box";
 import ArticleList from "../components/article/articleList";
 import ArtistList from "../components/artist/artistList";
 import Link from "next/link";
@@ -8,27 +9,24 @@ import { getLimitedArtistsData } from "../lib/artists";
 export default function Top({ artistList, newsList, blogList }) {
   return (
     <Layout home>
-      <div className="box">
-        <h2>News</h2>
+      <Box title="news">
         <ArticleList list={newsList} count={5} />
         <Link href="/articles/page/1">
           <a>記事一覧へ</a>
         </Link>
-      </div>
-      <div className="box">
-        <h2>Artists</h2>
+      </Box>
+      <Box title="Artists">
         <ArtistList list={artistList} count={10} />
         <Link href="/artists/page/1">
           <a>artist一覧へ</a>
         </Link>
-      </div>
-      <div className="box">
-        <h2>Blog</h2>
+      </Box>
+      <Box title="Blog">
         <ArticleList list={blogList} count={5} />
         <Link href="/articles/page/1">
           <a>記事一覧へ</a>
         </Link>
-      </div>
+      </Box>
     </Layout>
   );
 }
