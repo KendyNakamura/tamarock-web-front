@@ -26,7 +26,7 @@ export default function Layout({ children, home, headTitle, description, imageUr
   const imageURL = imageUrl ? imageUrl : `${process.env.NEXT_PUBLIC_RESTAPI_URL}images/profile.jpg`;
 
   return (
-    <div>
+    <div className="bg-blue-300 p-0 m-0 font-sans text-2xl box-border">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <title>{siteTitle}</title>

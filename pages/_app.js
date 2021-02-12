@@ -1,4 +1,3 @@
-import "tailwindcss/tailwind.css";
 import "../styles/global.scss";
 import "../styles/global-sp.scss";
 import * as gtag from "../lib/gtag";

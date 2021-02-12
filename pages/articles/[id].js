@@ -19,7 +19,7 @@ export default function Post({ article }) {
   var imageUrl = "";
   if (article.pictures[0].src !== "") {
     thumbnail = (
-      <div className={styles.imageBox}>
+      <div className="text-center">
         <Image src={article.pictures[0].src} alt={article.title} width={400} height={400} />
       </div>
     );
@@ -30,7 +30,7 @@ export default function Post({ article }) {
     <Layout headTitle={article.title} description={article.title} imageUrl={imageUrl}>
       <Box title={article.title}>
         {thumbnail}
-        <div dangerouslySetInnerHTML={{ __html: article.text }} className={`${styles.articleText} text`}></div>
+        <div dangerouslySetInnerHTML={{ __html: article.text }} className="min-h-screen mx-8 md:mx-14"></div>
         <h2>関連アーティスト</h2>
         <ArtistList list={article.artists} count={6} className={styles.artistList} />
       </Box>
@@ -49,6 +49,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const article = await getArticleData(params.id);
+  console.log(article);
   return {
     props: {
       article,

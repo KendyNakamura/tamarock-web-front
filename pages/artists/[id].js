@@ -5,11 +5,7 @@ import { TwitterTimelineEmbed } from "react-twitter-embed";
 import styles from "../../styles/artists/artist.module.css";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import {
-  getAllArtistIds,
-  getArtistData,
-  getSpotifyArtistData,
-} from "../../lib/artists";
+import { getAllArtistIds, getArtistData, getSpotifyArtistData } from "../../lib/artists";
 
 export default function Post({ spotifyArtist, artist }) {
   // ページが存在しないとき
@@ -35,16 +31,7 @@ export default function Post({ spotifyArtist, artist }) {
   // spotify music list
   var spority_music = "";
   if (spotify_artist.id !== "") {
-    spority_music = (
-      <iframe
-        src={`https://open.spotify.com/embed/artist/${spotify_artist.id}`}
-        width="300"
-        height="400"
-        frameBorder="0"
-        allowtransparency="true"
-        allow="encrypted-media"
-      ></iframe>
-    );
+    spority_music = <iframe src={`https://open.spotify.com/embed/artist/${spotify_artist.id}`} width="300" height="400" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>;
   }
 
   // youtube
@@ -55,13 +42,7 @@ export default function Post({ spotifyArtist, artist }) {
     for (var i in youtube_ids) {
       videoList.push(
         <li className={styles.video} key={i}>
-          <iframe
-            title={`youtube${spotify_artist.name}_${i}`}
-            id="ytplayer"
-            src={`https://www.youtube.com/embed/${youtube_ids[i]}`}
-            frameBorder="0"
-            key={i}
-          ></iframe>
+          <iframe title={`youtube${spotify_artist.name}_${i}`} id="ytplayer" src={`https://www.youtube.com/embed/${youtube_ids[i]}`} frameBorder="0" key={i}></iframe>
         </li>
       );
     }
@@ -90,36 +71,20 @@ export default function Post({ spotifyArtist, artist }) {
     twitter_id = (
       <div>
         <h2>Twitter</h2>
-        <TwitterTimelineEmbed
-          sourceType="profile"
-          screenName={twitter_id}
-          theme="dark"
-          options={{ height: 450 }}
-        />
+        <TwitterTimelineEmbed sourceType="profile" screenName={twitter_id} theme="dark" options={{ height: 450 }} />
       </div>
     );
   }
 
   return (
-    <Layout
-      headTitle={spotify_artist.name}
-      description={spotify_artist.name}
-      imageUrl={spotify_artist.images[0].url}
-    >
+    <Layout headTitle={spotify_artist.name} description={spotify_artist.name} imageUrl={spotify_artist.images[0].url}>
       <div className={styles.artistWrap}>
         <div className={`box ${styles.mainContent}`}>
           <div className={styles.artistTopContent}>
             <div className={styles.thumbnail}>
-              <h1 className={utilStyles.headingXl}>
-                {artist.name ? artist.name : spotify_artist.name}
-              </h1>
+              <h1 className={utilStyles.headingXl}>{artist.name ? artist.name : spotify_artist.name}</h1>
               <p>{hp_link}</p>
-              <Image
-                src={spotify_artist.images[0].url}
-                alt={spotify_artist.name}
-                width={320}
-                height={320}
-              />
+              <Image src={spotify_artist.images[0].url} alt={spotify_artist.name} width={320} height={320} />
             </div>
             <div className={styles.artistContent}>
               <h2>Spotify</h2>
@@ -128,8 +93,8 @@ export default function Post({ spotifyArtist, artist }) {
           </div>
           {articleList}
         </div>
-        {youtubeSection}
         <div className={`box ${styles.artistParts}`}>
+          {youtubeSection}
           <div className={styles.artistContent}>{twitter_id}</div>
         </div>
       </div>
