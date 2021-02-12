@@ -18,18 +18,18 @@ a {
   @apply text-black hover:underline;
 }
 
-iframe {
-  @apply w-full max-w-2xl h-72 md:h-96;
-}
-
-blockquote {
-  @apply italic my-2 text-gray-600 text-sm;
-}
-
 @tailwind components;
 
 .articleText a {
   @apply text-blue-600;
+}
+
+.articleText iframe {
+  @apply w-full max-w-2xl h-72 md:h-96;
+}
+
+.articleText blockquote {
+  @apply italic my-2 text-gray-600 text-sm;
 }
 
 @tailwind utilities;

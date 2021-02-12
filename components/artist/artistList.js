@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Pagenation from "../pagenation";
-import styles from "../../styles/artists/artist.module.css";
 
 export default function ArtistList({ list, count }) {
   var content = "";
@@ -8,7 +7,7 @@ export default function ArtistList({ list, count }) {
     var artistList = [];
     for (var i in list) {
       artistList.push(
-        <li className={styles.artist} key={i}>
+        <li className="w-64 my-3 leading-8" key={i}>
           <Link href="/artists/[id]" as={`/artists/${list[i].artist_id}`}>
             <a>{list[i].name}</a>
           </Link>
@@ -20,10 +19,10 @@ export default function ArtistList({ list, count }) {
 
     for (j = 0; j < $listCount; j++) {
       var keyProps = artistList.length + 1;
-      artistList.push(<li className={styles.artist} key={keyProps}></li>);
+      artistList.push(<li className="w-64 my-3 leading-8" key={keyProps}></li>);
     }
 
-    content = <ul className={styles.artistList}>{artistList}</ul>;
+    content = <ul className="list-none flex justify-center flex-wrap p-0">{artistList}</ul>;
 
     var pagenation = "";
     if (count > 10) {

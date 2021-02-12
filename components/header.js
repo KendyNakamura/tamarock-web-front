@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import { Transition } from "@headlessui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styles from "../styles/header.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function PrimarySearchAppBar() {
   const [query, setQuery] = useState("");

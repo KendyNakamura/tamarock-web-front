@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import Router from "next/router";
 import Header from "./header";
 import Head from "next/head";
-import Link from "next/link";
-import styles from "../styles/layout.module.css";
 
 export default function Layout({ children, home, headTitle, description, imageUrl }) {
   // const [query, setQuery] = useState("");
@@ -36,11 +34,6 @@ export default function Layout({ children, home, headTitle, description, imageUr
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Header />
-      {/* <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold leading-tight text-gray-900">Dashboard</h1>
-        </div>
-      </header> */}
       <main>
         <div className="max-w-7xl mx-auto py-6 px-0 md:px-8">{children}</div>
       </main>
