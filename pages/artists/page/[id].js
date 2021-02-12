@@ -4,8 +4,9 @@ import ArtistList from "../../../components/artist/artistList";
 import { getLimitedArtistsData, getAllArtistIds } from "../../../lib/artists";
 
 export default function ArtistListPage({ artistList, artistIds, params }) {
+  var page = params ? `【${params.id}ページ目】` : "";
   return (
-    <Layout headTitle={`アーティスト一覧 | ${params.id}ページ目`} description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。">
+    <Layout headTitle={`アーティスト一覧${page}`} description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。">
       <Box title="Artist">
         <ArtistList list={artistList} count={artistIds ? artistIds.length : 0} />
       </Box>

@@ -4,8 +4,9 @@ import ArticleList from "../../../components/article/articleList";
 import { getLimitedArticlesData, getAllArticleIds } from "../../../lib/articles";
 
 export default function NewsList({ articleList, articleIds, params }) {
+  var page = params ? `【${params.id}ページ目】` : "";
   return (
-    <Layout headTitle={`ニュース一覧 | ${params.id}ページ目`} description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。">
+    <Layout headTitle={`ニュース一覧${page}`} description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。">
       <Box title="news">
         <ArticleList list={articleList} count={articleIds ? articleIds.length : 0} />
       </Box>
