@@ -2,7 +2,6 @@ import Layout from "../../components/layout";
 import Box from "../../components/box";
 import ArtistList from "../../components/artist/artistList";
 import { useRouter } from "next/router";
-import styles from "../../styles/articles/article.module.css";
 import Image from "next/image";
 import { getAllArticleIds, getArticleData } from "../../lib/articles";
 
@@ -30,9 +29,9 @@ export default function Post({ article }) {
     <Layout headTitle={article.title} description={article.title} imageUrl={imageUrl}>
       <Box title={article.title}>
         {thumbnail}
-        <div dangerouslySetInnerHTML={{ __html: article.text }} className="min-h-screen mx-8 md:mx-14"></div>
+        <div dangerouslySetInnerHTML={{ __html: article.text }} className="articleText min-h-screen mx-8 md:mx-14"></div>
         <h2>関連アーティスト</h2>
-        <ArtistList list={article.artists} count={6} className={styles.artistList} />
+        <ArtistList list={article.artists} count={6} className="justify-start" />
       </Box>
     </Layout>
   );

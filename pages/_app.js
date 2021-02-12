@@ -1,5 +1,4 @@
-import "../styles/global.scss";
-import "../styles/global-sp.scss";
+import "../styles/global.css";
 import * as gtag from "../lib/gtag";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
