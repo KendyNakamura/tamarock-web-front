@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Router from "next/router";
+import Link from "next/link";
 import Header from "./header";
 import Head from "next/head";
 
@@ -36,6 +37,9 @@ export default function Layout({ children, home, headTitle, description, imageUr
       <Header />
       <main>
         <div className="max-w-7xl mx-auto py-6 px-0 md:px-8">{children}</div>
+        <Link href="/">
+          <a>Back to home</a>
+        </Link>
       </main>
     </div>
   );
