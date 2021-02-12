@@ -6,7 +6,6 @@ export default function ArticleList({ list, count }) {
   if (list) {
     content = (
       <ol className="list-none p-0">
-        {/* <ol className={styles.articleList}> */}
         {list.map((article) => (
           <li className="pl-5 my-8 border-b-2 border-yellow-400 border-dashed" key={article.id}>
             <Link href="/articles/[id]" as={`/articles/${article.id}`}>

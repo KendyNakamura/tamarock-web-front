@@ -3,9 +3,9 @@ import Box from "../../../components/box";
 import ArtistList from "../../../components/artist/artistList";
 import { getLimitedArtistsData, getAllArtistIds } from "../../../lib/artists";
 
-export default function ArtistListPage({ artistList, artistIds }) {
+export default function ArtistListPage({ artistList, artistIds, params }) {
   return (
-    <Layout headTitle="ニュース一覧" description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。">
+    <Layout headTitle={`アーティスト一覧 | ${params.id}ページ目`} description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。">
       <Box title="Artist">
         <ArtistList list={artistList} count={artistIds ? artistIds.length : 0} />
       </Box>
@@ -39,6 +39,7 @@ export async function getStaticProps({ params }) {
     props: {
       artistList,
       artistIds,
+      params,
     },
   };
 }

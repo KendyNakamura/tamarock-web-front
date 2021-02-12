@@ -72,10 +72,10 @@ export default function ArtistShow({ spotifyArtist, artist }) {
     );
 
   return (
-    <Layout>
+    <Layout headTitle={spotify_artist.name}>
       <div className="grid grid-cols-3 gap-x-2">
         <div className="col-span-3 md:col-span-2">
-          <Box title={artist.name} className="h-screen">
+          <Box title={spotify_artist.name} className="h-screen">
             <div className="grid grid-cols-2 gap-x-4">
               <div className="col-span-2 sm:col-span-1">
                 <Image width={320} height={320} src="/images/profile.jpg" />
