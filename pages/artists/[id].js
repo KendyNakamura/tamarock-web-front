@@ -78,7 +78,7 @@ export default function ArtistShow({ spotifyArtist, artist }) {
           <Box title={spotify_artist.name} className="h-screen">
             <div className="grid grid-cols-2 gap-x-4">
               <div className="col-span-2 sm:col-span-1">
-                <Image width={320} height={320} src="/images/profile.jpg" />
+                <Image src={spotify_artist.images[0].url} alt={spotify_artist.name} width={320} height={320} />
                 <p>{hp_link}</p>
               </div>
               <div className="col-span-2 sm:col-span-1">{spority_music}</div>
