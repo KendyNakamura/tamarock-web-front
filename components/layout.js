@@ -21,7 +21,6 @@ export default function Layout({ children, home, headTitle, description, imageUr
 
   const siteTitle = headTitle ? headTitle.slice(0, 25) + " | たまロック" : "たまロック | すべてのアーティスト情報を検索できる音楽メディア";
   const siteDescription = description ? description : "すべてのアーティスト情報を簡単に検索できる音楽メディアです。";
-
   const imageURL = imageUrl ? imageUrl : `${process.env.NEXT_PUBLIC_RESTAPI_URL}images/profile.jpg`;
 
   return (
@@ -36,10 +35,16 @@ export default function Layout({ children, home, headTitle, description, imageUr
       </Head>
       <Header />
       <main>
-        <div className="max-w-7xl mx-auto py-6 px-0 md:px-8">{children}</div>
-        <Link href="/">
-          <a>Back to home</a>
-        </Link>
+        <div className="max-w-7xl mx-auto py-6 px-0 md:px-8">
+          {children}
+          {!home && (
+            <div className="cursor-pointer ml-8">
+              <Link href="/">
+                <a>← Back to home</a>
+              </Link>
+            </div>
+          )}
+        </div>
       </main>
     </div>
   );
