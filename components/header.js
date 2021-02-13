@@ -26,7 +26,6 @@ export default function PrimarySearchAppBar() {
   };
 
   function handleKeyPress(e) {
-    console.log(query);
     if (e.key == "Enter") {
       e.preventDefault();
       router.push(href);

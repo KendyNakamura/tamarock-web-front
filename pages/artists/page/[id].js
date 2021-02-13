@@ -42,5 +42,6 @@ export async function getStaticProps({ params }) {
       artistIds,
       params,
     },
+    revalidate: 60,
   };
 }

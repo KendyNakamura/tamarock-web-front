@@ -56,7 +56,6 @@ export const getServerSideProps = async ({ res }) => {
   const articles = await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles`);
   const artistList = await artists.json();
   const articleList = await articles.json();
-  console.log(artistList);
   const sitemap = generateSitemap(articleList, artistList, location);
   res.setHeader("content-type", "application/xml");
   res.write(sitemap);

@@ -58,11 +58,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const article = await getArticleData(params.id);
-  console.log(article);
   return {
     props: {
       article,
     },
-    revalidate: 3,
+    revalidate: 60,
   };
 }

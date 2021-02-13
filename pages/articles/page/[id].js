@@ -42,5 +42,6 @@ export async function getStaticProps({ params }) {
       articleIds,
       params,
     },
+    revalidate: 60,
   };
 }
