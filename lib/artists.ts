@@ -1,17 +1,17 @@
 import fetch from "node-fetch";
 
-export async function getAllArtistsData() {
+export const getAllArtistsData = async () => {
   const res = await fetch(
     new URL(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/infos`)
   );
   const artists = await res.json();
   const filteredArtists = artists.sort(
-    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    (a, b) => new Date(b.createdat).getDate() - new Date(a.createdat).getDate()
   );
   return filteredArtists;
 }
 
-export async function getLimitedArtistsData(count = 10, page = 1) {
+export async function getLimitedArtistsData(count: number = 10, page: number = 1) {
   var end = page * count;
   var start = page == 1 ? 0 : end - count;
   const res = await fetch(
@@ -20,9 +20,7 @@ export async function getLimitedArtistsData(count = 10, page = 1) {
     )
   );
   const artists = await res.json();
-  const filteredArtists = artists.sort(
-    (a, b) => new Date(b.created_at) - new Date(a.created_at)
-  );
+  const filteredArtists = artists.sort((a, b) => new Date(b.createdat).getDate() - new Date(a.createdat).getDate());
   return filteredArtists;
 }
 
@@ -40,7 +38,7 @@ export async function getAllArtistIds() {
   });
 }
 
-export async function getArtistData(id) {
+export async function getArtistData(id: string) {
   const res = await fetch(
     new URL(
       `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/artist/info/${id}?_end=5&_order=DESC&_sort=articles.id&_start=0`
@@ -50,7 +48,7 @@ export async function getArtistData(id) {
   return artist;
 }
 
-export async function getSpotifyArtistData(id) {
+export async function getSpotifyArtistData(id: string) {
   const res = await fetch(
     new URL(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/${id}`)
   );

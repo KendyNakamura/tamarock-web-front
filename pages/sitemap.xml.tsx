@@ -1,7 +1,14 @@
-import React from "react";
 import fetch from "isomorphic-unfetch";
+import React from "react";
+import { ARTICLE, ARTIST } from '../types/Types'
 
-export default function generateSitemap(articleList, artistList, location) {
+interface SITEMAPPROPS {
+  artistList: ARTIST[];
+  articleList: ARTICLE[];
+  location: string;
+}
+
+const GenerateSitemap: React.FC<SITEMAPPROPS> = ({ articleList, artistList, location }) => {
   let xml = "";
 
   // トップページ
@@ -25,7 +32,7 @@ export default function generateSitemap(articleList, artistList, location) {
 
   // アーティストページ
   artistList.map((artist) => {
-    const artistDate = formatDate(new Date(artist.updated_at));
+    const artistDate = formatDate(new Date(artist.updatedat));
     const artistURL = location + "artists/" + artist.artist_id;
 
     xml += `<url>
@@ -35,11 +42,15 @@ export default function generateSitemap(articleList, artistList, location) {
       </url>`;
   });
 
-  return `<?xml version="1.0" encoding="UTF-8"?>
+  return (<>
+    {`<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       ${xml}
-    </urlset>`;
+    </urlset>`}
+    </>);
 };
+
+export default GenerateSitemap;
 
 const formatDate = (dt) => {
   var y = dt.getFullYear();
@@ -56,10 +67,15 @@ export const getServerSideProps = async ({ res }) => {
   const articles = await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles`);
   const artistList = await artists.json();
   const articleList = await articles.json();
-  const sitemap = generateSitemap(articleList, artistList, location);
-  res.setHeader("content-type", "application/xml");
-  res.write(sitemap);
-  res.end();
+  // const sitemap = GenerateSitemap(articleList, artistList, location);
+  // res.setHeader("content-type", "application/xml");
+  // res.write(sitemap);
+  // res.end();
 
-  return { props: {} };
+  return {
+    props: {
+      articleList: articleList,
+      artistList: artistList,
+      location: location,
+  } };
 };

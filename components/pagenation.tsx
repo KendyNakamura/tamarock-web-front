@@ -1,10 +1,15 @@
 import Link from "next/link";
 
-export default function Pagination({ pageName, totalCount }) {
-  const PER_PAGE = 10;
+interface Pagination {
+  pageName: string;
+  totalCount?: number
+}
+
+const Pagination: React.FC<Pagination> = ({ pageName, totalCount }) => {
+  const PER_PAGE: number = 10;
 
   const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
-  var end = Math.ceil(totalCount / PER_PAGE);
+  var end: number = Math.ceil(totalCount / PER_PAGE);
 
   return (
     <div className="bg-white px-4 py-3 flex justify-center items-center border-t border-gray-200 sm:px-6">
@@ -37,3 +42,5 @@ export default function Pagination({ pageName, totalCount }) {
     </div>
   );
 }
+
+export default Pagination;

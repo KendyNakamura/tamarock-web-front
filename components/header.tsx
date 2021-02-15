@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function PrimarySearchAppBar() {
+const Header: React.FC = () => {
   const [query, setQuery] = useState("");
   const [check, setCheck] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -12,13 +12,13 @@ export default function PrimarySearchAppBar() {
     setCheck("");
   }
 
-  function handleCheck() {
-    if (check == "checked") {
-      setCheck("");
-    } else {
-      setCheck("checked");
-    }
-  }
+  // function handleCheck() {
+  //   if (check == "checked") {
+  //     setCheck("");
+  //   } else {
+  //     setCheck("checked");
+  //   }
+  // }
 
   var href = {
     pathname: query ? "/search" : "/",
@@ -120,3 +120,5 @@ export default function PrimarySearchAppBar() {
     </>
   );
 }
+
+export default Header;

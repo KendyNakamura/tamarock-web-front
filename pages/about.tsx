@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/layout";
 
-export default function About() {
+const About: React.FC = () => {
   return (
     <Layout>
       <div className="box text">
@@ -64,3 +64,5 @@ export default function About() {
     </Layout>
   );
 }
+
+export default About;

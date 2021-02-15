@@ -1,20 +1,34 @@
 import Layout from "../../../components/layout";
 import Box from "../../../components/box";
-import ArtistList from "../../../components/artist/artistList";
+import Artist from "../../../components/artist";
+import Pagination from "../../../components/pagenation";
 import { getLimitedArtistsData, getAllArtistIds } from "../../../lib/artists";
+import { GetStaticProps, GetStaticPaths } from "next";
+import { ARTIST } from "../../../types/Types";
 
-export default function ArtistListPage({ artistList, artistIds, params }) {
+interface ARTISTLISTPROPS {
+  artistList: ARTIST[];
+  artistIds: string[];
+  params: {
+    id: number;
+  };
+}
+
+const ArtistList: React.FC<ARTISTLISTPROPS> = ({ artistList, artistIds, params }) => {
   var page = params ? `【${params.id}ページ目】` : "";
   return (
     <Layout headTitle={`アーティスト一覧${page}`} description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。">
       <Box title="Artist">
-        <ArtistList list={artistList} count={artistIds ? artistIds.length : 0} />
+        <ul className="list-none flex justify-center flex-Kwrap p-0">{artistList && artistList.map((artist) => <Artist key={artist.id} {...artist} />)}</ul>
+        <Pagination pageName="artists" totalCount={artistIds.length ?? 0} />
       </Box>
     </Layout>
   );
-}
+};
 
-export async function getStaticPaths() {
+export default ArtistList;
+
+export const getStaticPaths: GetStaticPaths = async () => {
   const PER_PAGE = 10;
   const artistIds = await getAllArtistIds();
   const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
@@ -30,9 +44,9 @@ export async function getStaticPaths() {
     paths,
     fallback: true,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const artistList = await getLimitedArtistsData(10, params.id);
   const artistIds = await getAllArtistIds();
 
@@ -44,4 +58,4 @@ export async function getStaticProps({ params }) {
     },
     revalidate: 60,
   };
-}
+};

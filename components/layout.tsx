@@ -4,7 +4,14 @@ import Link from "next/link";
 import Header from "./header";
 import Head from "next/head";
 
-export default function Layout({ children, home, headTitle, description, imageUrl }) {
+interface LAYOUT {
+  home?: boolean;
+  headTitle?: string;
+  description?: string;
+  imageUrl?: string;
+}
+
+const Layout: React.FC<LAYOUT> = ({ children, home, headTitle, description, imageUrl }) => {
   // const [query, setQuery] = useState("");
   const [isLoading, setLoading] = useState(false);
   const startLoading = () => setLoading(true);
@@ -19,9 +26,9 @@ export default function Layout({ children, home, headTitle, description, imageUr
     };
   }, []);
 
-  const siteTitle = headTitle ? headTitle.slice(0, 25) + " | たまロック" : "たまロック | すべてのアーティスト情報を検索できる音楽メディア";
-  const siteDescription = description ? description : "すべてのアーティスト情報を簡単に検索できる音楽メディアです。";
-  const imageURL = imageUrl ? imageUrl : `${process.env.NEXT_PUBLIC_RESTAPI_URL}images/profile.jpg`;
+  const siteTitle: string = headTitle ? headTitle.slice(0, 25) + " | たまロック" : "たまロック | すべてのアーティスト情報を検索できる音楽メディア";
+  const siteDescription: string = description ? description : "すべてのアーティスト情報を簡単に検索できる音楽メディアです。";
+  const imageURL: string = imageUrl ? imageUrl : `${process.env.NEXT_PUBLIC_RESTAPI_URL}images/profile.jpg`;
 
   return (
     <div className="bg-blue-300 p-0 m-0 font-sans text-2xl box-border">
@@ -49,3 +56,5 @@ export default function Layout({ children, home, headTitle, description, imageUr
     </div>
   );
 }
+
+export default Layout;

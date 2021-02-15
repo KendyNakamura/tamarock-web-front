@@ -1,20 +1,34 @@
 import Layout from "../../../components/layout";
 import Box from "../../../components/box";
-import ArticleList from "../../../components/article/articleList";
+import Article from "../../../components/article";
+import Pagination from "../../../components/pagenation";
 import { getLimitedArticlesData, getAllArticleIds } from "../../../lib/articles";
+import { GetStaticProps, GetStaticPaths } from "next";
+import { ARTICLE } from "../../../types/Types";
 
-export default function NewsList({ articleList, articleIds, params }) {
+interface ARTISTLISTPROPS {
+  articleList: ARTICLE[];
+  articleIds: string[];
+  params: {
+    id: number;
+  };
+}
+
+const ArticleList: React.FC<ARTISTLISTPROPS> = ({ articleList, articleIds, params }) => {
   var page = params ? `【${params.id}ページ目】` : "";
   return (
     <Layout headTitle={`ニュース一覧${page}`} description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。">
       <Box title="news">
-        <ArticleList list={articleList} count={articleIds ? articleIds.length : 0} />
+        <ul className="list-none p-0">{articleList && articleList.map((article) => <Article key={article.id} {...article} />)}</ul>
+        <Pagination pageName="articles" totalCount={articleIds.length ?? 0} />
       </Box>
     </Layout>
   );
-}
+};
 
-export async function getStaticPaths() {
+export default ArticleList;
+
+export const getStaticPaths: GetStaticPaths = async () => {
   const PER_PAGE = 10;
   const articleIds = await getAllArticleIds();
   const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
@@ -30,10 +44,10 @@ export async function getStaticPaths() {
     paths,
     fallback: true,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
-  const articleList = await getLimitedArticlesData(10, params.id);
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const articleList = await getLimitedArticlesData(10, Number(params.id));
   const articleIds = await getAllArticleIds();
 
   return {
@@ -44,4 +58,4 @@ export async function getStaticProps({ params }) {
     },
     revalidate: 60,
   };
-}
+};

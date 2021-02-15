@@ -1,6 +1,6 @@
 export const GA_TRACKING_ID = "G-E2254MJ4SG";
 
-export const existsGaId = GA_TRACKING_ID !== "";
+export const existsGaId = GA_TRACKING_ID;
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url) => {

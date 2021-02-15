@@ -1,12 +1,19 @@
 import Layout from "../../components/layout";
 import Box from "../../components/box";
-import ArticleList from "../../components/article/articleList";
+import Article from "../../components/article";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { getAllArtistIds, getArtistData, getSpotifyArtistData } from "../../lib/artists";
+import { GetStaticProps, GetStaticPaths } from "next";
+import { ARTIST, SPOTIFYARTIST } from "../../types/Types";
 
-export default function ArtistShow({ spotifyArtist, artist }) {
+interface ARTISTSHOW {
+  spotifyArtist: SPOTIFYARTIST;
+  artist: ARTIST
+}
+
+const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
   // ページが存在しないとき
   const router = useRouter();
 
@@ -29,25 +36,25 @@ export default function ArtistShow({ spotifyArtist, artist }) {
   // spotify music list
   const spority_music =
     spotify_artist.id !== "" ? (
-      <iframe className="w-full" src={`https://open.spotify.com/embed/artist/${spotify_artist.id}`} width="300" height="400" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <iframe className="w-full" src={`https://open.spotify.com/embed/artist/${spotify_artist.id}`} width="300" height="400" frameBorder="0" allowTransparency={true} allow="encrypted-media"></iframe>
     ) : (
       ""
     );
 
   //news list
-  var articleList = "";
+  var articleList = <></>;
   if (artist.articles != null && artist.articles.length !== 0) {
     articleList = (
       <article className="text-left mt-5">
         <h3>関連ニュース</h3>
-        <ArticleList list={artist.articles} count={6} />
+        <ul className="list-none p-0">{artist.articles && artist.articles.map((article) => <Article key={article.id} {...article} />)}</ul>
       </article>
     );
   }
 
   // youtube
   const youtube_ids = spotifyArtist["youtube_ids"];
-  var youtubeSection = "";
+  var youtubeSection = <></>;
   if (youtube_ids && youtube_ids.length !== 0) {
     youtubeSection = (
       <Box title="youtube" h={3}>
@@ -62,13 +69,13 @@ export default function ArtistShow({ spotifyArtist, artist }) {
 
   // twitter
   var twitter_id = artist.twitter_id;
-  twitter_id =
+  var twitter =
     twitter_id !== "" ? (
       <Box title="twitter" h={3}>
         <TwitterTimelineEmbed className="w-full" sourceType="profile" screenName={twitter_id} theme="dark" options={{ height: 450 }} />
       </Box>
     ) : (
-      ""
+      <></>
     );
 
   return (
@@ -88,25 +95,27 @@ export default function ArtistShow({ spotifyArtist, artist }) {
         </div>
         <div className="col-span-3 md:col-span-1">
           {youtubeSection}
-          {twitter_id}
+          {twitter}
         </div>
       </div>
     </Layout>
   );
-}
+};
 
-export async function getStaticPaths() {
+export default ArtistShow;
+
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllArtistIds();
 
   return {
     paths,
     fallback: true,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
-  const artist = await getArtistData(params.id);
-  const spotifyArtist = await getSpotifyArtistData(params.id);
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const artist = await getArtistData(String(params.id));
+  const spotifyArtist = await getSpotifyArtistData(String(params.id));
 
   return {
     props: {
@@ -115,4 +124,4 @@ export async function getStaticProps({ params }) {
     },
     revalidate: 60,
   };
-}
+};
