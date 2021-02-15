@@ -82,7 +82,7 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
     <Layout headTitle={spotify_artist.name}>
       <div className="grid grid-cols-3 gap-x-2">
         <div className="col-span-3 md:col-span-2">
-          <Box title={spotify_artist.name} className="h-screen">
+          <Box title={spotify_artist.name}>
             <div className="grid grid-cols-2 gap-x-4">
               <div className="col-span-2 sm:col-span-1">
                 <Image src={spotify_artist.images[0].url} alt={spotify_artist.name} width={320} height={320} />
