@@ -38,7 +38,7 @@ const Top: React.FC<STSTICPROPS> = ({ artistList, newsList, blogList }) => {
         </Link>
       </Box>
       <Box title="Artists">
-        <ul className="list-none flex justify-center flex-Kwrap p-0">{artistList && artistList.map((artist) => <Artist key={artist.id} {...artist} />)}</ul>
+        <ul className="grid grid-cols-4 gap-x-2">{artistList && artistList.map((artist) => <Artist key={artist.id} {...artist} />)}</ul>
         <Link href="/artists/page/1">
           <a>artist一覧へ</a>
         </Link>
