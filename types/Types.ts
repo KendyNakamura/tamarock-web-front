@@ -16,7 +16,7 @@ export interface ARTIST {
   url: string;
   twitter_id: string;
   articles: ARTICLE[];
-  updatedat: Date;
+  updated_at: Date;
 }
 
 export interface SPOTIFYARTIST {
