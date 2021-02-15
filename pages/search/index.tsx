@@ -1,16 +1,18 @@
 import Layout from "../../components/layout";
 import Box from "../../components/box";
-import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import Link from "next/link";
+import { SEARCHLIST } from "../../types/Types";
+import { GetServerSideProps } from "next";
 
-export default function Search({ listData }) {
+interface SEARCHLISTS {
+  listData: SEARCHLIST[];
+}
+
+const Search: React.FC<SEARCHLISTS> = ({ listData }) => {
   return (
-    <Layout title="search">
-      <Head>
-        <title>Search</title>
-      </Head>
-      <Box headTitle="search">
+    <Layout headTitle="search">
+      <Box title="search">
         <ul className="list-none p-0">
           {listData.map(({ name, id }) => (
             <li className="pl-5 my-8 border-b-2 border-yellow-400 border-dashed" key={id}>
@@ -23,9 +25,11 @@ export default function Search({ listData }) {
       </Box>
     </Layout>
   );
-}
+};
 
-export async function getServerSideProps(context) {
+export default Search;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const { name } = context.query;
   const res = await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/search?artist_name=${name}`);
   const list = await res.json();
@@ -35,4 +39,4 @@ export async function getServerSideProps(context) {
       listData,
     },
   };
-}
+};

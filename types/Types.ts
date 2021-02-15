@@ -4,7 +4,9 @@ export interface ARTICLE {
   text: string;
   category: number;
   artists: ARTIST[];
-  pictures: PICTURE[];
+  pictures: {
+    src?: string
+  };
   createdat: Date;
   updatedat: Date;
 }
@@ -30,21 +32,7 @@ export interface SPOTIFYARTIST {
   artist: ARTIST[];
 }
 
-interface PICTURE {
-  src?: string
+export interface SEARCHLIST {
+  id: number;
+  name: string;
 }
-
-
-type ContactEvent = {
-  action: "submit_form";
-  category: "Contact";
-  label: string;
-};
-
-type ClickEvent = {
-  action: "click";
-  category: "Other";
-  label: string;
-};
-
-export type Event = ContactEvent | ClickEvent;
