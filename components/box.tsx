@@ -4,7 +4,7 @@ interface BOX {
 }
 
 const Box: React.FC<BOX> = ({ children, title = null, h = 2 }) => {
-  const className = "mb-6 font-bold";
+  const className = "font-bold";
 
   var titleSection = <></>;
   if (title) {
@@ -12,7 +12,7 @@ const Box: React.FC<BOX> = ({ children, title = null, h = 2 }) => {
   }
 
   return (
-    <div className="bg-gray-50 md:py-8 md:px-6 py-6 px-3 md:m-6 m-2">
+    <div className="bg-gray-50 px-6 py-4 md:m-6 m-2">
       {titleSection}
       {children}
     </div>

@@ -3,7 +3,7 @@ import { ARTICLE } from "../types/Types";
 
 const ArticleList: React.FC<ARTICLE> = ({ id, title, createdat }) => {
   return (
-    <li className="pl-5 my-8 border-b-2 border-yellow-400 border-dashed" key={id}>
+    <li className="pl-5 my-4 border-b-2 border-yellow-400 border-dashed" key={id}>
       <Link href="/articles/[id]" as={`/articles/${id}`}>
         <a>
           <p>

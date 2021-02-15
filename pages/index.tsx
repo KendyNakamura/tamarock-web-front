@@ -32,13 +32,13 @@ const Top: React.FC<STSTICPROPS> = ({ artistList, newsList, blogList }) => {
   return (
     <Layout home>
       <Box title="news">
-        <ul className="list-none p-0">{newsList && newsList.map((news) => <Article key={news.id} {...news} />)}</ul>
+        <ul className="list-none p-0">{filteredNewsList && filteredNewsList.map((news) => <Article key={news.id} {...news} />)}</ul>
         <Link href="/articles/page/1">
           <a>記事一覧へ</a>
         </Link>
       </Box>
       <Box title="Artists">
-        <ul className="grid grid-cols-4 gap-x-2">{artistList && artistList.map((artist) => <Artist key={artist.id} {...artist} />)}</ul>
+        <ul className="grid grid-cols-3 gap-x-2">{artistList && artistList.map((artist) => <Artist key={artist.id} {...artist} />)}</ul>
         <Link href="/artists/page/1">
           <a>artist一覧へ</a>
         </Link>

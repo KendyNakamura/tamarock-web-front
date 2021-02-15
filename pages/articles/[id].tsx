@@ -31,7 +31,7 @@ const ArticlePage: React.FC<ARTICLE> = ({ title, text, artists, pictures }) => {
     artists && artists.length > 0 ? (
       <div>
         <h2>関連アーティスト</h2>
-        <ul className="list-none flex justify-center flex-Kwrap p-0">{artists && artists.map((artist) => <Artist key={artist.id} {...artist} />)}</ul>
+        <ul className="grid grid-cols-3 gap-x-2">{artists && artists.map((artist) => <Artist key={artist.id} {...artist} />)}</ul>
       </div>
     ) : (
       ""
