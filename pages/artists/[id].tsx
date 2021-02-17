@@ -36,7 +36,7 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
   // spotify music list
   const spority_music =
     spotify_artist.id !== "" ? (
-      <iframe className="w-full" src={`https://open.spotify.com/embed/artist/${spotify_artist.id}`} width="300" height="400" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <iframe className="w-full" src={`https://open.spotify.com/embed/artist/${spotify_artist.id}`} width="300" height="400" frameBorder="0" allow="encrypted-media"></iframe>
     ) : (
       ""
     );
