@@ -40,22 +40,27 @@ const Header: React.FC = () => {
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <Link href="/">
-                  <a className="text-gray-300 px-3 py-2 rounded-md text-lg font-bold hover:no-underline">
+                  <a data-testid="home-nav" className="text-gray-300 px-3 py-2 rounded-md text-lg font-bold hover:no-underline">
                     たまロック
-                    {/* <img className="h-8 w-8" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow" /> */}
                   </a>
                 </Link>
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                   <Link href="/articles/page/1">
-                    <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">記事一覧</a>
+                    <a data-testid="article-nav" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                      News
+                    </a>
                   </Link>
                   <Link href="/artists/page/1">
-                    <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">アーティスト一覧</a>
+                    <a data-testid="artist-nav" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                      Artist
+                    </a>
                   </Link>
                   <Link href="/about">
-                    <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">about</a>
+                    <a data-testid="about-nav" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                      about
+                    </a>
                   </Link>
                 </div>
               </div>
@@ -106,10 +111,10 @@ const Header: React.FC = () => {
               </Link>
             </div>
             <Link href="/articles/page/1">
-              <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">記事一覧</a>
+              <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">News</a>
             </Link>
             <Link href="/artists/page/1">
-              <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">アーティスト一覧</a>
+              <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Artist</a>
             </Link>
             <Link href="/about">
               <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">about</a>

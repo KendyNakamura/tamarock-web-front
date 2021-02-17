@@ -31,22 +31,23 @@ const Top: React.FC<STSTICPROPS> = ({ artistList, newsList, blogList }) => {
 
   return (
     <Layout home>
+      <h2>Top</h2>
       <Box title="news">
         <ul className="list-none p-0">{filteredNewsList && filteredNewsList.map((news) => <Article key={news.id} {...news} />)}</ul>
         <Link href="/articles/page/1">
-          <a>記事一覧へ</a>
+          <a>もっと見る</a>
         </Link>
       </Box>
       <Box title="Artists">
         <ul className="grid grid-cols-3 gap-x-2">{artistList && artistList.map((artist) => <Artist key={artist.id} {...artist} />)}</ul>
         <Link href="/artists/page/1">
-          <a>artist一覧へ</a>
+          <a>もっと見る</a>
         </Link>
       </Box>
       <Box title="Blog">
         <ul className="list-none p-0">{blogList && blogList.map((blog) => <Article key={blog.id} {...blog} />)}</ul>
         <Link href="/articles/page/1">
-          <a>記事一覧へ</a>
+          <a>もっと見る</a>
         </Link>
       </Box>
     </Layout>

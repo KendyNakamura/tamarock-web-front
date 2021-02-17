@@ -18,7 +18,7 @@ const ArticleList: React.FC<ARTISTLISTPROPS> = ({ articleList, articleIds, param
   var page = params ? `【${params.id}ページ目】` : "";
   return (
     <Layout headTitle={`ニュース一覧${page}`} description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。">
-      <Box title="news">
+      <Box title="ニュース一覧">
         <ul className="list-none p-0">{articleList && articleList.map((article) => <Article key={article.id} {...article} />)}</ul>
         <Pagination pageName="articles" totalCount={articleIds ? articleIds.length : 0} />
       </Box>

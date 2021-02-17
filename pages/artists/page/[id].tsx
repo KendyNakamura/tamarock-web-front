@@ -18,7 +18,7 @@ const ArtistList: React.FC<ARTISTLISTPROPS> = ({ artistList, artistIds, params }
   var page = params ? `【${params.id}ページ目】` : "";
   return (
     <Layout headTitle={`アーティスト一覧${page}`} description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。">
-      <Box title="Artist">
+      <Box title="アーティスト一覧">
         <ul className="grid grid-cols-3 gap-x-2">{artistList && artistList.map((artist) => <Artist key={artist.id} {...artist} />)}</ul>
         <Pagination pageName="artists" totalCount={artistIds ? artistIds.length : 0} />
       </Box>

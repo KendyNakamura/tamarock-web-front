@@ -41,7 +41,7 @@ export async function getAllArtistIds() {
 export async function getArtistData(id: string) {
   const res = await fetch(
     new URL(
-      `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/artist/info/${id}?_end=5&_order=DESC&_sort=articles.id&_start=0`
+      `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/info/${id}?_end=5&_order=DESC&_sort=articles.id&_start=0`
     )
   );
   const artist = await res.json();

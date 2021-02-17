@@ -24,7 +24,7 @@ const Pagination: React.FC<Pagination> = ({ pageName, totalCount }) => {
               </a>
             </Link>
             {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
-              <Link href={`/${pageName}/page/${number}`}>
+              <Link href={`/${pageName}/page/${number}`} key={index}>
                 <a className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">{number}</a>
               </Link>
             ))}
