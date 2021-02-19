@@ -18,7 +18,16 @@ export interface ARTIST {
   url: string;
   twitter_id: string;
   articles: ARTICLE[];
+  youtubes: YOUTUBE[];
   updated_at: Date;
+}
+
+interface YOUTUBE {
+  id: number;
+  movie_id: string;
+  artist_id: number;
+  createdat: Date;
+  updatedat: Date;
 }
 
 export interface SPOTIFYARTIST {

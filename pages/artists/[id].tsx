@@ -53,14 +53,13 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
   }
 
   // youtube
-  const youtube_ids = spotifyArtist["youtube_ids"];
   var youtubeSection = <></>;
-  if (youtube_ids && youtube_ids.length !== 0) {
+  if (artist.youtubes != null && artist.youtubes.length !== 0) {
     youtubeSection = (
       <Box title="youtube" h={3}>
-        {youtube_ids.map((i, youtube_id) => (
+        {artist.youtubes.map((youtube, i) => (
           <li className="list-none mt-5" key={i}>
-            <iframe className="w-full" title={`youtube${artist.name}_${i}`} id="ytplayer" src={`https://www.youtube.com/embed/${youtube_id}`} frameBorder="0"></iframe>
+            <iframe className="w-full" title={`youtube${artist.name}_${i}`} id="ytplayer" src={`https://www.youtube.com/embed/${youtube.movie_id}`} frameBorder="0"></iframe>
           </li>
         ))}
       </Box>
