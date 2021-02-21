@@ -4,5 +4,5 @@ import About from "../pages/about";
 
 it("Should render about title", () => {
   render(<About />);
-  expect(screen.getByText("たまロックについて")).toBeInTheDocument();
+  expect(screen.getByTestId("たまロックについて")).toBeInTheDocument();
 });

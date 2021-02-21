@@ -1,12 +1,11 @@
 import Box from "../components/box";
 import Layout from "../components/layout";
-import BreadCrumbs from "../components/breadcrumbs";
 
 const About: React.FC = () => {
+  const title = "たまロックについて";
   return (
-    <Layout headTitle="たまロックについて">
-      <BreadCrumbs secondList="たまロックについて" />
-      <Box title="たまロックについて">
+    <Layout headTitle={title} secondList={title}>
+      <Box title={title}>
         <p>「たまロック」は、邦楽ロックを中心にすべてのアーティストを網羅したまったく新しい音楽メディアです。</p>
         <h3>なぜ立ち上げたの？</h3>
         <p>音楽メディアはすでに多数存在します。その中で、私が音楽メディアを立ち上げたのは、「もっと情報が整理されていたらいいな」と思ったからです。</p>

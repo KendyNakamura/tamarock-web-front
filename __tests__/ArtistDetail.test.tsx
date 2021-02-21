@@ -46,6 +46,7 @@ const server = setupServer(
             deletedat: "0001-01-01T00:00:00Z",
           },
         ],
+        youtube_ids: ["Isb7Q4jEA04", "l9t0a5CiBBo", "soIveYMAZwM", "W76xngzmAkU", "CMseeq7EhcI", "-MnlFslr3Go"],
         created_at: "0001-01-01T00:00:00Z",
         updated_at: "0001-01-01T00:00:00Z",
         deleted_at: "0001-01-01T00:00:00Z",
@@ -89,6 +90,7 @@ const server = setupServer(
             deletedat: "0001-01-01T00:00:00Z",
           },
         ],
+        youtube_ids: ["C9c8QymgYXY", "4hSEZdezI44", "HIRfc3ybbPg", "r3sBIsngsbU", "yM6-QVxIXTs", "JjIiK9VcIsA"],
         created_at: "0001-01-01T00:00:00Z",
         updated_at: "0001-01-01T00:00:00Z",
         deleted_at: "0001-01-01T00:00:00Z",
@@ -130,8 +132,7 @@ const server = setupServer(
               url: "https://i.scdn.co/image/9b206d4a26bfb7f31fb7d31b97ec63311c84ba44",
             },
           ],
-        },
-        youtube_ids: ["Isb7Q4jEA04", "l9t0a5CiBBo", "soIveYMAZwM", "W76xngzmAkU", "CMseeq7EhcI", "-MnlFslr3Go"],
+        }
       })
     );
   }),
@@ -167,8 +168,7 @@ const server = setupServer(
               url: "https://i.scdn.co/image/f12a558b98fac1b8c08277974ac00951a2d29582",
             },
           ],
-        },
-        youtube_ids: ["C9c8QymgYXY", "4hSEZdezI44", "HIRfc3ybbPg", "r3sBIsngsbU", "yM6-QVxIXTs", "JjIiK9VcIsA"],
+        }
       })
     );
   })
@@ -190,7 +190,7 @@ describe(`ArtistDetailPage Test Cases`, () => {
       route: "/artists/1CWmF1EcrKoWIbZt9Ivfg2",
     });
     render(page);
-    expect(await screen.findByText("BLUE ENCOUNT")).toBeInTheDocument();
+    expect(await screen.findByTestId("BLUE ENCOUNT")).toBeInTheDocument();
     expect(await screen.getByText("Voluptatem sit perferendis aut consequatur accusantium.")).toBeInTheDocument();
     expect(screen.getByText("Accusantium aut voluptatem sit perferendis consequatur.")).toBeInTheDocument();
   });
@@ -200,7 +200,7 @@ describe(`ArtistDetailPage Test Cases`, () => {
       route: "/artists/3NTbOmzlj2cL86XFuDVFvZ",
     });
     render(page);
-    expect(await screen.findByText("MAN WITH A MISSION")).toBeInTheDocument();
+    expect(await screen.findByTestId("MAN WITH A MISSION")).toBeInTheDocument();
     expect(await screen.getByText("title1")).toBeInTheDocument();
     expect(screen.getByText("Accusantium aut voluptatem sit perferendis consequatur.")).toBeInTheDocument();
   });

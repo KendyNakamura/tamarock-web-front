@@ -86,7 +86,7 @@ describe(`ArticleDetailPage Test Cases`, () => {
       route: "/articles/1",
     });
     render(page);
-    expect(await screen.findByText("title1")).toBeInTheDocument();
+    expect(await screen.findByTestId("title1")).toBeInTheDocument();
     expect(screen.getByText("content1")).toBeInTheDocument();
     expect(screen.getByText("artist1")).toBeInTheDocument();
     expect(screen.getByText("artist2")).toBeInTheDocument();
@@ -97,7 +97,7 @@ describe(`ArticleDetailPage Test Cases`, () => {
       route: "/articles/2",
     });
     render(page);
-    expect(await screen.findByText("title2")).toBeInTheDocument();
+    expect(await screen.findByTestId("title2")).toBeInTheDocument();
     expect(screen.getByText("content2")).toBeInTheDocument();
     expect(screen.getByText("artist1")).toBeInTheDocument();
     expect(screen.getByText("artist2")).toBeInTheDocument();

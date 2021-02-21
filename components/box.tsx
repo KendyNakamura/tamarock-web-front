@@ -8,7 +8,7 @@ const Box: React.FC<BOX> = ({ children, title = null, h = 2 }) => {
 
   var titleSection = <></>;
   if (title) {
-    titleSection = h === 2 ? <h2 className={className}>{title}</h2> : <h3 className={className}>{title}</h3>;
+    titleSection = h === 2 ? <h2 className={className} data-testid={title}>{title}</h2> : <h3 className={className}>{title}</h3>;
   }
 
   return (
