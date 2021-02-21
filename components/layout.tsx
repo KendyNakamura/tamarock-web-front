@@ -3,15 +3,20 @@ import Router from "next/router";
 import Link from "next/link";
 import Header from "./header";
 import Head from "next/head";
+import BreadCrumbs from "./breadcrumbs";
+import { BREADCRUMBS } from "../types/Types";
 
 interface LAYOUT {
   home?: boolean;
   headTitle?: string;
   description?: string;
   imageUrl?: string;
+  secondList?: string;
+  secondUrl?: string;
+  thirdList?: string;
 }
 
-const Layout: React.FC<LAYOUT> = ({ children, home, headTitle, description, imageUrl }) => {
+const Layout: React.FC<LAYOUT> = ({ children, home, headTitle, description, imageUrl, secondList, secondUrl, thirdList }) => {
   // const [query, setQuery] = useState("");
   const [isLoading, setLoading] = useState(false);
   const startLoading = () => setLoading(true);
@@ -41,6 +46,7 @@ const Layout: React.FC<LAYOUT> = ({ children, home, headTitle, description, imag
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Header />
+      <BreadCrumbs home={home} secondList={secondList} secondUrl={secondUrl} thirdList={thirdList} />
       <main>
         <div className="max-w-7xl mx-auto py-6 px-0 md:px-8">
           {children}
@@ -55,6 +61,6 @@ const Layout: React.FC<LAYOUT> = ({ children, home, headTitle, description, imag
       </main>
     </div>
   );
-}
+};
 
 export default Layout;

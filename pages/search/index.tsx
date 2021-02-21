@@ -11,7 +11,7 @@ interface SEARCHLISTS {
 
 const Search: React.FC<SEARCHLISTS> = ({ listData }) => {
   return (
-    <Layout headTitle="search">
+    <Layout headTitle="search" secondList="検索結果">
       <Box title="search">
         <ul className="list-none p-0">
           {listData.map(({ name, id }) => (

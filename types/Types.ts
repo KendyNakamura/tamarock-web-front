@@ -45,3 +45,10 @@ export interface SEARCHLIST {
   id: number;
   name: string;
 }
+
+export interface BREADCRUMBS {
+  home?: boolean;
+  secondList?: string;
+  secondUrl?: string;
+  thirdList?: string;
+}

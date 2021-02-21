@@ -78,7 +78,7 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
     );
 
   return (
-    <Layout headTitle={spotify_artist.name}>
+    <Layout headTitle={spotify_artist.name} secondList="アーティスト一覧" secondUrl="/artists/page/1" thirdList={artist.name}>
       <div className="grid grid-cols-3 gap-x-2">
         <div className="col-span-3 md:col-span-2">
           <Box title={spotify_artist.name}>
