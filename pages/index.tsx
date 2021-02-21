@@ -31,7 +31,7 @@ const Top: React.FC<STSTICPROPS> = ({ artistList, newsList, blogList }) => {
 
   return (
     <Layout home>
-      <Box title="news">
+      <Box title="news" data-testId="top-news">
         <ul className="list-none p-0">{filteredNewsList && filteredNewsList.map((news) => <Article key={news.id} {...news} />)}</ul>
         <Link href="/articles/page/1">
           <a>もっと見る</a>

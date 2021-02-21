@@ -37,7 +37,7 @@ const server = setupServer(
             },
           ],
           created_at: "2021-01-12 14:59:41",
-          updated_at: "2021-01-12 14:59:41",
+          updatedat: "2021-01-12 14:59:41",
         },
         {
           id: 2,
@@ -61,7 +61,7 @@ const server = setupServer(
             },
           ],
           created_at: "2021-01-12 14:59:41",
-          updated_at: "2021-01-12 14:59:41",
+          updatedat: "2021-01-12 14:59:41",
         },
       ])
     );

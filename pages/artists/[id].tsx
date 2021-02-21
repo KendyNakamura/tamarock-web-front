@@ -26,7 +26,7 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
   var url = artist.url;
   var hp_link =
     url !== "" ? (
-      <a href={url} target="_blank" rel="noopener noreferrer">
+      <a href={url} target="_blank" rel="noopener noreferrer" data-testid={`hp-${artist.name}`}>
         {artist.name}のホームページ
       </a>
     ) : (
@@ -36,7 +36,15 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
   // spotify music list
   const spority_music =
     spotify_artist.id !== "" ? (
-      <iframe className="w-full" src={`https://open.spotify.com/embed/artist/${spotify_artist.id}`} width="300" height="400" frameBorder="0" allow="encrypted-media"></iframe>
+      <iframe
+        data-testid={`spotify-${artist.name}`}
+        className="w-full"
+        src={`https://open.spotify.com/embed/artist/${spotify_artist.id}`}
+        width="300"
+        height="400"
+        frameBorder="0"
+        allow="encrypted-media"
+      ></iframe>
     ) : (
       ""
     );
@@ -47,7 +55,9 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
     articleList = (
       <article className="text-left mt-5">
         <h3>関連ニュース</h3>
-        <ul className="list-none p-0">{artist.articles && artist.articles.map((article) => <Article key={article.id} {...article} />)}</ul>
+        <ul className="list-none p-0" data-testid={`related_news-${artist.name}`}>
+          {artist.articles && artist.articles.map((article) => <Article key={article.id} {...article} />)}
+        </ul>
       </article>
     );
   }
@@ -56,7 +66,7 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
   var youtubeSection = <></>;
   if (artist.youtubes != null && artist.youtubes.length !== 0) {
     youtubeSection = (
-      <Box title="youtube" h={3}>
+      <Box title="youtube" h={3} testId={`youtube-${artist.name}`}>
         {artist.youtubes.map((youtube, i) => (
           <li className="list-none mt-5" key={i}>
             <iframe className="w-full" title={`youtube${artist.name}_${i}`} id="ytplayer" src={`https://www.youtube.com/embed/${youtube.movie_id}`} frameBorder="0"></iframe>
@@ -70,7 +80,7 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
   var twitter_id = artist.twitter_id;
   var twitter =
     twitter_id !== "" ? (
-      <Box title="twitter" h={3}>
+      <Box title="twitter" h={3} testId={`twitter-${artist.name}`}>
         <TwitterTimelineEmbed className="w-full" sourceType="profile" screenName={twitter_id} theme="dark" options={{ height: 450 }} />
       </Box>
     ) : (
@@ -84,7 +94,7 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
           <Box title={spotify_artist.name}>
             <div className="grid grid-cols-2 gap-x-4">
               <div className="col-span-2 sm:col-span-1">
-                <Image src={spotify_artist.images[0].url} alt={spotify_artist.name} width={320} height={320} />
+                <Image data-testid={`image-${artist.name}`} src={spotify_artist.images[0].url} alt={spotify_artist.name} width={320} height={320} />
                 <p>{hp_link}</p>
               </div>
               <div className="col-span-2 sm:col-span-1">{spority_music}</div>

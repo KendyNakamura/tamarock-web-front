@@ -1,14 +1,24 @@
 interface BOX {
   title?: string,
   h?: number,
+  testId?: string, 
 }
 
-const Box: React.FC<BOX> = ({ children, title = null, h = 2 }) => {
+const Box: React.FC<BOX> = ({ children, title = null, h = 2, testId }) => {
   const className = "font-bold";
 
   var titleSection = <></>;
   if (title) {
-    titleSection = h === 2 ? <h2 className={className} data-testid={title}>{title}</h2> : <h3 className={className}>{title}</h3>;
+    titleSection =
+      h === 2 ? (
+        <h2 className={className} data-testid={testId ? testId : title}>
+          {title}
+        </h2>
+      ) : (
+        <h3 className={className} data-testid={testId ? testId : title}>
+          {title}
+        </h3>
+      );
   }
 
   return (

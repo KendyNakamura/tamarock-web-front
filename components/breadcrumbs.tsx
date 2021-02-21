@@ -3,20 +3,26 @@ import { BREADCRUMBS } from "../types/Types"
 
 const BreadCrumbs: React.FC<BREADCRUMBS> = ({ home, secondList, secondUrl, thirdList }) => {
   var first = home ? (
-    <span className="text-gray-800 px-3 rounded-md text-sm font-medium pointer-events-none">Home</span>
+    <span data-testid="first-none" className="text-gray-800 px-3 rounded-md text-sm font-medium pointer-events-none">
+      Home
+    </span>
   ) : (
     <Link href="/">
-      <a className="text-gray-300 hover:text-white px-3 rounded-md text-sm font-medium">Home</a>
+      <a data-testid="first-link" className="text-gray-300 hover:text-white px-3 rounded-md text-sm font-medium">
+        Home
+      </a>
     </Link>
   );
 
   var second = <></>;
   if (secondList) {
-    second = <span className="text-gray-800 px-3 rounded-md text-sm font-medium pointer-events-none">{secondList}</span>;
+    second = <span data-testid="second-none" className="text-gray-800 px-3 rounded-md text-sm font-medium pointer-events-none">{secondList}</span>;
     if (thirdList && secondUrl) {
       second = (
         <Link href={secondUrl}>
-          <a className="text-gray-300 hover:text-white px-3 rounded-md text-sm font-medium">{secondList}</a>
+          <a data-testid="second-link" className="text-gray-300 hover:text-white px-3 rounded-md text-sm font-medium">
+            {secondList}
+          </a>
         </Link>
       );
     }
@@ -25,7 +31,7 @@ const BreadCrumbs: React.FC<BREADCRUMBS> = ({ home, secondList, secondUrl, third
   var third = <></>;
   if (thirdList) {
     third = (
-      <a className="text-gray-800 px-3 rounded-md text-sm font-medium pointer-events-none" aria-current="page">
+      <a data-testid="third-none" className="text-gray-800 px-3 rounded-md text-sm font-medium pointer-events-none" aria-current="page">
         {thirdList}
       </a>
     );

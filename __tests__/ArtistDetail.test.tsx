@@ -46,7 +46,7 @@ const server = setupServer(
             deletedat: "0001-01-01T00:00:00Z",
           },
         ],
-        youtube_ids: ["Isb7Q4jEA04", "l9t0a5CiBBo", "soIveYMAZwM", "W76xngzmAkU", "CMseeq7EhcI", "-MnlFslr3Go"],
+        youtubes: ["Isb7Q4jEA04", "l9t0a5CiBBo", "soIveYMAZwM", "W76xngzmAkU", "CMseeq7EhcI", "-MnlFslr3Go"],
         created_at: "0001-01-01T00:00:00Z",
         updated_at: "0001-01-01T00:00:00Z",
         deleted_at: "0001-01-01T00:00:00Z",
@@ -90,7 +90,7 @@ const server = setupServer(
             deletedat: "0001-01-01T00:00:00Z",
           },
         ],
-        youtube_ids: ["C9c8QymgYXY", "4hSEZdezI44", "HIRfc3ybbPg", "r3sBIsngsbU", "yM6-QVxIXTs", "JjIiK9VcIsA"],
+        youtubes: ["C9c8QymgYXY", "4hSEZdezI44", "HIRfc3ybbPg", "r3sBIsngsbU", "yM6-QVxIXTs", "JjIiK9VcIsA"],
         created_at: "0001-01-01T00:00:00Z",
         updated_at: "0001-01-01T00:00:00Z",
         deleted_at: "0001-01-01T00:00:00Z",
@@ -190,8 +190,17 @@ describe(`ArtistDetailPage Test Cases`, () => {
       route: "/artists/1CWmF1EcrKoWIbZt9Ivfg2",
     });
     render(page);
+    //get from spotify
     expect(await screen.findByTestId("BLUE ENCOUNT")).toBeInTheDocument();
-    expect(await screen.getByText("Voluptatem sit perferendis aut consequatur accusantium.")).toBeInTheDocument();
+    expect(screen.getByTestId("hp-BLUE ENCOUNT")).toBeInTheDocument();
+    expect(screen.getByTestId("spotify-BLUE ENCOUNT")).toBeInTheDocument();
+    expect(screen.getByTestId("image-BLUE ENCOUNT")).toBeInTheDocument();
+
+    //get from database
+    expect(await screen.findByTestId("youtube-BLUE ENCOUNT")).toBeInTheDocument();
+    expect(screen.getByTestId("twitter-BLUE ENCOUNT")).toBeInTheDocument();
+    expect(screen.getByTestId("related_news-BLUE ENCOUNT")).toBeInTheDocument();
+    expect(screen.getByText("Voluptatem sit perferendis aut consequatur accusantium.")).toBeInTheDocument();
     expect(screen.getByText("Accusantium aut voluptatem sit perferendis consequatur.")).toBeInTheDocument();
   });
 
