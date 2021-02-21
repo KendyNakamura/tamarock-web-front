@@ -39,7 +39,7 @@ const ArticlePage: React.FC<ARTICLE> = ({ title, text, artists, pictures }) => {
     );
 
   return (
-    <Layout headTitle={title} description={title} imageUrl={imageUrl} secondList="ニュース一覧" secondUrl="/articles/page/1" thirdList={title}>
+    <Layout headTitle={title} description={title} imageUrl={imageUrl} secondList="News" secondUrl="/articles/page/1" thirdList={title}>
       <Box title={title}>
         {thumbnail}
         <div dangerouslySetInnerHTML={{ __html: text }} className="articleText min-h-screen mx-2 md:mx-14"></div>

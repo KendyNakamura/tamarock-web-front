@@ -16,7 +16,11 @@ const BreadCrumbs: React.FC<BREADCRUMBS> = ({ home, secondList, secondUrl, third
 
   var second = <></>;
   if (secondList) {
-    second = <span data-testid="second-none" className="text-gray-800 px-3 rounded-md text-sm font-medium pointer-events-none">{secondList}</span>;
+    second = (
+      <span data-testid="second-none" className="text-gray-800 px-3 rounded-md text-sm font-medium pointer-events-none">
+        {secondList}
+      </span>
+    );
     if (thirdList && secondUrl) {
       second = (
         <Link href={secondUrl}>
@@ -32,12 +36,12 @@ const BreadCrumbs: React.FC<BREADCRUMBS> = ({ home, secondList, secondUrl, third
   if (thirdList) {
     third = (
       <a data-testid="third-none" className="text-gray-800 px-3 rounded-md text-sm font-medium pointer-events-none" aria-current="page">
-        {thirdList}
+        {thirdList.slice(0, 20)}
       </a>
     );
   }
   return (
-    <div className="sm:px-8 bg-gray-500 font-mono">
+    <div className="hidden md:block sm:px-8 bg-gray-500 font-mono">
       <div className="flex items-center justify-between h-8">
         <div className="ml-10 flex items-baseline space-x-4">
           {first}
