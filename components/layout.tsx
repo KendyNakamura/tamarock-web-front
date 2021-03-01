@@ -4,7 +4,6 @@ import Link from "next/link";
 import Header from "./header";
 import Head from "next/head";
 import BreadCrumbs from "./breadcrumbs";
-import { BREADCRUMBS } from "../types/Types";
 
 interface LAYOUT {
   home?: boolean;
@@ -48,7 +47,7 @@ const Layout: React.FC<LAYOUT> = ({ children, home, headTitle, description, imag
       <Header />
       <BreadCrumbs home={home} secondList={secondList} secondUrl={secondUrl} thirdList={thirdList} />
       <main>
-        <div className="max-w-7xl mx-auto py-6 px-0 md:px-8">
+        <div className="max-w-7xl mx-auto py-6 px-2">
           {children}
           {!home && (
             <div className="cursor-pointer ml-8">

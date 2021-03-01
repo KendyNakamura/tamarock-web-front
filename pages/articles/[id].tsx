@@ -7,7 +7,6 @@ import { getAllArticleIds, getArticleData } from "../../lib/articles";
 import { ARTICLE } from "../../types/Types";
 import { GetStaticProps, GetStaticPaths } from "next";
 
-
 const ArticlePage: React.FC<ARTICLE> = ({ title, text, artists, pictures }) => {
   // ページが存在しないとき
   const router = useRouter();
@@ -40,9 +39,9 @@ const ArticlePage: React.FC<ARTICLE> = ({ title, text, artists, pictures }) => {
 
   return (
     <Layout headTitle={title} description={title} imageUrl={imageUrl} secondList="News" secondUrl="/articles/page/1" thirdList={title}>
-      <Box title={title}>
+      <Box title={title} h={1}>
         {thumbnail}
-        <div dangerouslySetInnerHTML={{ __html: text }} className="articleText min-h-screen mx-2 md:mx-14"></div>
+        <div dangerouslySetInnerHTML={{ __html: text }} className="articleText min-h-screen"></div>
         {artistList}
       </Box>
     </Layout>
@@ -58,7 +57,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths,
     fallback: true,
   };
-}
+};
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const article = await getArticleData(String(params.id));
@@ -68,4 +67,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
     revalidate: 60,
   };
-}
+};
