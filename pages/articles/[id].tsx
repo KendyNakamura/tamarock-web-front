@@ -21,7 +21,7 @@ const ArticlePage: React.FC<ARTICLE> = ({ title, text, artists, pictures }) => {
     imageUrl = pictures[0].src;
     thumbnail = (
       <div className="text-center">
-        <Image src={imageUrl} alt={title} width={400} height={400} />
+        <Image src={imageUrl} alt={title} width={400} height={300} />
       </div>
     );
   }
