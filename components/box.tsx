@@ -31,7 +31,7 @@ const Box: React.FC<BOX> = ({ children, title = null, h = 2, testId }) => {
   }
 
   return (
-    <div className="max-w-screen-md bg-gray-50 p-2 md:my-6 my-2 mx-auto">
+    <div className="max-w-screen-md bg-gray-50 p-1 md:my-6 my-2 mx-auto">
       {titleSection}
       {children}
     </div>
