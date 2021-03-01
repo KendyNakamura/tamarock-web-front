@@ -1,4 +1,4 @@
-import Layout from "../../components/layout";
+ import Layout from "../../components/layout";
 import Box from "../../components/box";
 import Article from "../../components/article";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
@@ -21,6 +21,7 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
     return <div>Loading...</div>;
   }
   const spotify_artist = spotifyArtist.spotify_artist_info;
+  var artist_name = artist.name ?? spotify_artist.name
 
   // homepage link
   var url = artist.url;
@@ -88,13 +89,13 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
     );
 
   return (
-    <Layout headTitle={spotify_artist.name} secondList="Artist" secondUrl="/artists/page/1" thirdList={artist.name}>
+    <Layout headTitle={artist_name} secondList="Artist" secondUrl="/artists/page/1" thirdList={artist_name}>
       <div className="grid grid-cols-3 gap-x-2">
         <div className="col-span-3 md:col-span-2">
-          <Box title={spotify_artist.name}>
+          <Box title={artist_name}>
             <div className="grid grid-cols-2 gap-x-4">
               <div className="col-span-2 sm:col-span-1">
-                <Image data-testid={`image-${artist.name}`} src={spotify_artist.images[0].url} alt={spotify_artist.name} width={320} height={320} />
+                <Image data-testid={`image-${artist.name}`} src={spotify_artist.images[0].url} alt={artist_name} width={320} height={320} />
                 <p>{hp_link}</p>
               </div>
               <div className="col-span-2 sm:col-span-1">{spority_music}</div>
