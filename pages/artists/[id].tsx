@@ -21,7 +21,7 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
     return <div>Loading...</div>;
   }
   const spotify_artist = spotifyArtist.spotify_artist_info;
-  var artist_name = artist.name ?? spotify_artist.name
+  var artist_name = artist.name ? artist.name : spotify_artist.name
 
   // homepage link
   var url = artist.url;
