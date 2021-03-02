@@ -3,8 +3,8 @@ import fetch from "node-fetch";
 export const getAllArticlesData = async () => {
   const res = await fetch(new URL(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles`));
   const articles = await res.json();
-  const filteredArticles = articles.sort((a, b) => new Date(b.createdat).getDate() - new Date(a.createdat).getDate());
-  return filteredArticles;
+  // const filteredArticles = articles.sort((a, b) => new Date(b.createdat).getDate() - new Date(a.createdat).getDate());
+  return articles;
 };
 
 export async function getLimitedArticlesData(count: number = 10, page: number = 1, category_id: number = 0, column: any = null) {
@@ -18,8 +18,8 @@ export async function getLimitedArticlesData(count: number = 10, page: number = 
     )
   );
   const articles = await res.json();
-  const filteredArticles = articles.sort((a, b) => new Date(b.createdat).getDate() - new Date(a.createdat).getDate());
-  return filteredArticles;
+  // const filteredArticles = articles.sort((a, b) => new Date(b.createdat).getDate() - new Date(a.createdat).getDate());
+  return articles;
 }
 
 export async function getAllArticleIds() { 
