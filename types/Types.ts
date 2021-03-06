@@ -9,6 +9,7 @@ export interface ARTICLE {
   };
   created_at: Date;
   updated_at: Date;
+  published_at: Date;
 }
 
 export interface ARTIST {

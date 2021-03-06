@@ -8,7 +8,10 @@ import { initTestHelpers } from "next-page-tester";
 
 initTestHelpers();
 
+// ready value
 process.env.NEXT_PUBLIC_RESTAPI_URL = "http://localhost:5000/";
+var tomorrow = new Date();
+tomorrow.setDate(new Date().getDate() + 1);
 
 const server = setupServer(
   rest.get(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles?_end=10&_order=DESC&_sort=id&_start=0`, (req, res, ctx) => {
@@ -36,6 +39,7 @@ const server = setupServer(
               twitter_id: "kenji__n2",
             },
           ],
+          published_at: "2021-01-12 14:59:41",
           created_at: "2021-01-12 14:59:41",
           updated_at: "2021-01-12 14:59:41",
         },
@@ -60,8 +64,34 @@ const server = setupServer(
               twitter_id: "kenji__n2",
             },
           ],
+          published_at: new Date(),
           created_at: "2021-01-12 14:59:41",
           updated_at: "2021-01-12 14:59:41",
+        },
+        {
+          id: 3,
+          title: "title3",
+          text: "content3",
+          category: 1,
+          artists: [
+            {
+              id: 1,
+              artist_id: "123xyz",
+              name: "artist1",
+              url: "http://example.com",
+              twitter_id: "kenji__n",
+            },
+            {
+              id: 2,
+              artist_id: "456xyz",
+              name: "artist2",
+              url: "http://example2.com",
+              twitter_id: "kenji__n2",
+            },
+          ],
+          published_at: tomorrow,
+          created_at: tomorrow,
+          updated_at: tomorrow,
         },
       ])
     );
@@ -96,7 +126,8 @@ describe("ArticlePage Test Cases", () => {
     });
     render(page);
     expect(await screen.findByText("ニュース一覧")).toBeInTheDocument();
-    expect(screen.getByText("title1")).toBeInTheDocument();
     expect(screen.getByText("title2")).toBeInTheDocument();
+    expect(screen.getByText("title1")).toBeInTheDocument();
+    expect(() => screen.getByText("title3")).toThrow();
   });
 });

@@ -19,7 +19,7 @@ const ArticleList: React.FC<ARTISTLISTPROPS> = ({ articleList, articleIds, param
   return (
     <Layout headTitle={`ニュース一覧${page}`} description="たまロックのニュース一覧です。邦楽ロックをメインに、関心のあるニュースのみを配信しています。" secondList={`ニュース一覧${page}`}>
       <Box title="ニュース一覧">
-        <ul className="list-none p-0">{articleList && articleList.map((article) => <Article key={article.id} {...article} />)}</ul>
+        <ul className="list-none p-0">{articleList && articleList.map((article) => (new Date(article.published_at) <= new Date() ? <Article key={article.id} {...article} /> : ""))}</ul>
         <Pagination pageName="articles" totalCount={articleIds ? articleIds.length : 0} />
       </Box>
     </Layout>
