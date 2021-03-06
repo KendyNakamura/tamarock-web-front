@@ -1,5 +1,5 @@
-import { GetServerSidePropsContext } from 'next';
-import RSS from 'rss';
+import { GetServerSidePropsContext } from "next";
+import RSS from "rss";
 import { getAllArticlesData } from "../lib/articles";
 
 async function generateFeedXml() {
@@ -8,7 +8,7 @@ async function generateFeedXml() {
     description: "description",
     site_url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
     feed_url: `${process.env.NEXT_PUBLIC_SITE_URL}feed.xml`,
-    language: 'ja',
+    language: "ja",
   });
 
   // 例としてpostsを含めるイメージ
@@ -19,11 +19,11 @@ async function generateFeedXml() {
     feed.item({
       title: article.title,
       description: article.text.slice(0, 80),
-      date: new Date(article.createdat),
+      date: new Date(article.created_at),
       url: `${process.env.NEXT_PUBLIC_SITE_URL}articles/${article.id}`,
     });
-  })
-  
+  });
+
   // XML形式の文字列にする
   return feed.xml();
 }
@@ -32,8 +32,8 @@ export const getServerSideProps = async ({ res }: GetServerSidePropsContext) => 
   const xml = await generateFeedXml(); // フィードのXMLを生成する（後述）
 
   res.statusCode = 200;
-  res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate'); // 24時間キャッシュする
-  res.setHeader('Content-Type', 'application/xml');
+  res.setHeader("Cache-Control", "s-maxage=86400, stale-while-revalidate"); // 24時間キャッシュする
+  res.setHeader("Content-Type", "application/xml");
   res.write(xml);
   res.end();
 

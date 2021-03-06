@@ -31,9 +31,9 @@ const server = setupServer(
               "<blockquote>aaadsaasdf</blockquote>",
             category: 2,
             artists: null,
-            createdat: "2021-02-09T10:35:57.497Z",
-            updatedat: "2021-02-11T08:25:57.164Z",
-            deletedat: "0001-01-01T00:00:00Z",
+            created_at: "2021-02-09T10:35:57.497Z",
+            updated_at: "2021-02-11T08:25:57.164Z",
+            deleted_at: "0001-01-01T00:00:00Z",
           },
           {
             id: 2,
@@ -41,9 +41,9 @@ const server = setupServer(
             text: "Perferendis aut consequatur sit voluptatem accusantium. Perferendis sit consequatur aut accusantium voluptatem.",
             category: 2,
             artists: null,
-            createdat: "2021-02-09T10:35:57.351Z",
-            updatedat: "2021-02-09T10:36:39.065Z",
-            deletedat: "0001-01-01T00:00:00Z",
+            created_at: "2021-02-09T10:35:57.351Z",
+            updated_at: "2021-02-09T10:36:39.065Z",
+            deleted_at: "0001-01-01T00:00:00Z",
           },
         ],
         youtubes: ["Isb7Q4jEA04", "l9t0a5CiBBo", "soIveYMAZwM", "W76xngzmAkU", "CMseeq7EhcI", "-MnlFslr3Go"],
@@ -75,9 +75,9 @@ const server = setupServer(
               "<blockquote>aaadsaasdf</blockquote>",
             category: 2,
             artists: null,
-            createdat: "2021-02-09T10:35:57.497Z",
-            updatedat: "2021-02-11T08:25:57.164Z",
-            deletedat: "0001-01-01T00:00:00Z",
+            created_at: "2021-02-09T10:35:57.497Z",
+            updated_at: "2021-02-11T08:25:57.164Z",
+            deleted_at: "0001-01-01T00:00:00Z",
           },
           {
             id: 7,
@@ -85,9 +85,9 @@ const server = setupServer(
             text: "Perferendis aut consequatur sit voluptatem accusantium. Perferendis sit consequatur aut accusantium voluptatem.",
             category: 2,
             artists: null,
-            createdat: "2021-02-09T10:35:57.351Z",
-            updatedat: "2021-02-09T10:36:39.065Z",
-            deletedat: "0001-01-01T00:00:00Z",
+            created_at: "2021-02-09T10:35:57.351Z",
+            updated_at: "2021-02-09T10:36:39.065Z",
+            deleted_at: "0001-01-01T00:00:00Z",
           },
         ],
         youtubes: ["C9c8QymgYXY", "4hSEZdezI44", "HIRfc3ybbPg", "r3sBIsngsbU", "yM6-QVxIXTs", "JjIiK9VcIsA"],
@@ -132,7 +132,7 @@ const server = setupServer(
               url: "https://i.scdn.co/image/9b206d4a26bfb7f31fb7d31b97ec63311c84ba44",
             },
           ],
-        }
+        },
       })
     );
   }),
@@ -168,7 +168,7 @@ const server = setupServer(
               url: "https://i.scdn.co/image/f12a558b98fac1b8c08277974ac00951a2d29582",
             },
           ],
-        }
+        },
       })
     );
   })

@@ -14,7 +14,7 @@ const GenerateSitemap = (articleList: ARTICLE[], artistList: ARTIST[], location:
 
   // 記事ページ
   articleList.map((article) => {
-    const articleDate = formatDate(new Date(article.updatedat));
+    const articleDate = formatDate(new Date(article.updated_at));
     const articleURL = location + "articles/" + article.id;
 
     xml += `<url>
@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const articles = await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles`);
   const artistList = await artists.json();
   const articleList = await articles.json();
-  const sitemap = GenerateSitemap( articleList, artistList, location );
+  const sitemap = GenerateSitemap(articleList, artistList, location);
   res.setHeader("content-type", "application/xml");
   res.write(sitemap);
   res.end();

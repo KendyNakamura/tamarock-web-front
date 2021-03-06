@@ -23,7 +23,7 @@ const Top: React.FC<STSTICPROPS> = ({ newsList, blogList, artistList }) => {
   const { data: news, mutate } = useSWR(newsApiUrl, fetcher, {
     initialData: newsList,
   });
-  const filteredNewsList = news?.sort((a, b) => new Date(b.createdat).getTime() - new Date(a.createdat).getTime());
+  const filteredNewsList = news?.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
   useEffect(() => {
     mutate();
   }, []);
@@ -58,13 +58,13 @@ export default Top;
 export const getStaticProps: GetStaticProps = async () => {
   const newsList = await getLimitedArticlesData(5, 1, 1, "category");
   const blogList = await getLimitedArticlesData(5, 1, 2, "category");
-  const artistList = await getLimitedArtistsData()
+  const artistList = await getLimitedArtistsData();
 
   return {
     props: {
       newsList,
       blogList,
-      artistList
+      artistList,
     },
     revalidate: 3,
   };

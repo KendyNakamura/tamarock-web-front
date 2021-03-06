@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ARTICLE } from "../types/Types";
 
-const ArticleList: React.FC<ARTICLE> = ({ id, title, createdat }) => {
+const ArticleList: React.FC<ARTICLE> = ({ id, title, created_at }) => {
   return (
     <li className="pl-5 my-4 border-b-2 border-yellow-400 border-dashed" key={id}>
       <Link href="/articles/[id]" as={`/articles/${id}`}>
@@ -9,7 +9,7 @@ const ArticleList: React.FC<ARTICLE> = ({ id, title, createdat }) => {
           <p>
             {title}
             <br />
-            <span className="text-gray-500">{formatDate(new Date(createdat))}</span>
+            <span className="text-gray-500">{formatDate(new Date(created_at))}</span>
           </p>
         </a>
       </Link>

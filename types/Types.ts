@@ -5,10 +5,10 @@ export interface ARTICLE {
   category: number;
   artists: ARTIST[];
   pictures: {
-    src?: string
+    src?: string;
   };
-  createdat: Date;
-  updatedat: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface ARTIST {
@@ -26,17 +26,17 @@ interface YOUTUBE {
   id: number;
   movie_id: string;
   artist_id: number;
-  createdat: Date;
-  updatedat: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface SPOTIFYARTIST {
   spotify_artist_info: {
-    id: string,
-    name: string,
+    id: string;
+    name: string;
     images: {
-      url: string
-    }
+      url: string;
+    };
   };
   artist: ARTIST[];
 }
