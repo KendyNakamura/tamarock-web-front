@@ -4,15 +4,13 @@ import { getAllArticlesData } from "../lib/articles";
 
 async function generateFeedXml() {
   const feed = new RSS({
-    title: "title",
+    title: "たまロック",
     description: "description",
     site_url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
     feed_url: `${process.env.NEXT_PUBLIC_SITE_URL}feed.xml`,
     language: "ja",
   });
 
-  // 例としてpostsを含めるイメージ
-  // このあたりの書き方はライブラリのドキュメントを参考にしてください
   const articles = await getAllArticlesData();
   console.log(articles);
   articles?.forEach((article) => {
