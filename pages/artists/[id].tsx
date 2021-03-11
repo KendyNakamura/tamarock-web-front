@@ -5,7 +5,7 @@ import { TwitterTimelineEmbed } from "react-twitter-embed";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { getAllArtistIds, getArtistData, getSpotifyArtistData } from "../../lib/artists";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetServerSideProps, GetStaticPaths } from "next";
 import { ARTIST, SPOTIFYARTIST } from "../../types/Types";
 
 interface ARTISTSHOW {
@@ -114,23 +114,22 @@ const ArtistShow: React.FC<ARTISTSHOW> = ({ spotifyArtist, artist }) => {
 
 export default ArtistShow;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getAllArtistIds();
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const paths = await getAllArtistIds();
 
-  return {
-    paths,
-    fallback: true,
-  };
-};
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const artist = await getArtistData(String(params.id));
   const spotifyArtist = await getSpotifyArtistData(String(params.id));
   return {
     props: {
       artist,
       spotifyArtist,
-    },
-    revalidate: 60,
+    }
   };
 };

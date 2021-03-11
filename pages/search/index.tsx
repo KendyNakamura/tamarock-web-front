@@ -32,6 +32,7 @@ export default Search;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { name } = context.query;
   const res = await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/search?artist_name=${name}`);
+  console.log(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/search?artist_name=${name}`);
   const list = await res.json();
   const listData = list["artists"]["items"];
   return {
