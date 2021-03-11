@@ -11,9 +11,11 @@ const SideBar: React.FC<SIDEBARPROPS> = ({ artistList }) => {
   return (
     <Box title="Artists">
       <ul>{artistList && artistList.map((artist) => <Artist key={artist.id} {...artist} />)}</ul>
-      <Link href="/artists/page/1">
-        <a>もっと見る</a>
-      </Link>
+      <div className="text-right">
+        <Link href="/artists/page/1">
+          <a>もっと見る</a>
+        </Link>
+      </div>
     </Box>
   );
 };

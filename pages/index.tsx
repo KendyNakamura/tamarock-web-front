@@ -34,15 +34,19 @@ const Top: React.FC<STSTICPROPS> = ({ newsList, blogList, artistList }) => {
         <div className="col-span-3 md:col-span-2">
           <Box title="news" data-testId="top-news">
             <ul className="list-none p-0">{filteredNewsList && filteredNewsList.map((news) => (new Date(news.published_at) <= new Date() ? <Article key={news.id} {...news} /> : ""))}</ul>
-            <Link href="/articles/page/1">
-              <a>もっと見る</a>
-            </Link>
+            <div className="text-right">
+              <Link href="/articles/page/1">
+                <a>もっと見る</a>
+              </Link>
+            </div>
           </Box>
           <Box title="Blog">
             <ul className="list-none p-0">{blogList && blogList.map((blog) => (new Date(blog.published_at) <= new Date() ? <Article key={blog.id} {...blog} /> : ""))}</ul>
-            <Link href="/articles/page/1">
-              <a>もっと見る</a>
-            </Link>
+            <div className="text-right">
+              <Link href="/articles/page/1">
+                <a>もっと見る</a>
+              </Link>
+            </div>
           </Box>
         </div>
         <div className="col-span-3 md:col-span-1">

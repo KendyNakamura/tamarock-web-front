@@ -34,7 +34,7 @@ a {
 }
 
 .articleText a {
-  @apply text-blue-600;
+  @apply text-blue-600 break-all;
 }
 
 .articleText iframe {

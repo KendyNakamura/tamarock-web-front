@@ -35,7 +35,7 @@ const Layout: React.FC<LAYOUT> = ({ children, home, headTitle, description, imag
   const imageURL: string = imageUrl ? imageUrl : `${process.env.NEXT_PUBLIC_RESTAPI_URL}images/profile.jpg`;
 
   return (
-    <div className="bg-blue-300 p-0 m-0 font-sans text-2xl box-border">
+    <div className="p-0 m-0 font-sans text-2xl box-border">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <title>{siteTitle}</title>
