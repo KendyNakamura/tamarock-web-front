@@ -12,6 +12,12 @@ export interface ARTICLE {
   published_at: Date;
 }
 
+export interface FEEDARTICLE {
+  title: string;
+  link: string;
+  updated: Date;
+}
+
 export interface ARTIST {
   id: number;
   artist_id: string;
