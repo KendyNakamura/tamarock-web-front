@@ -5,19 +5,16 @@ import Article from "../components/article";
 import FeedArticle from "../components/feedArticle";
 import Link from "next/link";
 import { getLimitedArticlesData } from "../lib/articles";
-import { getLimitedArtistsData } from "../lib/artists";
 import { getFeedArticles } from "../lib/feedArticle";
 import useSWR from "swr";
 import { GetStaticProps } from "next";
-import { ARTICLE, ARTIST, FEEDARTICLE } from "../types/Types";
+import { ARTICLE, FEEDARTICLE } from "../types/Types";
 import SideBar from "../components/sidebar";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
-const blogApiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles?_end=5&_order=DESC&_sort=id&_start=0&column=category&q=2`;
+const blogApiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles?_end=5&_order=DESC&_sort=id&_start=0`;
 
 interface STSTICPROPS {
-  artistList: ARTIST[];
-  newsList: ARTICLE[];
   blogList: ARTICLE[];
   towerArticles: FEEDARTICLE[];
   gekirockArticles: FEEDARTICLE[];
@@ -37,16 +34,16 @@ const Top: React.FC<STSTICPROPS> = ({ newsList, blogList, artistList, towerArtic
 
   return (
     <Layout home>
-      <div className="grid grid-cols-3 gap-x-2">
+      <div className="grid grid-cols-3 gap-x-12">
         <div className="col-span-3 md:col-span-2">
           <div className="grid grid-cols-2 gap-x-2">
             <div className="col-span-2 md:col-span-1">
-              <Box title="タワレコ">
+              <Box title="タワレコ" src="https://cdfront.tower.jp/img12/common/headerNav_logo_01.gif">
                 <ul className="list-none p-0">{towerArticles && towerArticles.map((article) => <FeedArticle key={article.link} {...article} />)}</ul>
               </Box>
             </div>
             <div className="col-span-2 md:col-span-1">
-              <Box title="激ロック">
+              <Box title="激ロック" src="/images/logo.jpeg">
                 <ul className="list-none p-0">{gekirockArticles && gekirockArticles.map((article) => <FeedArticle key={article.link} {...article} />)}</ul>
               </Box>
             </div>
@@ -54,29 +51,20 @@ const Top: React.FC<STSTICPROPS> = ({ newsList, blogList, artistList, towerArtic
 
           <div className="grid grid-cols-2 gap-x-2">
             <div className="col-span-2 md:col-span-1">
-              <Box title="CINRA">
+              <Box title="CINRA" src="/images/cinra_logo.jpg">
                 <ul className="list-none p-0">{cinraArticles && cinraArticles.map((article) => <FeedArticle key={article.link} {...article} />)}</ul>
               </Box>
             </div>
             <div className="col-span-2 md:col-span-1">
-              <Box title="BARKS">
+              <Box title="BARKS" src="/images/barks_logo.jpg">
                 <ul className="list-none p-0">{barksArticles && barksArticles.map((article) => <FeedArticle key={article.link} {...article} />)}</ul>
               </Box>
             </div>
           </div>
-
-          <Box title="Blog/コラム">
-            <ul className="list-none p-0">{filteredBlogList && filteredBlogList.map((blog) => (new Date(blog.published_at) <= new Date() ? <Article key={blog.id} {...blog} /> : ""))}</ul>
-            <div className="text-right">
-              <Link href="/articles/page/1">
-                <a>もっと見る</a>
-              </Link>
-            </div>
-          </Box>
         </div>
 
         <div className="col-span-3 md:col-span-1">
-          <SideBar artistList={artistList} newsList={newsList} />
+          <SideBar newsList={blogList} />
         </div>
       </div>
     </Layout>
@@ -86,8 +74,7 @@ const Top: React.FC<STSTICPROPS> = ({ newsList, blogList, artistList, towerArtic
 export default Top;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const newsList = await getLimitedArticlesData(5, 1, 1, "category");
-  const blogList = await getLimitedArticlesData(5, 1, 2, "category");
+  const blogList = await getLimitedArticlesData(5, 1);
   const artistList = await getLimitedArtistsData();
   const towerArticles = await getFeedArticles("https://tower.jp/feeds/article/");
   const gekirockArticles = await getFeedArticles("https://gekirock.com/news/index.xml");
@@ -95,7 +82,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const barksArticles = await getFeedArticles("https://feeds.barks.jp/rss/barks_news_jpop.rdf", true);
   return {
     props: {
-      newsList,
       blogList,
       artistList,
       towerArticles,

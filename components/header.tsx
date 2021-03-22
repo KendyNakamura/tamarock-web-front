@@ -49,17 +49,17 @@ const Header: React.FC = () => {
                 <div className="ml-10 flex items-baseline space-x-4">
                   <Link href="/articles/page/1">
                     <a data-testid="article-nav" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                      News
+                      Articles
                     </a>
                   </Link>
                   <Link href="/artists/page/1">
                     <a data-testid="artist-nav" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                      Artist
+                      Artists
                     </a>
                   </Link>
                   <Link href="/about">
                     <a data-testid="about-nav" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                      about
+                      About
                     </a>
                   </Link>
                 </div>

@@ -30,5 +30,5 @@ export const getFeedArticles = async (fetchURL: string, getKey: boolean = false)
     };
   });
 
-  return articles.slice(0, 5);
+  return articles.slice(0, 3);
 };
