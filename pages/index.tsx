@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import Layout from "../components/layout";
 import Box from "../components/box";
-import Article from "../components/article";
 import FeedArticle from "../components/feedArticle";
-import Link from "next/link";
 import { getLimitedArticlesData } from "../lib/articles";
 import { getFeedArticles } from "../lib/feedArticle";
 import useSWR from "swr";
@@ -22,7 +20,7 @@ interface STSTICPROPS {
   barksArticles: FEEDARTICLE[];
 }
 
-const Top: React.FC<STSTICPROPS> = ({ newsList, blogList, artistList, towerArticles, gekirockArticles, cinraArticles, barksArticles }) => {
+const Top: React.FC<STSTICPROPS> = ({ blogList, towerArticles, gekirockArticles, cinraArticles, barksArticles }) => {
   // ISR
   const { data: blog, mutate } = useSWR(blogApiUrl, fetcher, {
     initialData: blogList,
@@ -64,7 +62,7 @@ const Top: React.FC<STSTICPROPS> = ({ newsList, blogList, artistList, towerArtic
         </div>
 
         <div className="col-span-3 md:col-span-1">
-          <SideBar newsList={blogList} />
+          <SideBar newsList={filteredBlogList} />
         </div>
       </div>
     </Layout>
@@ -75,7 +73,6 @@ export default Top;
 
 export const getStaticProps: GetStaticProps = async () => {
   const blogList = await getLimitedArticlesData(5, 1);
-  const artistList = await getLimitedArtistsData();
   const towerArticles = await getFeedArticles("https://tower.jp/feeds/article/");
   const gekirockArticles = await getFeedArticles("https://gekirock.com/news/index.xml");
   const cinraArticles = await getFeedArticles("https://www.cinra.net/feed/news?genre=music");
@@ -83,7 +80,6 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       blogList,
-      artistList,
       towerArticles,
       gekirockArticles,
       cinraArticles,
