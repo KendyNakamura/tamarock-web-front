@@ -34,13 +34,14 @@ const Top: React.FC<STSTICPROPS> = ({ blogList, towerArticles, gekirockArticles,
     <Layout home>
       <div className="grid grid-cols-3 gap-x-12">
         <div className="col-span-3 md:col-span-2">
+
           <div className="grid grid-cols-2 gap-x-2">
-            <div className="col-span-2 md:col-span-1">
+            <div className="col-span-2 sm:col-span-1">
               <Box title="タワレコ" src="https://cdfront.tower.jp/img12/common/headerNav_logo_01.gif">
                 <ul className="list-none p-0">{towerArticles && towerArticles.map((article) => <FeedArticle key={article.link} {...article} />)}</ul>
               </Box>
             </div>
-            <div className="col-span-2 md:col-span-1">
+            <div className="col-span-2 sm:col-span-1">
               <Box title="激ロック" src="/images/logo.jpeg">
                 <ul className="list-none p-0">{gekirockArticles && gekirockArticles.map((article) => <FeedArticle key={article.link} {...article} />)}</ul>
               </Box>
@@ -48,12 +49,12 @@ const Top: React.FC<STSTICPROPS> = ({ blogList, towerArticles, gekirockArticles,
           </div>
 
           <div className="grid grid-cols-2 gap-x-2">
-            <div className="col-span-2 md:col-span-1">
+            <div className="col-span-2 sm:col-span-1">
               <Box title="CINRA" src="/images/cinra_logo.jpg">
                 <ul className="list-none p-0">{cinraArticles && cinraArticles.map((article) => <FeedArticle key={article.link} {...article} />)}</ul>
               </Box>
             </div>
-            <div className="col-span-2 md:col-span-1">
+            <div className="col-span-2 sm:col-span-1">
               <Box title="BARKS" src="/images/barks_logo.jpg">
                 <ul className="list-none p-0">{barksArticles && barksArticles.map((article) => <FeedArticle key={article.link} {...article} />)}</ul>
               </Box>
@@ -77,6 +78,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const gekirockArticles = await getFeedArticles("https://gekirock.com/news/index.xml");
   const cinraArticles = await getFeedArticles("https://www.cinra.net/feed/news?genre=music");
   const barksArticles = await getFeedArticles("https://feeds.barks.jp/rss/barks_news_jpop.rdf", true);
+
   return {
     props: {
       blogList,
