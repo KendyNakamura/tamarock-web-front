@@ -11,7 +11,7 @@ const ArticleList: React.FC<ARTICLE> = ({ id, title, pictures, published_at, cre
     imageUrl = pictures[0].src;
     thumbnail = (
       <div className="mr-3">
-        <Image src={imageUrl} alt={title} width={300} height={250} />
+        <Image src={imageUrl} alt={title} width={150} height={100} layout="fixed" />
       </div>
     );
   }
