@@ -19,7 +19,7 @@ const ArticleList: React.FC<ARTICLE> = ({ id, title, pictures, published_at, cre
   return (
     <li className="pl-5 my-4 border-b-2 border-yellow-400 border-dashed" key={id}>
       <Link href="/articles/[id]" as={`/articles/${id}`}>
-        <a className="flex">
+        <a className="sm:flex md:inline lg:flex">
           {thumbnail}
           <p className="mt-0">
             {title}

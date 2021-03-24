@@ -1,3 +1,4 @@
+import Image from "next/image";
 interface BOX {
   title?: string;
   h?: number;
@@ -34,7 +35,7 @@ const Box: React.FC<BOX> = ({ children, title = null, h = 2, testId, src = null 
   return (
     <div className="max-w-screen-md p-1 md:my-6 my-2 mx-auto">
       {titleSection}
-      <img src={src} className="w-full"/>
+      {src ? <Image src={src} alt={title} width={450} height={200} /> : ''}
       {children}
     </div>
   );
