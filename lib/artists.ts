@@ -12,7 +12,7 @@ export async function getLimitedArtistsData(count: number = 10, page: number = 1
   var start = page == 1 ? 0 : end - count;
   const res = await fetch(new URL(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/artist/infos?_end=${end}&_order=DESC&_sort=id&_start=${start}`));
   const artists = await res.json();
-  const filteredArtists = artists.sort((a, b) => new Date(b.created_at).getDate() - new Date(a.created_at).getDate());
+  const filteredArtists = artists && artists.sort((a, b) => new Date(b.created_at).getDate() - new Date(a.created_at).getDate());
   return filteredArtists;
 }
 

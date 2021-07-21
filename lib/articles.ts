@@ -28,13 +28,15 @@ export async function getLimitedArticlesData(count: number = 10, page: number = 
 export async function getAllArticleIds() {
   const res = await fetch(new URL(`${process.env.NEXT_PUBLIC_RESTAPI_URL}api/articles`));
   const articles = await res.json();
-  return articles.map((article) => {
-    return {
-      params: {
-        id: String(article.id),
-      },
-    };
-  });
+  return articles && articles.length > 0
+    ? articles.map((article) => {
+        return {
+          params: {
+            id: String(article.id),
+          },
+        };
+      })
+    : [];
 }
 
 export async function getArticleData(id: string) {
@@ -47,7 +49,7 @@ export async function getArticleData(id: string) {
 function getArticlesBeforeToday(articles: ARTICLE[]) {
   var tomorrow = new Date();
   tomorrow.setDate(new Date().getDate() + 1);
-  return articles.filter((article) => new Date(article.published_at) < tomorrow);
+  return articles && articles.length > 0 ? articles.filter((article) => new Date(article.published_at) < tomorrow) : [];
 }
 
 // 公開日順でソート
